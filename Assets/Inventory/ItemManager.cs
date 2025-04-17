@@ -1,17 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class InventoryManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; }
+    public static ItemManager Instance { get; private set; }
     
-    public event Action<Item> OnItemAdded;
+    public event Action<ItemUIBase> OnItemAdded;
     
     [SerializeField]
     private GameObject InventoryPanel;
     private bool InventoryIsOpened = false; 
     
-    public Item ItemObject;
+    public ItemUIBase ItemUIBaseSword;
+    public ItemUIBase ItemUIBaseBow;
+    public ItemUIBase ItemUIBaseWand;
     
     private void Awake()
     {
@@ -44,11 +47,33 @@ public class InventoryManager : MonoBehaviour
             InventoryIsOpened = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            OnItemAdded?.Invoke(ItemObject);
+            OnItemAdded?.Invoke(ItemUIBaseSword);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            OnItemAdded?.Invoke(ItemUIBaseBow);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            OnItemAdded?.Invoke(ItemUIBaseWand);
         }
         
     }
     
+    public void AddItem()
+    {
+        
+    }
+
+    public void RemoveItem()
+    {
+        
+    }
+
+    public void DropItem()
+    {
+        
+    }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UI_InventoryPanel : MonoBehaviour
@@ -8,12 +9,12 @@ public class UI_InventoryPanel : MonoBehaviour
     [SerializeField]
     public GameObject BlankIcon;
     
-    public List<Item> ItemList;
+    public List<ItemUIBase> ItemList;
     
     private int InventorySize = 15;
     
     [SerializeField]
-    private GridLayoutGroup GridLayout;
+    private GridLayoutGroup BlankGridLayout;
     [SerializeField]
     private GridLayoutGroup ItemGridLayout;
     
@@ -21,12 +22,11 @@ public class UI_InventoryPanel : MonoBehaviour
     void Awake()
     {
         CreateInventory();
-        InventoryManager.Instance.OnItemAdded += AddItem;
     }
     
     void Start()
     {
-        
+        ItemManager.Instance.OnItemAdded += AddItem;
     }
 
     void Update()
@@ -37,17 +37,19 @@ public class UI_InventoryPanel : MonoBehaviour
     private void CreateInventory()
     {
         BlankList = new List<GameObject>();
-        ItemList = new List<Item>();
+        ItemList = new List<ItemUIBase>();
         
         // Create Blank Icon
         for (int i = 0; i < InventorySize; i++)
         {
-            BlankList.Add(Instantiate(BlankIcon, GridLayout.transform));
+            BlankList.Add(Instantiate(BlankIcon, BlankGridLayout.transform));
         }
     }
 
-    private void AddItem(Item item)
+    private void AddItem(ItemUIBase itemData)
     {
-        ItemList.Add(Instantiate(item, ItemGridLayout.transform));
+        if (InventorySize <= ItemList.Count) return;
+        
+        ItemList.Add(Instantiate(itemData, ItemGridLayout.transform));
     }
 }
