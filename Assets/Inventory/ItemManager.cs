@@ -16,6 +16,7 @@ public class ItemManager : MonoBehaviour
     public ItemUIBase ItemUIBaseBow;
     public ItemUIBase ItemUIBaseWand;
     
+    public GameObject draggingIcon;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -32,6 +33,7 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         InventoryPanel.SetActive(false);
+        draggingIcon.SetActive(false);
     }
 
     void Update()
