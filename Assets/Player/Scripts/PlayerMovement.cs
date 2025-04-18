@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Jumping")]
     private float JumpPower = 10f;
-
     public int maxJumps = 2;
     private int jumpsRemaining;
     
@@ -19,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
+
+    [Header("Gravity")] 
+    public float baseGravity = 2f;
+    public float maxFallSpeed = 18f;
+    public float fallSpeedMultiplier = 2f;
     
     void Awake()
     {
@@ -29,6 +33,20 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(horizontalMovement * MoveSpeed, rb.linearVelocity.y);
         GroundCheck();
+        Gravity();
+    }
+
+    private void Gravity()
+    {
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.gravityScale = baseGravity * fallSpeedMultiplier;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
+        }
+        else
+        {
+            rb.gravityScale = baseGravity;
+        }
     }
     
     public void Move(InputAction.CallbackContext context)
@@ -61,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpsRemaining = maxJumps;
         }
-        
     }
     
     private void OnDrawGizmosSelected()
