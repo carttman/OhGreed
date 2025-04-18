@@ -19,16 +19,29 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
+    private bool isGrounded;
+    
+    [Header("Gravity")] 
+    public float baseGravity = 2f;
+    public float maxFallSpeed = 18f;
+    public float fallSpeedMultiplier = 2f;
     
     [Header("WallCheck")] 
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask wallLayer;
 
-    [Header("Gravity")] 
-    public float baseGravity = 2f;
-    public float maxFallSpeed = 18f;
-    public float fallSpeedMultiplier = 2f;
+    [Header("WallMovement")]
+    public float wallSlideSpeed = 2;
+    private bool isWallSliding;
+    
+    //Wall Jumpint
+    private bool isWallJumping;
+    private float wallJumpDirection;
+    private float wallJumpTime = 0.5f;
+    private float wallJumpTimer;
+    public Vector2 wallJumpPower = new Vector2(5f, 10f);
+
     
     void Awake()
     {
@@ -37,23 +50,17 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        rb.linearVelocity = new Vector2(horizontalMovement * MoveSpeed, rb.linearVelocity.y);
         
         GroundCheck();
         Gravity();
-        Flip();
-    }
+        WallSlide();
+        WallJump();
+        
 
-    private void Gravity()
-    {
-        if (rb.linearVelocity.y < 0)
+        if (!isWallJumping)
         {
-            rb.gravityScale = baseGravity * fallSpeedMultiplier;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
-        }
-        else
-        {
-            rb.gravityScale = baseGravity;
+            rb.linearVelocity = new Vector2(horizontalMovement * MoveSpeed, rb.linearVelocity.y);
+            Flip();
         }
     }
     
@@ -79,6 +86,23 @@ public class PlayerMovement : MonoBehaviour
                 jumpsRemaining--;
             }
         }
+        
+        //Wall jump
+        if (context.performed && wallJumpTimer > 0f)
+        {
+            isWallJumping = true;
+            rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
+            wallJumpTimer = 0;
+            //force flip
+            if (transform.localScale.x != wallJumpDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 ls = transform.localScale;
+                ls.x *= -1f;
+                transform.localScale = ls;
+            }
+            Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
+        }
     }
     
     private void GroundCheck()
@@ -86,7 +110,64 @@ public class PlayerMovement : MonoBehaviour
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
         {
             jumpsRemaining = maxJumps;
+            isGrounded = true;
         }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+
+    private bool wallCheck()
+    {
+        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
+    }
+    
+    private void Gravity()
+    {
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.gravityScale = baseGravity * fallSpeedMultiplier;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
+        }
+        else
+        {
+            rb.gravityScale = baseGravity;
+        }
+    }
+    
+    private void WallSlide()
+    {
+        if (!isGrounded & wallCheck() & horizontalMovement != 0)
+        {
+            isWallSliding = true;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallJump()
+    {
+        if (isWallSliding)
+        {
+            isWallJumping = false;
+            wallJumpDirection = -transform.localScale.x;
+            wallJumpTimer = wallJumpTime;
+            
+            CancelInvoke(nameof(CancelWallJump));
+        }
+        else if (wallJumpTimer > 0f)
+        {
+            wallJumpTimer -= Time.deltaTime;
+        }
+    }
+
+    private void CancelWallJump()
+    {
+        isWallJumping = false;
     }
 
     private void Flip()
