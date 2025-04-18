@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
 {
+    Transform cerberoTransform;
     Enemy_Cerbero cerbero;
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    
+    
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        cerbero = animator.GetComponent<Enemy_Cerbero>();
+        cerberoTransform = animator.GetComponent<Transform>();
     }
-
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        cerberoTransform.position = Vector2.MoveTowards(cerberoTransform.position, 
+            new Vector2(cerbero.player.transform.position.x, cerberoTransform.position.y ), Time.deltaTime * cerbero.speed * 2);
     }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         

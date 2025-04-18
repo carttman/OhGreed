@@ -1,10 +1,12 @@
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
-public class IdleState : StateMachineBehaviour
+public class MoveState : StateMachineBehaviour
 {
     Transform cerberoTransform;
     Enemy_Cerbero cerbero;
-    
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -15,9 +17,23 @@ public class IdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) <= 20)
-            animator.SetBool("IsMove", true);
+        if (!cerbero.canMove) return;
         
+        if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) > 20)
+        {
+            animator.SetBool("IsMove", false);
+            animator.SetBool("IsIdle", true);
+        }
+        else if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) > 1.8)
+        {
+            cerberoTransform.position = Vector2.MoveTowards(cerberoTransform.position, 
+            new Vector2(cerbero.player.transform.position.x, cerberoTransform.position.y ), Time.deltaTime * cerbero.speed);
+        }
+        else
+        {
+            animator.SetBool("IsMove", false);
+            animator.SetBool("IsIdle", false);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
