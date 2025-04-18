@@ -364,7 +364,7 @@ MonoBehaviour:
   groundCheckSize: {x: 0.82, y: 0.05}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   baseGravity: 2
   maxFallSpeed: 18
   fallSpeedMultiplier: 2
@@ -372,6 +372,6 @@ MonoBehaviour:
   wallCheckSize: {x: 0.1, y: 1.23}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   wallSlideSpeed: 2
   wallJumpPower: {x: 5, y: 10}
