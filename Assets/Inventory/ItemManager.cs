@@ -8,6 +8,8 @@ public class ItemManager : MonoBehaviour
     
     public event Action<ItemUIBase> OnItemAdded;
     
+    public event Action<int> OnItemMoved;
+    
     [SerializeField]
     private GameObject InventoryPanel;
     private bool InventoryIsOpened = false; 
@@ -17,6 +19,8 @@ public class ItemManager : MonoBehaviour
     public ItemUIBase ItemUIBaseWand;
     
     public GameObject draggingIcon;
+    public int draggingIconIndex;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -63,19 +67,11 @@ public class ItemManager : MonoBehaviour
         }
         
     }
-    
-    public void AddItem()
+
+    public void MoveItem(int index)
     {
         
-    }
-
-    public void RemoveItem()
-    {
-        
-    }
-
-    public void DropItem()
-    {
+        OnItemMoved?.Invoke(index);
         
     }
 }

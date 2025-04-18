@@ -5,33 +5,22 @@ using UnityEngine.UI;
 
 public class UI_InventoryPanel : MonoBehaviour
 {
-    private List<GameObject> BlankList;
     [SerializeField]
-    public GameObject BlankIcon;
+    private GameObject BlankIconPrefab;
+    private List<GameObject> BlankList;
+    private int InventorySize = 15;
     
     public List<ItemUIBase> ItemList;
     
-    private int InventorySize = 15;
-    
     [SerializeField]
-    private GridLayoutGroup BlankGridLayout;
-    [SerializeField]
-    private GridLayoutGroup ItemGridLayout;
-    
-    
-    void Awake()
-    {
-        CreateInventory();
-    }
-    
+    private GridLayoutGroup InventoryGridLayout;
+   
     void Start()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
-    }
-
-    void Update()
-    {
+        ItemManager.Instance.OnItemMoved += MoveItem;
         
+        CreateInventory();
     }
 
     private void CreateInventory()
@@ -39,17 +28,43 @@ public class UI_InventoryPanel : MonoBehaviour
         BlankList = new List<GameObject>();
         ItemList = new List<ItemUIBase>();
         
-        // Create Blank Icon
         for (int i = 0; i < InventorySize; i++)
         {
-            BlankList.Add(Instantiate(BlankIcon, BlankGridLayout.transform));
+            BlankList.Add(Instantiate(BlankIconPrefab, InventoryGridLayout.transform));
+            BlankList[i].GetComponent<BlankIcon>()._ItemIndex = i;
+            
+            ItemList.Add(null);
         }
     }
 
-    private void AddItem(ItemUIBase itemData)
+    private void AddItem(ItemUIBase ItemIcon)
     {
-        if (InventorySize <= ItemList.Count) return;
+        //if (InventorySize <= ItemList.Count) return;
         
-        ItemList.Add(Instantiate(itemData, ItemGridLayout.transform));
+        ItemList[0] = Instantiate(ItemIcon, InventoryGridLayout.transform);
+        ItemList[0].transform.SetParent(BlankList[0].transform);
+        ItemList[0].transform.localPosition = Vector3.zero;
+        
+        ItemIcon._ItemIndex = 0;
+    }
+    
+    private void MoveItem(int targetIndex)
+    {
+        // 드래그 중인 아이템 슬롯의 인덱스
+        var draggingIndex = ItemManager.Instance.draggingIconIndex;
+        
+        // 드래그 중인 아이템 -> 커서 위치에 있는 슬롯을 부모, 위치 
+        ItemList[draggingIndex].transform.SetParent(BlankList[targetIndex].transform);
+        ItemList[draggingIndex].transform.localPosition = Vector3.zero;
+        
+        // 현재 슬롯 위치에 드래그 중인 아이템 삽입
+        ItemList[targetIndex] = ItemList[draggingIndex];
+        // 위치 변경 한 아이템의 인덱스 업데이트
+        ItemList[targetIndex]._ItemIndex = targetIndex;
+        
+        ItemManager.Instance.draggingIconIndex = targetIndex;
+        
+        //기존 위치 비우기
+        ItemList[draggingIndex] = null;
     }
 }

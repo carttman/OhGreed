@@ -150,106 +150,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2343233516951171495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7603451775123455797}
-  - component: {fileID: 5600999428202322836}
-  - component: {fileID: 4033232504975415301}
-  - component: {fileID: 4271325511350473195}
-  m_Layer: 5
-  m_Name: ItemGridPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7603451775123455797
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343233516951171495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7110664190614409977}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: 0}
-  m_SizeDelta: {x: -40, y: -20}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5600999428202322836
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343233516951171495}
-  m_CullTransparentMesh: 1
---- !u!114 &4033232504975415301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343233516951171495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b6aec3027d231c40a08e2613d1ead39, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &4271325511350473195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343233516951171495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 25, y: 15}
-  m_Constraint: 1
-  m_ConstraintCount: 5
 --- !u!1 &2832439804454609991
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +237,7 @@ GameObject:
   - component: {fileID: 5246937240202646037}
   - component: {fileID: 2360292536846863521}
   m_Layer: 5
-  m_Name: ItemGridPanel
+  m_Name: GoldPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,7 +389,7 @@ GameObject:
   - component: {fileID: 4610650695535974637}
   - component: {fileID: 7602286454080982948}
   m_Layer: 5
-  m_Name: ItemBlankGridPanel
+  m_Name: ItemGridPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,7 +583,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8891040554017261795}
-  - {fileID: 7603451775123455797}
   m_Father: {fileID: 345938520080757285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -741,10 +640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d50a3bcc19c1a409f46c3709fbc671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlankIcon: {fileID: 4525243954875934124, guid: 1489f10d91f540d45a846c0f08e2b8c0, type: 3}
+  BlankIconPrefab: {fileID: 4525243954875934124, guid: 1489f10d91f540d45a846c0f08e2b8c0, type: 3}
   ItemList: []
-  BlankGridLayout: {fileID: 7602286454080982948}
-  ItemGridLayout: {fileID: 4271325511350473195}
+  InventoryGridLayout: {fileID: 7602286454080982948}
 --- !u!1 &6739453214670868853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1114,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 345938520080757285}
-  - {fileID: 151507291307218853}
+  - {fileID: 5029859571174210852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1287,7 +1185,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1001 &5664782682172868680
+--- !u!1001 &669554629522137801
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1377,15 +1275,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506925442567013390, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
       propertyPath: m_Name
-      value: DragItem
+      value: DraggingItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
---- !u!224 &151507291307218853 stripped
+--- !u!224 &5029859571174210852 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5514405689995124717, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
-  m_PrefabInstance: {fileID: 5664782682172868680}
+  m_PrefabInstance: {fileID: 669554629522137801}
   m_PrefabAsset: {fileID: 0}
