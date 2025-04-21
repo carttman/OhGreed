@@ -1,10 +1,18 @@
+using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator animator;
     private bool isFacingRight = true;
+
+    [Header("Attack")]
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayer;
     
     [Header("Movement")]
     public float MoveSpeed = 5f;
@@ -35,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallSlideSpeed = 2;
     private bool isWallSliding;
     
-    //Wall Jumpint
+    [Header("WallJump")]
     private bool isWallJumping;
     private float wallJumpDirection;
     private float wallJumpTime = 0.5f;
@@ -46,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -55,13 +64,27 @@ public class PlayerMovement : MonoBehaviour
         Gravity();
         WallSlide();
         WallJump();
-        
 
         if (!isWallJumping)
         {
             rb.linearVelocity = new Vector2(horizontalMovement * MoveSpeed, rb.linearVelocity.y);
             Flip();
         }
+        
+        //walk animation
+
+        if (Mathf.Abs(horizontalMovement) > 0.1f)
+        {
+            animator.SetFloat("Walk", 1f);
+            Debug.Log($"{horizontalMovement}");
+        }
+        else if (horizontalMovement < 0.1f)
+        {
+            animator.SetFloat("Walk", 0f);
+        }
+        //jump animation
+        animator.SetBool("IsJumping", !isGrounded);
+        
     }
     
     public void Move(InputAction.CallbackContext context)
@@ -104,6 +127,38 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
         }
     }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int randomIndex = Random.Range(1, 4);
+            
+            animator.SetTrigger($"Attack{randomIndex}");
+            
+        }
+    }
+
+    public void DoAttack()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        Debug.Log("들어가니?");
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log($"적을 공격했어!"+ enemy.name);
+            //enemy.GetComponent<EnemyHealth>().TakeDamage(1);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    
     
     private void GroundCheck()
     {
@@ -181,14 +236,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
-        
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.white;
+    //     Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
+    //     
+    //     Gizmos.color = Color.blue;
+    //     Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
+    // }
     
 
 }
