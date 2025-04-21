@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 467601139191193841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.005, z: 0}
+  m_LocalPosition: {x: 0, y: -1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,8 +56,8 @@ Transform:
   m_GameObject: {fileID: 2171795380464019449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.358, y: 0.596, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.4, y: -0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1.3333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2163834646832195342}
@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2775578862234820090}
   - component: {fileID: 2186255930924258014}
   - component: {fileID: 1612861235696270980}
+  - component: {fileID: 3989101754404518634}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba6890b2a024352499ab4008e025a92e, type: 2}
+  m_Sprite: {fileID: -4057652279525399919, guid: 71d5aa434e74f2542a506ee0266baefc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,8 +217,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.022793889, y: 0.60773355}
-  m_Size: {x: 0.8611059, y: 1.2154671}
+  m_Offset: {x: -0.022793889, y: 0}
+  m_Size: {x: 0.87, y: 1.97}
   m_Direction: 0
 --- !u!114 &2186255930924258014
 MonoBehaviour:
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466ada8d10e1a9c438c6438323256cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 2224821923231946437}
   MoveSpeed: 5
   maxJumps: 2
   groundCheckPos: {fileID: 3471977894584316320}
@@ -369,9 +370,31 @@ MonoBehaviour:
   maxFallSpeed: 18
   fallSpeedMultiplier: 2
   wallCheckPos: {fileID: 1623197622676884258}
-  wallCheckSize: {x: 0.1, y: 1.23}
+  wallCheckSize: {x: 0.1, y: 1.82}
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
   wallSlideSpeed: 2
   wallJumpPower: {x: 5, y: 10}
+--- !u!95 &3989101754404518634
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097555025396050013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5552a1bebbea724ca0f0d43809a29c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
