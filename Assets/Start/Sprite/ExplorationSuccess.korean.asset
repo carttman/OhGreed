@@ -6,28 +6,28 @@ Sprite:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bianca_Idle01
+  m_Name: ExplorationSuccess.korean
   m_Rect:
     serializedVersion: 2
-    x: 3365
-    y: 2593
-    width: 20
-    height: 19
-  m_Offset: {x: 0, y: -9.5}
+    x: 0
+    y: 0
+    width: 320
+    height: 36
+  m_Offset: {x: 0, y: 0}
   m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 16
-  m_Pivot: {x: 0.5, y: 0}
+  m_PixelsToUnits: 100
+  m_Pivot: {x: 0.5, y: 0.5}
   m_Extrude: 1
   m_IsPolygon: 0
   m_AtlasName:
   m_PackingTag:
   m_RenderDataKey:
-    e6aa763747309474ba30f96fd9964a32: 21300000
+    8db493b5327164b4d8d8a0d3cb60ee3c: 21300000
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
     serializedVersion: 3
-    texture: {fileID: 2800000, guid: 4ae1b265e3edc69478cfe13d0b5c9d5c, type: 3}
+    texture: {fileID: 2800000, guid: 9366f444f9b5b9b44859f92a1ce08bdc, type: 3}
     alphaTexture: {fileID: 0}
     secondaryTextures: []
     m_SubMeshes:
@@ -41,7 +41,7 @@ Sprite:
       localAABB:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 000001000200020001000300
+    m_IndexBuffer: 030000000100020001000000
     m_VertexData:
       serializedVersion: 3
       m_VertexCount: 4
@@ -103,18 +103,18 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000020bf0000983f000000000000203f0000983f00000000000020bf00000000000000000000203f00000000000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: cdccccbfec51383e00000000cdcccc3fec5138be00000000cdcccc3fec51383e00000000cdccccbfec5138be000000000000000000000000000000000000000000000000000000000000000000000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 3365
-      y: 2593
-      width: 20
-      height: 19
+      x: 0
+      y: 0
+      width: 320
+      height: 36
     textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: 3365, y: 2583.5}
-    settingsRaw: 67
-    uvTransform: {x: 16, y: 3375, z: 16, w: 2593}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 64
+    uvTransform: {x: 100, y: 160, z: 100, w: 18}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
@@ -142,10 +142,9 @@ Sprite:
     uvTransform: {x: 0, y: 0, z: 0, w: 0}
     downscaleMultiplier: 0
   m_PhysicsShape:
-  - - {x: -0.5, y: 1.1875}
-    - {x: -0.5, y: 0}
-    - {x: 0.4375, y: 0}
-    - {x: 0.5, y: 0.0625}
-    - {x: 0.5, y: 1.1875}
+  - - {x: -1.5999999, y: 0.17999999}
+    - {x: -1.5999999, y: -0.17999999}
+    - {x: 1.5999999, y: -0.17999999}
+    - {x: 1.5999999, y: 0.17999999}
   m_Bones: []
   m_SpriteID:

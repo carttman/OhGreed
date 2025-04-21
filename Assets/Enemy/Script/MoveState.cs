@@ -19,21 +19,37 @@ public class MoveState : StateMachineBehaviour
     {
         if (!cerbero.canMove) return;
         
-        if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) > 20)
+        if (Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x) > 1.8 )
         {
-            animator.SetBool("IsMove", false);
-            animator.SetBool("IsIdle", true);
-        }
-        else if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) > 1.8)
-        {
+            Vector2 back = cerberoTransform.position;
+            
             cerberoTransform.position = Vector2.MoveTowards(cerberoTransform.position, 
             new Vector2(cerbero.player.transform.position.x, cerberoTransform.position.y ), Time.deltaTime * cerbero.speed);
+
+            if (Mathf.Abs(cerberoTransform.position.x - back.x) > 0.01f)
+            {
+                animator.SetBool("IsMove", true);
+                animator.SetBool("IsIdle", false);
+            }
+            else
+            {
+                animator.SetBool("IsMove", false);
+                animator.SetBool("IsIdle", true);
+            }
         }
         else
         {
-            animator.SetBool("IsMove", false);
-            animator.SetBool("IsIdle", false);
-        }
+            if (Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y) >= 3)
+            {
+               animator.SetBool("IsMove", false);
+               animator.SetBool("IsIdle", true); 
+            }
+            else
+            {
+                animator.SetBool("IsMove", false);
+                animator.SetBool("IsIdle", false);
+            }
+        } 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

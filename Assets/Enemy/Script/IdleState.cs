@@ -17,7 +17,8 @@ public class IdleState : StateMachineBehaviour
     {
         if (!cerbero.canMove) return;
         
-        if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) <= 20)
+        if (Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x) <= 20 &&
+            Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y) < 3)
         {
            animator.SetBool("IsMove", true); 
            animator.SetBool("IsIdle", false); 
@@ -27,7 +28,6 @@ public class IdleState : StateMachineBehaviour
             animator.SetBool("IsMove", false);
             animator.SetBool("IsIdle", true); 
         }
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
