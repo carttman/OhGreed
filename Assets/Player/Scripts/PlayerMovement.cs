@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     public void DoAttack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-        Debug.Log("들어가니?");
+        
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log($"적을 공격했어!"+ enemy.name);
