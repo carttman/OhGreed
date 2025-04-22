@@ -983,26 +983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cerbero
       objectReference: {fileID: 0}
-    - target: {fileID: 4081156332374733948, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: m_Value
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4081156332374733948, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: m_MaxValue
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5045279235174784269, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: dieAnim
       value: 
       objectReference: {fileID: 1832639368}
-    - target: {fileID: 5045279235174784269, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5045279235174784269, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: currentHealth
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: player
       value: 
