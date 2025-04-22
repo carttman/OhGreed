@@ -32,8 +32,12 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        //
-        
+
+        if (healthBar != null)
+        {
+            healthBar.SetCurrentHealth(currentHealth);
+            Debug.Log("hp바 업데이트됨");
+        }
         
         playerAnimation.PlayHit();
 
