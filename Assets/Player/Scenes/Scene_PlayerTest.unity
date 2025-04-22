@@ -449,6 +449,7 @@ MonoBehaviour:
   maxHealth: 80
   healthSlider: {fileID: 0}
   healthBarUI: {fileID: 0}
+  dieAnim: {fileID: 0}
 --- !u!1 &639273056
 GameObject:
   m_ObjectHideFlags: 0
