@@ -5,11 +5,14 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     public int currentHealth;
-    public int maxHealth = 80;
+    public int maxHealth = 5;
     
     public Slider healthSlider;
     public GameObject healthBarUI;
     private SpriteRenderer spriteRenderer;
+
+    public GameObject dieAnim;
+    
     void Awake()
     {
         currentHealth = maxHealth;
@@ -31,17 +34,12 @@ public class EnemyHealth : MonoBehaviour
     
     private void Die()
     {
+        Vector3 offset = new Vector3(0, 0.5f, 0);
+        
         Destroy(gameObject);
         Destroy(healthBarUI);
+        Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
     }
-    
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(10);
-        }
-    }*/
 
     IEnumerator DamageRed()
     {
