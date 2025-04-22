@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player 사망!");
         playerAnimation.PlayDie();
-        Destroy(gameObject, 1.5f);
+        //GetComponent<PlayerInput>().enabled = false;
     }
 }
 
