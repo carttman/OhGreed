@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickStartGame()
     {
-        SceneManager.LoadScene("LYS_Test");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OnClickExitGame()
