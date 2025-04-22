@@ -35,13 +35,13 @@ public class EnemyHealth : MonoBehaviour
         Destroy(healthBarUI);
     }
     
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(10);
         }
-    }
+    }*/
 
     IEnumerator DamageRed()
     {
