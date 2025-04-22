@@ -10,8 +10,14 @@ public class Follow : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
     }
-    void FixedUpdate()
+    void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+        
         Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
         rect.position = screenPos;
     }

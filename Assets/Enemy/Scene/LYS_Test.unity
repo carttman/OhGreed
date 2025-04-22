@@ -959,9 +959,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 80
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1329,8 +1329,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2368111459386130687, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4827961576218776971}
   m_SourcePrefab: {fileID: 100100000, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+--- !u!1 &4827961576218776970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2368111459386130687, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+  m_PrefabInstance: {fileID: 4827961576218776969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4827961576218776971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827961576218776970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0daf431dbcb38d148b87bd2ceec572ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 80
+  maxHealth: 80
+  healthSlider: {fileID: 952788323}
+  healthBarUI: {fileID: 952788321}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
