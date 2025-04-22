@@ -1,23 +1,23 @@
-using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 3;
+    public int maxHealth = 10;
     private int currentHealth;
-    private Animator animator;
+    private PlayerAnimation playerAnimation;
 
     private void Awake()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        animator.SetTrigger("Hit");
-        
+        playerAnimation.PlayHit();
+
         if (currentHealth <= 0)
         {
             Die();
@@ -26,9 +26,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Die");
-        animator.SetTrigger("Die");
-        // Destroy(gameObject, 1.5f);
-        // GameOverManager.Instance.ShowGameOver();
+        Debug.Log("Player 사망!");
+        playerAnimation.PlayDie();
+        Destroy(gameObject, 1.5f);
     }
 }
+

@@ -1,14 +1,36 @@
-// using System;
-// using UnityEngine;
-//
-// public class PlayerAnimation : MonoBehaviour
-// {
-//     private Animator animator;
-//
-//     private void Awake()
-//     {
-//         animator = GetComponent<Animator>();
-//     }
-//
-//     public void UpdateAnimation(float)
-// }
+using UnityEngine;
+
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerMovement))]
+public class PlayerAnimation : MonoBehaviour
+{
+    private Animator animator;
+    private PlayerMovement playerMovement;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+    }
+
+    void Update()
+    {
+        animator.SetFloat("Walk", Mathf.Abs(playerMovement.horizontalMovement));
+        animator.SetBool("IsJumping", !playerMovement.IsGrounded);
+    }
+
+    public void PlayAttack(int index)
+    {
+        animator.SetTrigger($"Attack{index}");
+    }
+
+    public void PlayHit()
+    {
+        animator.SetTrigger("Hit");
+    }
+
+    public void PlayDie()
+    {
+        animator.SetTrigger("Die");
+    }
+}
