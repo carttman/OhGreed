@@ -82,7 +82,7 @@ public class Enemy_Cerbero : MonoBehaviour
 
         if (hit != null && hit.CompareTag("Player"))
         {
-            hit.GetComponent<PlayerHealth>()?.TakeDamage(1);
+            hit.GetComponent<PlayerHealth>()?.TakeDamage(10);
             Debug.Log("cerbero 데미지");
         }
     }

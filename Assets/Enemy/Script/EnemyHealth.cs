@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
         
         Destroy(gameObject);
         Destroy(healthBarUI);
-        Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
+        //Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
     }
 
     IEnumerator DamageRed()
