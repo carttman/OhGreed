@@ -1,69 +1,81 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+    public Animator animator;
+
     private bool isFacingRight = true;
     
-    [Header("Movement")]
-    public float MoveSpeed = 5f;
-    private float horizontalMovement;
-    
-    [Header("Jumping")]
-    private float JumpPower = 10f;
-    public int maxJumps = 2;
-    private int jumpsRemaining;
-    
-    [Header("GroundCheck")] 
-    public Transform groundCheckPos;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    public LayerMask groundLayer;
-    private bool isGrounded;
-    
-    [Header("Gravity")] 
+    [Header("Gravity")]
     public float baseGravity = 2f;
     public float maxFallSpeed = 18f;
     public float fallSpeedMultiplier = 2f;
     
-    [Header("WallCheck")] 
+    [Header("Movement")]
+    public float moveSpeed = 5f;
+    public float horizontalMovement;
+    
+    [Header("Jumping")]
+    public float jumpPower = 10f;
+    public int maxJumps = 2;
+    private int jumpsRemaining;
+
+    [Header("GroundCheck")]
+    public Transform groundCheckPos;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask groundLayer;
+    public bool IsGrounded;
+
+    [Header("WallCheck")]
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask wallLayer;
-
+    
     [Header("WallMovement")]
-    public float wallSlideSpeed = 2;
+    public float wallSlideSpeed = 2f;
     private bool isWallSliding;
     
-    //Wall Jumpint
+    [Header("WallJump")]
     private bool isWallJumping;
     private float wallJumpDirection;
     private float wallJumpTime = 0.5f;
     private float wallJumpTimer;
-    public Vector2 wallJumpPower = new Vector2(5f, 10f);
+    public Vector2 wallJumpPower = new Vector2(8f, 12f);
 
-    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    
+
     void Update()
     {
-        
         GroundCheck();
         Gravity();
         WallSlide();
         WallJump();
         
+        ApplyMovement();
+        Flip();
 
-        if (!isWallJumping)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            rb.linearVelocity = new Vector2(horizontalMovement * MoveSpeed, rb.linearVelocity.y);
-            Flip();
+            var h = GetComponent<PlayerHealth>();
+            
+            h.TakeDamage(1);
         }
     }
-    
+
+    private void ApplyMovement()
+    {
+        if (isWallJumping) return; // 벽 점프중이면 이동 막기
+        
+        rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+        
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
@@ -71,29 +83,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (jumpsRemaining > 0)
-        {
-            if (context.performed)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpPower);
-                
-                jumpsRemaining--;
-            }
-            else if (context.canceled)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-                
-                jumpsRemaining--;
-            }
-        }
-        
-        //Wall jump
+        //벽 점프
         if (context.performed && wallJumpTimer > 0f)
         {
             isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
-            //force flip
+
             if (transform.localScale.x != wallJumpDirection)
             {
                 isFacingRight = !isFacingRight;
@@ -101,24 +97,37 @@ public class PlayerMovement : MonoBehaviour
                 ls.x *= -1f;
                 transform.localScale = ls;
             }
-            Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
+
+            Invoke(nameof(CancelWallJump), wallJumpTime + 0.5f);
+            return;
         }
-    }
-    
-    private void GroundCheck()
-    {
-        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
+        
+        //그냥 점프
+        if (jumpsRemaining > 0)
         {
-            jumpsRemaining = maxJumps;
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
+            if (context.performed)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+                jumpsRemaining--;
+            }
+            else if (context.canceled)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+                jumpsRemaining--;
+            }
         }
     }
 
-    private bool wallCheck()
+    private void GroundCheck()
+    {
+        IsGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
+        if (IsGrounded)
+        {
+            jumpsRemaining = maxJumps;
+        }
+    }
+
+    private bool WallCheck()
     {
         return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
     }
@@ -135,10 +144,10 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = baseGravity;
         }
     }
-    
+
     private void WallSlide()
     {
-        if (!isGrounded & wallCheck() & horizontalMovement != 0)
+        if (!IsGrounded && WallCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -180,15 +189,14 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = ls;
         }
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
-        
+    
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
     
-
 }

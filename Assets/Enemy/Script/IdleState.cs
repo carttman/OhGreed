@@ -15,19 +15,20 @@ public class IdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!cerbero.canMove) return;
-        
-        if (Vector2.Distance(cerberoTransform.position, cerbero.player.transform.position) <= 20)
+        if (!cerbero.canMove)
         {
-           animator.SetBool("IsMove", true); 
-           animator.SetBool("IsIdle", false); 
-        }
-        else
-        {
-            animator.SetBool("IsMove", false);
-            animator.SetBool("IsIdle", true); 
+            animator.SetBool("IsIdle", true);
+            return;
         }
         
+        float xDist = Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x);
+        float yDist = Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y);
+        
+        if (xDist <= 20f && !(xDist < 0.5f && yDist > 2f))
+        {
+            animator.SetBool("IsMove", true); 
+            animator.SetBool("IsIdle", false);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
