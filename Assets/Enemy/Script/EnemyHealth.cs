@@ -34,11 +34,11 @@ public class EnemyHealth : MonoBehaviour
     
     private void Die()
     {
-        Vector3 offset = new Vector3(0, 0.5f, 0);
+        Vector3 offset = new Vector3(0, 1.5f, 0);
         
+        Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
         Destroy(gameObject);
         Destroy(healthBarUI);
-        //Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
     }
 
     IEnumerator DamageRed()

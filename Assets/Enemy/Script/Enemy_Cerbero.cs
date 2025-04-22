@@ -16,6 +16,7 @@ public class Enemy_Cerbero : MonoBehaviour
     public float attackRange = 1f;
     public LayerMask playerLayer;
 
+    public int Damage = 10;
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -82,7 +83,7 @@ public class Enemy_Cerbero : MonoBehaviour
 
         if (hit != null && hit.CompareTag("Player"))
         {
-            hit.GetComponent<PlayerHealth>()?.TakeDamage(10);
+            hit.GetComponent<PlayerHealth>()?.TakeDamage(Damage);
             Debug.Log("cerbero 데미지");
         }
     }
