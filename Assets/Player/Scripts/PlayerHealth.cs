@@ -1,21 +1,40 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
+    public int maxHealth = 97;
     private int currentHealth;
+    
     private PlayerAnimation playerAnimation;
+
+    public PlayerHpBarController healthBar;
 
     private void Awake()
     {
-        currentHealth = maxHealth;
         playerAnimation = GetComponent<PlayerAnimation>();
+        currentHealth = maxHealth;
+
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetCurrentHealth(currentHealth);
+        }
+        else
+        {
+            Debug.LogWarning("HealthBar가 연결되지 않았어!");
+        }
     }
+    
 
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        //
+        
+        
         playerAnimation.PlayHit();
 
         if (currentHealth <= 0)
