@@ -409,6 +409,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
+  Damage: 10
 --- !u!114 &5045279235174784269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ MonoBehaviour:
   maxHealth: 5
   healthSlider: {fileID: 4081156332374733948}
   healthBarUI: {fileID: 1006713812455108289}
-  dieAnim: {fileID: 0}
+  dieAnim: {fileID: 6889046644898794520, guid: b6cf42753c4994841ab276ae013a0383, type: 3}
 --- !u!58 &7408692756963226943
 CircleCollider2D:
   m_ObjectHideFlags: 0
