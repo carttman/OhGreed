@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ItemEquipWeaponSlott : MonoBehaviour
+public class ItemEquipWeaponSlot : BlankIcon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        
+        _EquipType = EquipType.WEAPONSLOT;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnDrop(PointerEventData eventData)
     {
+        //Debug.Log($"OnDrop to ItemEquipWeaponSlot : {_ItemIndex}");
         
+        var item = eventData.pointerDrag.GetComponent<ItemUIBase>();
+        //빈 슬롯의 인덱스 넘겨준다
+        ItemManager.Instance.MoveItem(_ItemIndex, _EquipType);
     }
 }

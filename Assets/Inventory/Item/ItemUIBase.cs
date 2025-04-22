@@ -8,6 +8,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public int _ItemIndex;   
 
     private GameObject _draggingIcon; // 드래그 시 생성되는 임시 아이콘
+    public EquipType _EquipType;
     
     void Start()
     {
@@ -25,9 +26,9 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             return;
         }
 
-        Debug.LogWarning("드래그 시작");
+        //Debug.LogWarning("드래그 시작");
         
-        Debug.Log( $" dragging Icon Index : { ItemManager.Instance.draggingIconIndex}");
+        //Debug.Log( $" dragging Icon Index : { ItemManager.Instance.draggingIconIndex}");
         ItemManager.Instance.draggingIconIndex = _ItemIndex;
         
         _draggingIcon = ItemManager.Instance.draggingIcon;
@@ -38,6 +39,13 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         iconImage.sprite = itemData.ItemIcon;
         iconImage.preserveAspect = true;
         iconImage.raycastTarget = false;
+        
+        // =================================
+        
+        //아이템 매니저에 있는 임시아이템 타입 넣어주기
+        _EquipType = GetComponentInParent<BlankIcon>()._EquipType;
+        Debug.Log($"_EquipType : {_EquipType}");
+        ItemManager.Instance.draggingIconSlotType = _EquipType;
     }
 
     public void OnDrag(PointerEventData eventData)
