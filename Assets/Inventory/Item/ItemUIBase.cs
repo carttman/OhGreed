@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler//, IDropHandler
@@ -8,7 +9,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public int _ItemIndex;   
 
     private GameObject _draggingIcon; // 드래그 시 생성되는 임시 아이콘
-    public EquipType _EquipType;
+    [FormerlySerializedAs("_EquipType")] public SlotType slotType;
     
     void Start()
     {
@@ -29,9 +30,9 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         //Debug.LogWarning("드래그 시작");
         
         //Debug.Log( $" dragging Icon Index : { ItemManager.Instance.draggingIconIndex}");
-        ItemManager.Instance.draggingIconIndex = _ItemIndex;
+        ItemManager.Instance.TempIconIndex = _ItemIndex;
         
-        _draggingIcon = ItemManager.Instance.draggingIcon;
+        _draggingIcon = ItemManager.Instance.TempIcon;
         _draggingIcon.SetActive(true);
         
         
@@ -43,9 +44,9 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         // =================================
         
         //아이템 매니저에 있는 임시아이템 타입 넣어주기
-        _EquipType = GetComponentInParent<BlankIcon>()._EquipType;
-        Debug.Log($"_EquipType : {_EquipType}");
-        ItemManager.Instance.draggingIconSlotType = _EquipType;
+        slotType = GetComponentInParent<BlankIcon>().slotType;
+        Debug.Log($"_EquipType : {slotType}");
+        ItemManager.Instance.TempSlotType = slotType;
     }
 
     public void OnDrag(PointerEventData eventData)

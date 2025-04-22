@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 
-public enum EquipType
+public enum SlotType
 {
     WEAPONSLOT,
     ACCESSORYSLOT,
@@ -13,23 +14,23 @@ public enum EquipType
 }
 public class BlankIcon : MonoBehaviour, IDropHandler
 {
-    public int _ItemIndex;
+    public int MyIndex;
     
-    public EquipType _EquipType;
+    public SlotType slotType;
 
     protected virtual void Start()
     {
-        _EquipType = EquipType.ITEMSLOT;
+        slotType = SlotType.ITEMSLOT;
     }
 
+    //이 아이콘 위에 드랍 되었을 때
     public virtual void OnDrop(PointerEventData eventData)
     {
-        //Debug.Log($"OnDrop to BlankIcon : {_ItemIndex}");
-        
         var item = eventData.pointerDrag.GetComponent<ItemUIBase>();
-        //빈 슬롯의 인덱스 넘겨준다
-        ItemManager.Instance.MoveItem(_ItemIndex, _EquipType);
-        
-        
+        if (item)
+        {
+            //이 슬롯의 인덱스와 슬롯타입 넘겨준다
+            ItemManager.Instance.MoveItemInventory(MyIndex, slotType);
+        }
     }
 }

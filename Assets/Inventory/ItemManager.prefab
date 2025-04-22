@@ -48,4 +48,6 @@ MonoBehaviour:
   ItemUIBaseSword: {fileID: 6611923040635798516, guid: f120e4d1dfc2a6143b0a02cccf53cf8e, type: 3}
   ItemUIBaseBow: {fileID: -6870884046668495921, guid: 2918cc7731626ca4ea1d3b7e15414b86, type: 3}
   ItemUIBaseWand: {fileID: -8943354884304496126, guid: e74e53da650c4d649a96f3823666a78e, type: 3}
-  draggingIcon: {fileID: 0}
+  TempIcon: {fileID: 0}
+  TempIconIndex: 0
+  TempSlotType: 0

@@ -389,8 +389,9 @@ GameObject:
   - component: {fileID: 2550718967009041032}
   - component: {fileID: 4610650695535974637}
   - component: {fileID: 7602286454080982948}
+  - component: {fileID: 3959513937141125860}
   m_Layer: 5
-  m_Name: ItemGridPanel
+  m_Name: ItemPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -477,6 +478,22 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 15}
   m_Constraint: 1
   m_ConstraintCount: 5
+--- !u!114 &3959513937141125860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3813636470894914501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d50a3bcc19c1a409f46c3709fbc671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlankIconPrefab: {fileID: 4525243954875934124, guid: 1489f10d91f540d45a846c0f08e2b8c0, type: 3}
+  InventoryItems: []
+  InventoryGridLayout: {fileID: 7602286454080982948}
+  equipWeaponPanel: {fileID: 4770132401492994285}
 --- !u!1 &4837474029386588591
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,9 +655,8 @@ GameObject:
   - component: {fileID: 7110664190614409977}
   - component: {fileID: 6075026679642581704}
   - component: {fileID: 1881125738953272836}
-  - component: {fileID: 6759027909310453200}
   m_Layer: 5
-  m_Name: InventorySlots
+  m_Name: ItemSlots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,21 +720,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6759027909310453200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5866328335396459135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d50a3bcc19c1a409f46c3709fbc671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlankIconPrefab: {fileID: 4525243954875934124, guid: 1489f10d91f540d45a846c0f08e2b8c0, type: 3}
-  ItemList: []
-  InventoryGridLayout: {fileID: 7602286454080982948}
 --- !u!1 &6092818815276849329
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,8 +989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e74b0310a939fe4c89f6b306889942a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemIndex: 1
-  _EquipType: 0
+  MyIndex: 1
+  slotType: 0
 --- !u!1 &7327233960857068956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e74b0310a939fe4c89f6b306889942a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemIndex: 0
-  _EquipType: 0
+  MyIndex: 0
+  slotType: 0
 --- !u!1 &8472260891673574153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1320,7 @@ GameObject:
   - component: {fileID: 5423383833933305081}
   - component: {fileID: 4770132401492994285}
   m_Layer: 5
-  m_Name: EquipWeaponGridPanel
+  m_Name: EquipWeaponPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1398,9 +1399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac3b4929e5f67e42b26307e3231cb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponSlot: []
+  WeaponBlankSlots: []
   FirstSlot: {fileID: 4013748916391983353}
   SecondSlot: {fileID: 2844554714081588696}
+  EquipItems: []
+  _InventoryItemPanel: {fileID: 3959513937141125860}
 --- !u!1 &8603890314865865903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1543,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 345938520080757285}
-  - {fileID: 5029859571174210852}
+  - {fileID: 1119127761740456138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1611,7 +1614,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1001 &669554629522137801
+--- !u!1001 &4828116117188525863
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1681,11 +1684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5514405689995124717, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 299
+      value: 1637.1161
       objectReference: {fileID: 0}
     - target: {fileID: 5514405689995124717, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 13
+      value: 471.2226
       objectReference: {fileID: 0}
     - target: {fileID: 5514405689995124717, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1701,19 +1704,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506925442567013390, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
       propertyPath: m_Name
-      value: DraggingItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506925442567013390, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: TempItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
---- !u!224 &5029859571174210852 stripped
+--- !u!224 &1119127761740456138 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5514405689995124717, guid: d4bc6c7d148ec0544a0bd282597f11e4, type: 3}
-  m_PrefabInstance: {fileID: 669554629522137801}
+  m_PrefabInstance: {fileID: 4828116117188525863}
   m_PrefabAsset: {fileID: 0}

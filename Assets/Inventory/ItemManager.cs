@@ -8,7 +8,7 @@ public class ItemManager : MonoBehaviour
     
     public event Action<ItemUIBase> OnItemAdded;
     
-    public event Action<int, EquipType> OnItemMovedItem;
+    public event Action<int, SlotType> OnItemMovedItem;
     public event Action<int> OnItemMoveToEquipSlot;
     
     [SerializeField]
@@ -19,28 +19,19 @@ public class ItemManager : MonoBehaviour
     public ItemUIBase ItemUIBaseBow;
     public ItemUIBase ItemUIBaseWand;
     
-    public GameObject draggingIcon;
-    public int draggingIconIndex;
-
-    public EquipType draggingIconSlotType;
+    public GameObject TempIcon;
+    public int TempIconIndex;
+    public SlotType TempSlotType;
     
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        
+       Singleton();
     }
     
     void Start()
     {
         InventoryPanel.SetActive(false);
-        draggingIcon.SetActive(false);
+        TempIcon.SetActive(false);
     }
 
     void Update()
@@ -70,21 +61,31 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void MoveItem(int index, EquipType equipType)
+    private void Singleton()
     {
-        // 리스트 두개 넘기기
-        
-        switch (equipType)
+        if (Instance != null && Instance != this)
         {
-            case EquipType.ITEMSLOT:
+            Destroy(gameObject);
+            return;
+        }
+        
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    
+    public void MoveItemInventory(int targetIndex, SlotType slotType)
+    {
+        switch (slotType)
+        {
+            case SlotType.ITEMSLOT:
             {
-                OnItemMovedItem?.Invoke(index, draggingIconSlotType);
+                OnItemMovedItem?.Invoke(targetIndex, TempSlotType);
                 break;
             }
 
-            case EquipType.WEAPONSLOT:
+            case SlotType.WEAPONSLOT:
             {
-                OnItemMoveToEquipSlot?.Invoke(index);
+                OnItemMoveToEquipSlot?.Invoke(targetIndex);
                 break;
             }
         }
