@@ -8,7 +8,8 @@ public class ItemManager : MonoBehaviour
     
     public event Action<ItemUIBase> OnItemAdded;
     
-    public event Action<int> OnItemMoved;
+    public event Action<int, EquipType> OnItemMovedItem;
+    public event Action<int> OnItemMoveToEquipSlot;
     
     [SerializeField]
     private GameObject InventoryPanel;
@@ -20,6 +21,8 @@ public class ItemManager : MonoBehaviour
     
     public GameObject draggingIcon;
     public int draggingIconIndex;
+
+    public EquipType draggingIconSlotType;
     
     private void Awake()
     {
@@ -65,13 +68,25 @@ public class ItemManager : MonoBehaviour
         {
             OnItemAdded?.Invoke(ItemUIBaseWand);
         }
-        
     }
 
-    public void MoveItem(int index)
+    public void MoveItem(int index, EquipType equipType)
     {
+        // 리스트 두개 넘기기
         
-        OnItemMoved?.Invoke(index);
-        
+        switch (equipType)
+        {
+            case EquipType.ITEMSLOT:
+            {
+                OnItemMovedItem?.Invoke(index, draggingIconSlotType);
+                break;
+            }
+
+            case EquipType.WEAPONSLOT:
+            {
+                OnItemMoveToEquipSlot?.Invoke(index);
+                break;
+            }
+        }
     }
 }
