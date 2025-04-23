@@ -89,3 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 5818265a8e731a44da95c8d0066a8e73, type: 2}
+  _ItemIndex: 0
+  slotType: 0
+  ItemGameObject: {fileID: 4404779739092964630, guid: 08bf4da66ec663d4eb382a26574d142a, type: 3}

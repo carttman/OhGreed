@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class SwordObject : ItemObjectBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         Debug.Log(itemData.ItemName);
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    
+    public override void Attack()
+    {
+        Debug.Log("소드 어택");
     }
 }

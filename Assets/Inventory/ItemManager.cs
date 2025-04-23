@@ -7,9 +7,8 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance { get; private set; }
     
     public event Action<ItemUIBase> OnItemAdded;
-    
-    public event Action<int, SlotType> OnItemMovedItem;
-    public event Action<int> OnItemMoveToEquipSlot;
+    public event Action<int, SlotType> OnMoveToItemSlot;
+    public event Action<int> OnMoveToEquipSlot;
     
     [SerializeField]
     private GameObject InventoryPanel;
@@ -22,6 +21,8 @@ public class ItemManager : MonoBehaviour
     public GameObject TempIcon;
     public int TempIconIndex;
     public SlotType TempSlotType;
+
+    public GameObject Player;
     
     private void Awake()
     {
@@ -59,6 +60,12 @@ public class ItemManager : MonoBehaviour
         {
             OnItemAdded?.Invoke(ItemUIBaseWand);
         }
+        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            // IAttackHandler attackHandler = new SwordObject();
+            // attackHandler.Attack();
+        }
     }
 
     private void Singleton()
@@ -79,13 +86,13 @@ public class ItemManager : MonoBehaviour
         {
             case SlotType.ITEMSLOT:
             {
-                OnItemMovedItem?.Invoke(targetIndex, TempSlotType);
+                OnMoveToItemSlot?.Invoke(targetIndex, TempSlotType);
                 break;
             }
 
             case SlotType.WEAPONSLOT:
             {
-                OnItemMoveToEquipSlot?.Invoke(targetIndex);
+                OnMoveToEquipSlot?.Invoke(targetIndex);
                 break;
             }
         }

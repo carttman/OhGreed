@@ -1,16 +1,20 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ItemObjectBase : MonoBehaviour
+public class ItemObjectBase : MonoBehaviour, IAttackHandler
 {
     public ItemData itemData;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    protected virtual void Start()
     {
+        //Data에 저장된 이미지
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = itemData.ItemIcon;    
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Attack()
     {
-        
+        Debug.Log("아이템 어택");
     }
 }

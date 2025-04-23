@@ -16,7 +16,7 @@ public class EquipWeaponPanel : MonoBehaviour
     public UI_InventoryPanel _InventoryItemPanel;
     private void Start()
     {
-        ItemManager.Instance.OnItemMoveToEquipSlot += OnItemEquiped;
+        ItemManager.Instance.OnMoveToEquipSlot += OnEquiped;
         
         CreateWeaponSlot();
     }
@@ -33,7 +33,7 @@ public class EquipWeaponPanel : MonoBehaviour
 
     }
     
-    private void OnItemEquiped(int targetIndex)
+    private void OnEquiped(int targetIndex)
     {
         // 드래그 중인 아이템 슬롯의 인덱스 저장
         var draggingIndex = ItemManager.Instance.TempIconIndex;
@@ -51,5 +51,12 @@ public class EquipWeaponPanel : MonoBehaviour
         
         //기존 위치 비우기
         _InventoryItemPanel.InventoryItems[draggingIndex] = null;
+        
+        SpawnItem(targetIndex);
+    }
+
+    public void SpawnItem(int targetIndex)
+    {
+        Instantiate(EquipItems[targetIndex].ItemGameObject, ItemManager.Instance.Player.transform);
     }
 }

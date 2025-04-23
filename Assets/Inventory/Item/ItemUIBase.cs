@@ -3,13 +3,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler//, IDropHandler
+public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public ItemData itemData;
     public int _ItemIndex;   
 
-    private GameObject _draggingIcon; // 드래그 시 생성되는 임시 아이콘
-    [FormerlySerializedAs("_EquipType")] public SlotType slotType;
+    private GameObject _draggingIcon; 
+    public SlotType slotType;
+
+    public GameObject ItemGameObject;
     
     void Start()
     {
@@ -26,8 +28,6 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Debug.LogWarning("ItemData or itemIcon is null.");
             return;
         }
-
-        //Debug.LogWarning("드래그 시작");
         
         //Debug.Log( $" dragging Icon Index : { ItemManager.Instance.draggingIconIndex}");
         ItemManager.Instance.TempIconIndex = _ItemIndex;
@@ -41,7 +41,6 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         iconImage.preserveAspect = true;
         iconImage.raycastTarget = false;
         
-        // =================================
         
         //아이템 매니저에 있는 임시아이템 타입 넣어주기
         slotType = GetComponentInParent<BlankIcon>().slotType;
@@ -71,15 +70,4 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             _draggingIcon = null;
         }
     }
-    
-    // public void OnDrop(PointerEventData eventData)
-    // {
-    //     Debug.Log($"OnDrop to BlankIcon : {_ItemIndex}");
-    //     
-    //     var item = eventData.pointerDrag.GetComponent<ItemUIBase>();
-    //     
-    //     Debug.Log(item.itemData.ItemName);
-    //     
-    //     ItemManager.Instance.MoveItem(_ItemIndex);
-    // }
 }

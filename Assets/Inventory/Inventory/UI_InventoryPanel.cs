@@ -19,7 +19,7 @@ public class UI_InventoryPanel : MonoBehaviour
     void Start()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
-        ItemManager.Instance.OnItemMovedItem += MoveItemSlot;
+        ItemManager.Instance.OnMoveToItemSlot += MoveMoveToItemSlot;
         
         CreateInventory();
     }
@@ -47,7 +47,7 @@ public class UI_InventoryPanel : MonoBehaviour
         ItemIcon._ItemIndex = 0;
     }
     
-    private void MoveItemSlot(int targetIndex, SlotType prevSlotType)
+    private void MoveMoveToItemSlot(int targetIndex, SlotType prevSlotType)
     {
         // 드래그 중인 아이템 슬롯의 인덱스
         var draggingIndex = ItemManager.Instance.TempIconIndex;
