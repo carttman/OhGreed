@@ -19,7 +19,7 @@ public class UI_InventoryPanel : MonoBehaviour
     void Start()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
-        ItemManager.Instance.OnMoveToItemSlot += MoveMoveToItemSlot;
+        ItemManager.Instance.OnMoveToItemSlot += MoveToItemSlot;
         
         CreateInventory();
     }
@@ -47,7 +47,7 @@ public class UI_InventoryPanel : MonoBehaviour
         ItemIcon._ItemIndex = 0;
     }
     
-    private void MoveMoveToItemSlot(int targetIndex, SlotType prevSlotType)
+    private void MoveToItemSlot(int targetIndex, SlotType prevSlotType)
     {
         // 드래그 중인 아이템 슬롯의 인덱스
         var draggingIndex = ItemManager.Instance.TempIconIndex;
@@ -58,7 +58,9 @@ public class UI_InventoryPanel : MonoBehaviour
         
         // 무기슬롯 -> 아이템 슬롯이라면, 무기슬롯에서 아이템 가져온다.
         if (prevSlotType == SlotType.WEAPONSLOT)
-        {   // 인벤 아이템 슬롯에 자식으로 설정
+        {   
+            if (InventoryItems[targetIndex]) return;
+            // 인벤 아이템 슬롯에 자식으로 설정
             equipWeaponPanel.EquipItems[draggingIndex].transform.SetParent(BlankIcons[targetIndex].transform);
             equipWeaponPanel.EquipItems[draggingIndex].transform.localPosition = Vector3.zero;
             
@@ -68,9 +70,14 @@ public class UI_InventoryPanel : MonoBehaviour
             InventoryItems[targetIndex]._ItemIndex = targetIndex;
             
             equipWeaponPanel.EquipItems[draggingIndex] = null;
+            
+            // 스폰된 무기 지운다
+            ItemManager.Instance.DestroyItemObject();
         }
         else
         {
+            if (InventoryItems[targetIndex]) return;
+            
             // 드래그 중인 아이템 -> 커서 위치에 있는 슬롯을 부모, 위치 
             InventoryItems[draggingIndex].transform.SetParent(BlankIcons[targetIndex].transform);
             InventoryItems[draggingIndex].transform.localPosition = Vector3.zero;

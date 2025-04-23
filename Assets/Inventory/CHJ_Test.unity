@@ -1261,6 +1261,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4192710386148368927, guid: 7086ebf0129b4684eb45c647ed0a0380, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -16.699951
+      objectReference: {fileID: 0}
     - target: {fileID: 4595901930112437026, guid: 7086ebf0129b4684eb45c647ed0a0380, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1300,6 +1304,10 @@ PrefabInstance:
     - target: {fileID: 4595901930112437026, guid: 7086ebf0129b4684eb45c647ed0a0380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183517051370940769, guid: 7086ebf0129b4684eb45c647ed0a0380, type: 3}
+      propertyPath: m_Name
+      value: WeaponSocket
       objectReference: {fileID: 0}
     - target: {fileID: 5881942136409474161, guid: 7086ebf0129b4684eb45c647ed0a0380, type: 3}
       propertyPath: m_Name

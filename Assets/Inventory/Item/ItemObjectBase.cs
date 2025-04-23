@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemObjectBase : MonoBehaviour, IAttackHandler
+public class ItemObjectBase : MonoBehaviour, IWeaponAttackable
 {
     public ItemData itemData;
 

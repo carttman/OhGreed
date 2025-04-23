@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IAttackHandler
+public interface IWeaponAttackable
 {
   public void Attack();
 }

@@ -22,8 +22,10 @@ public class ItemManager : MonoBehaviour
     public int TempIconIndex;
     public SlotType TempSlotType;
 
+    public GameObject WeaponObject;
     public GameObject Player;
-    
+
+    public IWeaponAttackable WeaponAttackable;
     private void Awake()
     {
        Singleton();
@@ -61,10 +63,12 @@ public class ItemManager : MonoBehaviour
             OnItemAdded?.Invoke(ItemUIBaseWand);
         }
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            // IAttackHandler attackHandler = new SwordObject();
-            // attackHandler.Attack();
+            if (WeaponObject)
+            {
+                WeaponAttackable.Attack();
+            }
         }
     }
 
@@ -95,6 +99,24 @@ public class ItemManager : MonoBehaviour
                 OnMoveToEquipSlot?.Invoke(targetIndex);
                 break;
             }
+        }
+    }
+
+    public void SpawnItemObject(GameObject GO)
+    {
+        WeaponObject = Instantiate(GO, Player.transform);
+        WeaponObject.transform.SetParent(Player.GetComponent<PlayerWeaponSocket>().WeaponSocket);
+        WeaponObject.transform.localPosition = Vector3.zero;
+        
+        WeaponAttackable = WeaponObject.GetComponent<IWeaponAttackable>();
+        
+    }
+
+    public void DestroyItemObject()
+    {
+        if (WeaponObject)
+        {
+            Destroy(WeaponObject);
         }
     }
 }
