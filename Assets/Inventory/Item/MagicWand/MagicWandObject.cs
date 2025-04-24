@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class MagicWandObject : ItemObjectBase
+public class MagicWandObject : ItemObjectBase, IWeaponAttackable
 {
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
     void Update()
@@ -12,12 +12,12 @@ public class MagicWandObject : ItemObjectBase
         
     }
 
-    public override void Attack()
+    public void Attack()
     {
         Debug.Log("완드 공격");
     }
 
-    public override void ItemSkill()
+    public void ItemSkill()
     {
         Debug.Log("완드 스킬");
         

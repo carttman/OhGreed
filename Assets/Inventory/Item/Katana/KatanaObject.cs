@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class KatanaObject : ItemObjectBase
+public class KatanaObject : ItemObjectBase, IWeaponAttackable
 {
     [SerializeField]
     private GameObject AttackVFX;
@@ -30,7 +30,7 @@ public class KatanaObject : ItemObjectBase
              SkillEffect.transform.position = _camera.transform.position + _camera.transform.forward * 0.5f;
     }
     
-    public override void Attack()
+    public void Attack()
     {
         Debug.Log("카타나 어택");
 
@@ -51,7 +51,7 @@ public class KatanaObject : ItemObjectBase
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
     }
 
-    public override void ItemSkill()
+    public void ItemSkill()
     {
         Debug.Log("카타나 스킬");
 

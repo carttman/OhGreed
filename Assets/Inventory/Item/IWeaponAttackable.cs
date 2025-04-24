@@ -1,8 +1,6 @@
-using UnityEngine;
-
 public interface IWeaponAttackable
 {
-  public void Attack();
+  void Attack();
 
-  public void ItemSkill();
+  void ItemSkill();
 }

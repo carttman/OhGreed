@@ -38,13 +38,13 @@ public class UI_InventoryPanel : MonoBehaviour
         }
     }
 
-    private void AddItem(ItemUIBase ItemIcon)
+    private void AddItem(ItemUIBase Item, int targetIndex)
     {
-        InventoryItems[0] = Instantiate(ItemIcon, InventoryGridLayout.transform);
-        InventoryItems[0].transform.SetParent(BlankIcons[0].transform);
-        InventoryItems[0].transform.localPosition = Vector3.zero;
+        InventoryItems[targetIndex] = Instantiate(Item, InventoryGridLayout.transform);
+        InventoryItems[targetIndex].transform.SetParent(BlankIcons[targetIndex].transform);
+        InventoryItems[targetIndex].transform.localPosition = Vector3.zero;
+        Item._ItemIndex = targetIndex;
         
-        ItemIcon._ItemIndex = 0;
     }
     
     private void MoveToItemSlot(int targetIndex, SlotType prevSlotType)

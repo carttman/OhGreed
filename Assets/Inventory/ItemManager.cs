@@ -8,7 +8,7 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance { get; private set; }
     
-    public event Action<ItemUIBase> OnItemAdded;
+    public event Action<ItemUIBase, int> OnItemAdded;
     public event Action<int, SlotType> OnMoveToItemSlot;
     public event Action<int> OnMoveToEquipSlot;
     
@@ -43,22 +43,26 @@ public class ItemManager : MonoBehaviour
     {
         InventoryPanel.SetActive(false);
         TempIcon.SetActive(false);
+        
+        OnItemAdded?.Invoke(ItemUIBaseSword, 0);
+        OnItemAdded?.Invoke(ItemUIBaseBow, 1);
+        OnItemAdded?.Invoke(ItemUIBaseWand, 2);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            OnItemAdded?.Invoke(ItemUIBaseSword);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            OnItemAdded?.Invoke(ItemUIBaseBow);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            OnItemAdded?.Invoke(ItemUIBaseWand);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha5))
+        // {
+        //     OnItemAdded?.Invoke(ItemUIBaseSword);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha6))
+        // {
+        //     OnItemAdded?.Invoke(ItemUIBaseBow);
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha7))
+        // {
+        //     OnItemAdded?.Invoke(ItemUIBaseWand);
+        // }
         
     }
 
