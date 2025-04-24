@@ -73,6 +73,7 @@ public class UI_InventoryPanel : MonoBehaviour
             
             // 스폰된 무기 지운다
             ItemManager.Instance.DestroyItemObject();
+            ItemManager.Instance.UnselectSkillIcon();
         }
         else
         {

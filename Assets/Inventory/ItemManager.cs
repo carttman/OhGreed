@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class ItemManager : MonoBehaviour
     public GameObject Player;
 
     public IWeaponAttackable WeaponAttackable;
+
+    public GameObject SkillSlot;
+    public Sprite BlankIcon;
     private void Awake()
     {
        Singleton();
@@ -118,5 +122,15 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(WeaponObject);
         }
+    }
+
+    public void UpdateSkillIcon(Sprite SKillIcon)
+    {
+        SkillSlot.GetComponent<Image>().sprite = SKillIcon;
+    }
+    
+    public void UnselectSkillIcon()
+    {
+        SkillSlot.GetComponent<Image>().sprite = BlankIcon;
     }
 }

@@ -14,6 +14,7 @@ public class EquipWeaponPanel : MonoBehaviour
     public List<ItemUIBase> EquipItems;
     
     public UI_InventoryPanel _InventoryItemPanel;
+    
     private void Start()
     {
         ItemManager.Instance.OnMoveToEquipSlot += OnEquiped;
@@ -56,11 +57,10 @@ public class EquipWeaponPanel : MonoBehaviour
         
         ItemManager.Instance.SpawnItemObject(EquipItems[targetIndex].ItemGameObject);
         
-        //SpawnItem(targetIndex);
+        //스킬 슬롯 이미지 업데이트
+        Sprite SkillIcon = EquipItems[targetIndex].itemData.ItemSkillIcon;
+        
+        ItemManager.Instance.UpdateSkillIcon(SkillIcon);
     }
-
-    // public void SpawnItem(int targetIndex)
-    // {
-    //     Instantiate(EquipItems[targetIndex].ItemGameObject, ItemManager.Instance.Player.transform);
-    // }
+    
 }
