@@ -17,4 +17,10 @@ public class ItemObjectBase : MonoBehaviour, IWeaponAttackable
     {
         Debug.Log("아이템 어택");
     }
+
+    public virtual void ItemSkill()
+    {
+        Debug.Log("아이템 스킬");
+        
+    }
 }

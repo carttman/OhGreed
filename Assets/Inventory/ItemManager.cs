@@ -74,6 +74,13 @@ public class ItemManager : MonoBehaviour
                 WeaponAttackable.Attack();
             }
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (WeaponObject)
+            {
+                WeaponAttackable.ItemSkill();
+            }
+        }
     }
 
     private void Singleton()
