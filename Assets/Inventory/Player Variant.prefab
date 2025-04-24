@@ -1,68 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &110314482807267919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 686171010270836688}
-  m_Layer: 0
-  m_Name: SpawnTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &686171010270836688
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110314482807267919}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4304736633000620988}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5183517051370940769
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4304736633000620988}
-  m_Layer: 0
-  m_Name: WeaponSocket
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4304736633000620988
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5183517051370940769}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 686171010270836688}
-  m_Father: {fileID: 4595901930112437026}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2432102476816575532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,6 +20,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -16.699951
       objectReference: {fileID: 0}
+    - target: {fileID: 2117965457707509130, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: WeaponSocket
+      value: 
+      objectReference: {fileID: 4304736633000620988}
     - target: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -129,38 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4304736633000620988}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8097555025396050013, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4369641787217398182}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
---- !u!4 &4595901930112437026 stripped
+--- !u!4 &4304736633000620988 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1908945116259884944, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
   m_PrefabInstance: {fileID: 2432102476816575532}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5881942136409474161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8097555025396050013, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
-  m_PrefabInstance: {fileID: 2432102476816575532}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4369641787217398182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881942136409474161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f10aadffb2c00469a0f68435ebb986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponSocket: {fileID: 4304736633000620988}
-  ConePoints:
-  - {fileID: 0}
-  - {fileID: 0}

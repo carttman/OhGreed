@@ -21,10 +21,13 @@ public class ItemManager : MonoBehaviour
     public ItemUIBase ItemUIBaseWand;
     
     public GameObject TempIcon;
+    
+    [HideInInspector]
     public int TempIconIndex;
+    [HideInInspector]
     public SlotType TempSlotType;
 
-    public GameObject WeaponObject;
+    private GameObject WeaponObject;
     public GameObject Player;
 
     public IWeaponAttackable WeaponAttackable;
@@ -44,17 +47,6 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.I) && InventoryIsOpened)
-        // {
-        //     InventoryPanel.SetActive(false);
-        //     InventoryIsOpened = false;
-        // }
-        // else if (Input.GetKeyDown(KeyCode.I) && !InventoryIsOpened)
-        // {
-        //     InventoryPanel.SetActive(true);
-        //     InventoryIsOpened = true;
-        // }
-
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             OnItemAdded?.Invoke(ItemUIBaseSword);
@@ -68,20 +60,6 @@ public class ItemManager : MonoBehaviour
             OnItemAdded?.Invoke(ItemUIBaseWand);
         }
         
-        // if (Input.GetKeyDown(KeyCode.Mouse1))
-        // {
-        //     if (WeaponObject)
-        //     {
-        //         WeaponAttackable.Attack();
-        //     }
-        // }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (WeaponObject)
-            {
-                WeaponAttackable.ItemSkill();
-            }
-        }
     }
 
     private void Singleton()
@@ -155,6 +133,17 @@ public class ItemManager : MonoBehaviour
             {
                 InventoryPanel.SetActive(true);
                 InventoryIsOpened = true;
+            }
+        }
+    }
+
+    public void ActiveSkill(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (WeaponObject)
+            {
+                WeaponAttackable.ItemSkill();
             }
         }
     }

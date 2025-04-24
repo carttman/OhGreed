@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
@@ -10,15 +12,23 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
 
+    private bool isHoveringUI;
+
     void Awake()
     {
         playerAnimation = GetComponent<PlayerAnimation>();
     }
 
+    private void Update()
+    {
+        isHoveringUI = EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
+        {   //UI 위에 커서가 있는지 체크
+            if (isHoveringUI) return;
             if (ItemManager.Instance.WeaponAttackable != null)
             {
                 ItemManager.Instance.WeaponAttackable.Attack();

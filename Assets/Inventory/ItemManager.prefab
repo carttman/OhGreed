@@ -51,3 +51,6 @@ MonoBehaviour:
   TempIcon: {fileID: 0}
   TempIconIndex: 0
   TempSlotType: 0
+  Player: {fileID: 0}
+  SkillSlot: {fileID: 0}
+  BlankIcon: {fileID: 21300000, guid: 2b6aec3027d231c40a08e2613d1ead39, type: 3}
