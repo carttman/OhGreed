@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2044770676143236693}
   - component: {fileID: -8943354884304496126}
   m_Layer: 0
-  m_Name: WandUI
+  m_Name: MagicWandUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,3 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 168b40b6e8aa00a4d9b068b726ca852a, type: 2}
+  _ItemIndex: 0
+  slotType: 0
+  ItemGameObject: {fileID: 5001042603475750576, guid: 6aaf192e81a027241860522e8e7b6bd5, type: 3}

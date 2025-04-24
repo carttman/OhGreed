@@ -6,7 +6,6 @@ public class KatanaObject : ItemObjectBase
     [SerializeField]
     private GameObject AttackVFX;
     
-    [SerializeField]
     private Camera _camera;
 
     [SerializeField]
@@ -57,8 +56,6 @@ public class KatanaObject : ItemObjectBase
         Debug.Log("카타나 스킬");
 
         StartCoroutine(SkillState());
-        // SkillEffect = Instantiate(SkillVFX, transform.position, Quaternion.identity);
-        // Destroy(SkillEffect, 1f);
     }
     
     IEnumerator SkillState()

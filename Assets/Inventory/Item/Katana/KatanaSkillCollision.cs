@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class KatanaCollision : MonoBehaviour
+public class KatanaSkillCollision : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

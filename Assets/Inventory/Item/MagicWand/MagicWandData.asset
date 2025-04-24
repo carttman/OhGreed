@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed7d0b4fe7742754ea1e34cab89e600a, type: 3}
-  m_Name: WandData
+  m_Name: MagicWandData
   m_EditorClassIdentifier: 
-  ItemName: Wand
+  ItemName: MagicWand
   ItemID: 3
   ItemIcon: {fileID: 21300000, guid: 339721ecef25d4743b723ba11d6553e1, type: 2}
   ItemType: 0
+  ItemSkillIcon: {fileID: 21300000, guid: 71e08bcc30b5e6544b7a5f506bd59e57, type: 2}
