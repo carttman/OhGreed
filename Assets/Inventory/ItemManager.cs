@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -43,16 +44,16 @@ public class ItemManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && InventoryIsOpened)
-        {
-            InventoryPanel.SetActive(false);
-            InventoryIsOpened = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.I) && !InventoryIsOpened)
-        {
-            InventoryPanel.SetActive(true);
-            InventoryIsOpened = true;
-        }
+        // if (Input.GetKeyDown(KeyCode.I) && InventoryIsOpened)
+        // {
+        //     InventoryPanel.SetActive(false);
+        //     InventoryIsOpened = false;
+        // }
+        // else if (Input.GetKeyDown(KeyCode.I) && !InventoryIsOpened)
+        // {
+        //     InventoryPanel.SetActive(true);
+        //     InventoryIsOpened = true;
+        // }
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
@@ -67,13 +68,13 @@ public class ItemManager : MonoBehaviour
             OnItemAdded?.Invoke(ItemUIBaseWand);
         }
         
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (WeaponObject)
-            {
-                WeaponAttackable.Attack();
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Mouse1))
+        // {
+        //     if (WeaponObject)
+        //     {
+        //         WeaponAttackable.Attack();
+        //     }
+        // }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (WeaponObject)
@@ -139,5 +140,22 @@ public class ItemManager : MonoBehaviour
     public void UnselectSkillIcon()
     {
         SkillSlot.GetComponent<Image>().sprite = BlankIcon;
+    }
+
+    public void InventoryOpen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (InventoryIsOpened)
+            {
+                InventoryPanel.SetActive(false);
+                InventoryIsOpened = false;
+            }
+            else if (!InventoryIsOpened)
+            {
+                InventoryPanel.SetActive(true);
+                InventoryIsOpened = true;
+            }
+        }
     }
 }

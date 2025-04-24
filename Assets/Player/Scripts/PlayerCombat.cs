@@ -19,8 +19,13 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
-            int randomIndex = Random.Range(1, 4);
-            playerAnimation.PlayAttack(randomIndex);
+            if (ItemManager.Instance.WeaponAttackable != null)
+            {
+                ItemManager.Instance.WeaponAttackable.Attack();
+            }
+
+            // int randomIndex = Random.Range(1, 4);
+            // playerAnimation.PlayAttack(randomIndex);
         }
     }
 
