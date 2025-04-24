@@ -753,6 +753,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2186255930924258014, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1320849273}
+    - target: {fileID: 7481857368064754373, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8097555025396050013, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1744,7 +1752,7 @@ GameObject:
   - component: {fileID: 1320849272}
   - component: {fileID: 1320849276}
   - component: {fileID: 1320849275}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
