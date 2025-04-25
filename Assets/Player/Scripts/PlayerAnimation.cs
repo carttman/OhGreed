@@ -18,16 +18,12 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetFloat("Walk", Mathf.Abs(playerMovement.horizontalMovement));
         animator.SetBool("IsJumping", !playerMovement.IsGrounded);
     }
+    
 
-    public void PlayAttack(int index)
-    {
-        animator.SetTrigger($"Attack{index}");
-    }
-
-    public void PlayHit()
-    {
-        animator.SetTrigger("Hit");
-    }
+    // public void PlayHit()
+    // {
+    //     animator.SetTrigger("Hit");
+    // }
 
     public void PlayDie()
     {

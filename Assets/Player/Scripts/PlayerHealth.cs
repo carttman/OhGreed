@@ -38,8 +38,6 @@ public class PlayerHealth : MonoBehaviour
             healthBar.SetCurrentHealth(currentHealth);
             Debug.Log("hp바 업데이트됨");
         }
-        
-        playerAnimation.PlayHit();
 
         if (currentHealth <= 0)
         {
