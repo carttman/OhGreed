@@ -92,3 +92,4 @@ MonoBehaviour:
   _ItemIndex: 0
   slotType: 0
   ItemGameObject: {fileID: 4404779739092964630, guid: 08bf4da66ec663d4eb382a26574d142a, type: 3}
+  ItemDetailPanel: {fileID: 0}

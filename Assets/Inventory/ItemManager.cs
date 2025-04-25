@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -34,6 +35,8 @@ public class ItemManager : MonoBehaviour
 
     public GameObject SkillSlot;
     public Sprite BlankIcon;
+    
+    public GameObject TempItemDetailPanel;
     private void Awake()
     {
        Singleton();
@@ -43,6 +46,7 @@ public class ItemManager : MonoBehaviour
     {
         InventoryPanel.SetActive(false);
         TempIcon.SetActive(false);
+        TempItemDetailPanel.SetActive(false);
         
         OnItemAdded?.Invoke(ItemUIBaseSword, 0);
         OnItemAdded?.Invoke(ItemUIBaseBow, 1);
@@ -58,7 +62,7 @@ public class ItemManager : MonoBehaviour
         }
         
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     
     public void MoveItemInventory(int targetIndex, SlotType slotType)
@@ -134,5 +138,24 @@ public class ItemManager : MonoBehaviour
                 WeaponAttackable.ItemSkill();
             }
         }
+    }
+
+    public void ActiveItemDetailPanel(Sprite itemIcon, Sprite skillIcon ,string itemName, string itemDescription, string skillDescription)
+    {
+        TempItemDetailPanel.SetActive(true);
+        
+        TempItemDetailPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
+        TempItemDetailPanel.transform.GetChild(1).GetComponent<Image>().sprite = itemIcon;
+        TempItemDetailPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
+        TempItemDetailPanel.transform.GetChild(4).GetComponent<Image>().sprite = skillIcon;
+        TempItemDetailPanel.transform.GetChild(5).GetComponent<TMP_Text>().text = skillDescription;
+        
+        
+    }
+
+    public void DeactiveItemDetailPanel()
+    {
+        TempItemDetailPanel.SetActive(false);
+        
     }
 }
