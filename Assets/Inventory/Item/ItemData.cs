@@ -16,4 +16,6 @@ public class ItemData : ScriptableObject
     public Sprite ItemIcon;
     public ItemType ItemType = ItemType.NONE;
     public Sprite ItemSkillIcon;
+    public string ItemDescription;
+    public string SkillDescription;
 }
