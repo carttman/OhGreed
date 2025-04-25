@@ -50,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player 사망!");
         playerAnimation.PlayDie();
         //GetComponent<PlayerInput>().enabled = false;
+        //죽었을 때 이동 마우스 공격 안되게///
     }
 }
 
