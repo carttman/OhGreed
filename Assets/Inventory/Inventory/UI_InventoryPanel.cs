@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,12 +17,16 @@ public class UI_InventoryPanel : MonoBehaviour
     private GridLayoutGroup InventoryGridLayout;
 
     public EquipWeaponPanel equipWeaponPanel;
+
+   
+
     void Start()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
-        ItemManager.Instance.OnItemMovedItem += MoveItemSlot;
+        ItemManager.Instance.OnMoveToItemSlot += MoveToItemSlot;
         
         CreateInventory();
+        
     }
 
     private void CreateInventory()
@@ -38,16 +43,16 @@ public class UI_InventoryPanel : MonoBehaviour
         }
     }
 
-    private void AddItem(ItemUIBase ItemIcon)
+    private void AddItem(ItemUIBase Item, int targetIndex)
     {
-        InventoryItems[0] = Instantiate(ItemIcon, InventoryGridLayout.transform);
-        InventoryItems[0].transform.SetParent(BlankIcons[0].transform);
-        InventoryItems[0].transform.localPosition = Vector3.zero;
+        InventoryItems[targetIndex] = Instantiate(Item, InventoryGridLayout.transform);
+        InventoryItems[targetIndex].transform.SetParent(BlankIcons[targetIndex].transform);
+        InventoryItems[targetIndex].transform.localPosition = Vector3.zero;
+        Item._ItemIndex = targetIndex;
         
-        ItemIcon._ItemIndex = 0;
     }
     
-    private void MoveItemSlot(int targetIndex, SlotType prevSlotType)
+    private void MoveToItemSlot(int targetIndex, SlotType prevSlotType)
     {
         // 드래그 중인 아이템 슬롯의 인덱스
         var draggingIndex = ItemManager.Instance.TempIconIndex;
@@ -58,7 +63,9 @@ public class UI_InventoryPanel : MonoBehaviour
         
         // 무기슬롯 -> 아이템 슬롯이라면, 무기슬롯에서 아이템 가져온다.
         if (prevSlotType == SlotType.WEAPONSLOT)
-        {   // 인벤 아이템 슬롯에 자식으로 설정
+        {   
+            if (InventoryItems[targetIndex]) return;
+            // 인벤 아이템 슬롯에 자식으로 설정
             equipWeaponPanel.EquipItems[draggingIndex].transform.SetParent(BlankIcons[targetIndex].transform);
             equipWeaponPanel.EquipItems[draggingIndex].transform.localPosition = Vector3.zero;
             
@@ -68,9 +75,15 @@ public class UI_InventoryPanel : MonoBehaviour
             InventoryItems[targetIndex]._ItemIndex = targetIndex;
             
             equipWeaponPanel.EquipItems[draggingIndex] = null;
+            
+            // 스폰된 무기 지운다
+            ItemManager.Instance.DestroyItemObject();
+            ItemManager.Instance.UnselectSkillIcon();
         }
         else
         {
+            if (InventoryItems[targetIndex]) return;
+            
             // 드래그 중인 아이템 -> 커서 위치에 있는 슬롯을 부모, 위치 
             InventoryItems[draggingIndex].transform.SetParent(BlankIcons[targetIndex].transform);
             InventoryItems[draggingIndex].transform.localPosition = Vector3.zero;

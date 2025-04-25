@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Animator animator;
-
+    
     private bool isFacingRight = true;
     
     [Header("Gravity")]
@@ -48,24 +48,31 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        isFacingRight = true;
+        Vector3 scale = transform.localScale;
+        scale.x = isFacingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 
     void Update()
     {
+        FlipByMouse();
+        
         GroundCheck();
         Gravity();
         WallSlide();
         WallJump();
         
         ApplyMovement();
-        Flip();
+        
+        
+        // if (!isWallJumping)
+        // {
+        //     ApplyMovement();
+        // }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            var h = GetComponent<PlayerHealth>();
-            
-            h.TakeDamage(1);
-        }
+
     }
 
     private void ApplyMovement()
@@ -178,16 +185,34 @@ public class PlayerMovement : MonoBehaviour
     {
         isWallJumping = false;
     }
+    
+    private void FlipByMouse()
+    {
+        if (Camera.main == null) return;
+
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+
+        bool mouseOnRight = mouseWorldPos.x > transform.position.x;
+
+        if (mouseOnRight != isFacingRight)
+        {
+            Flip();
+        }
+    }
 
     private void Flip()
     {
-        if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
-            ls.x *= -1f;
-            transform.localScale = ls;
-        }
+        isFacingRight = !isFacingRight;
+
+        Vector3 scale = transform.localScale;
+        
+        //현재 방향 기준으로 확실히 설정하자
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        Debug.Log($"🌀 Flip 실행됨! 현재 방향: {(isFacingRight ? "오른쪽" : "왼쪽")}");
     }
 
     private void OnDrawGizmosSelected()
@@ -199,4 +224,5 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
     
+
 }

@@ -1,6 +1,6 @@
-using UnityEngine;
-
-public interface IEquipInterect
+namespace Inventory.Inventory
 {
-    void OnEquip();
+    public interface IEquipInterect
+    {
+    }
 }
