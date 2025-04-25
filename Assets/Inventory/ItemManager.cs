@@ -49,23 +49,6 @@ public class ItemManager : MonoBehaviour
         OnItemAdded?.Invoke(ItemUIBaseWand, 2);
     }
 
-    void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.Alpha5))
-        // {
-        //     OnItemAdded?.Invoke(ItemUIBaseSword);
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha6))
-        // {
-        //     OnItemAdded?.Invoke(ItemUIBaseBow);
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha7))
-        // {
-        //     OnItemAdded?.Invoke(ItemUIBaseWand);
-        // }
-        
-    }
-
     private void Singleton()
     {
         if (Instance != null && Instance != this)
@@ -111,6 +94,7 @@ public class ItemManager : MonoBehaviour
         if (WeaponObject)
         {
             Destroy(WeaponObject);
+            WeaponAttackable = null;
         }
     }
 

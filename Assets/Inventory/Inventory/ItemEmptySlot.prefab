@@ -88,3 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1d24f3e00d94643925301760f55e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyIndex: 0
+  slotType: 0
+  HoverIcon: {fileID: 21300000, guid: 500e799e0356b914a8b6daa9fcbad62f, type: 2}
+  DefaultIcon: {fileID: 21300000, guid: d3c2d277de311014e9eba6fd1b044297, type: 2}
