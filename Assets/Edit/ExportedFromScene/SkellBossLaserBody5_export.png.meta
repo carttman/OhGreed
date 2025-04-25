@@ -185,7 +185,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SkellBossLaserBody5_export_0: 2643939203883241121
+      SkellBossLaserBody5_export_1: -5724544982328189710
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
