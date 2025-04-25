@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Animator animator;
+    public PlayerHealth playerHealth;
     
     private bool isFacingRight = true;
     
@@ -65,14 +66,6 @@ public class PlayerMovement : MonoBehaviour
         WallJump();
         
         ApplyMovement();
-        
-        
-        // if (!isWallJumping)
-        // {
-        //     ApplyMovement();
-        // }
-
-
     }
 
     private void ApplyMovement()
@@ -188,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void FlipByMouse()
     {
-        if (Camera.main == null) return;
+        //if (Camera.main == null) return;
 
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);

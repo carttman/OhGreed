@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 97;
     private int currentHealth;
+    public bool isDead = false;
     
     private PlayerAnimation playerAnimation;
 
@@ -38,8 +39,6 @@ public class PlayerHealth : MonoBehaviour
             healthBar.SetCurrentHealth(currentHealth);
             Debug.Log("hp바 업데이트됨");
         }
-        
-        playerAnimation.PlayHit();
 
         if (currentHealth <= 0)
         {
@@ -49,9 +48,18 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+
+        isDead = true;
         Debug.Log("Player 사망!");
         playerAnimation.PlayDie();
-        //GetComponent<PlayerInput>().enabled = false;
+        
+        GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+        //Invoke(nameof(ReturnToVillage), 2f);
+        
+        //2초 후 씬 이동
+        
     }
+    
 }
 
