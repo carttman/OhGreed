@@ -2149,17 +2149,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1299750199}
     - target: {fileID: 944842413200318310, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
-      propertyPath: MainCamera
-      value: 
-      objectReference: {fileID: 1320849271}
-    - target: {fileID: 944842413200318310, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
       propertyPath: ItemManager
       value: 
       objectReference: {fileID: 1145082746}
-    - target: {fileID: 944842413200318310, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
-      propertyPath: FollowCamera
-      value: 
-      objectReference: {fileID: 1527265728}
     - target: {fileID: 944842413200318310, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
       propertyPath: InventoryCanvas
       value: 
