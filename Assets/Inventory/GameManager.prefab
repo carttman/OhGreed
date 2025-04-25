@@ -326,9 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c749648b82e4626419c617c55c017fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 745469618027274576}
-  MainCamera: {fileID: 238027412886851545}
-  FollowCamera: {fileID: 8416181463601103224}
 --- !u!1001 &2122331522724061653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,6 +354,10 @@ PrefabInstance:
       propertyPath: InventoryPanel
       value: 
       objectReference: {fileID: 3086919469077798802}
+    - target: {fileID: 5899265138680959250, guid: 56e7b10e4a95af64295e934815982973, type: 3}
+      propertyPath: TempItemDetailPanel
+      value: 
+      objectReference: {fileID: 7801559879992633932}
     - target: {fileID: 9150113422241972096, guid: 56e7b10e4a95af64295e934815982973, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -662,6 +663,11 @@ PrefabInstance:
 --- !u!1 &3086919469077798802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9214491843774830028, guid: 2b6196ce0411e1949aff4966f8677ecf, type: 3}
+  m_PrefabInstance: {fileID: 6140239607644572254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7801559879992633932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4139430399750578194, guid: 2b6196ce0411e1949aff4966f8677ecf, type: 3}
   m_PrefabInstance: {fileID: 6140239607644572254}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &8826369916776777074 stripped
