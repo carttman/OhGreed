@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 97;
     private int currentHealth;
+    private bool isDead = false;
     
     private PlayerAnimation playerAnimation;
 
@@ -47,10 +48,18 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+
+        isDead = true;
         Debug.Log("Player 사망!");
         playerAnimation.PlayDie();
-        //GetComponent<PlayerInput>().enabled = false;
-        //죽었을 때 이동 마우스 공격 안되게///
+        
+        GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+        //Invoke(nameof(ReturnToVillage), 2f);
+        
+        //2초 후 씬 이동
+        
     }
+    
 }
 

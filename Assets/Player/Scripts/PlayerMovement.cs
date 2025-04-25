@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     
     private bool isFacingRight = true;
+    private bool isDead = false;
     
     [Header("Gravity")]
     public float baseGravity = 2f;
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
         FlipByMouse();
         
         GroundCheck();
@@ -65,14 +67,6 @@ public class PlayerMovement : MonoBehaviour
         WallJump();
         
         ApplyMovement();
-        
-        
-        // if (!isWallJumping)
-        // {
-        //     ApplyMovement();
-        // }
-
-
     }
 
     private void ApplyMovement()
