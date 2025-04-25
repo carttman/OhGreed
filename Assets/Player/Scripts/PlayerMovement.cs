@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Animator animator;
+    public PlayerHealth playerHealth;
     
     private bool isFacingRight = true;
-    private bool isDead = false;
     
     [Header("Gravity")]
     public float baseGravity = 2f;
@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;
         FlipByMouse();
         
         GroundCheck();
@@ -182,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void FlipByMouse()
     {
-        if (Camera.main == null) return;
+        //if (Camera.main == null) return;
 
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
