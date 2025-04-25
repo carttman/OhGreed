@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    public GameObject player;
-    public GameObject InventoryCanvas;
-    public GameObject MainCamera;
-    public GameObject FollowCamera;
     
     private void Awake()
     {
+        Debug.Log("GameManager Awake");
+
         Singleton();
     }
 
@@ -34,9 +31,5 @@ public class GameManager : MonoBehaviour
         
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(InventoryCanvas);
-        DontDestroyOnLoad(MainCamera);
-        DontDestroyOnLoad(FollowCamera);
     }
 }

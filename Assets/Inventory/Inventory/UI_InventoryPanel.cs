@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,12 +17,16 @@ public class UI_InventoryPanel : MonoBehaviour
     private GridLayoutGroup InventoryGridLayout;
 
     public EquipWeaponPanel equipWeaponPanel;
+
+   
+
     void Start()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
         ItemManager.Instance.OnMoveToItemSlot += MoveToItemSlot;
         
         CreateInventory();
+        
     }
 
     private void CreateInventory()
