@@ -10,17 +10,13 @@ public class Boss_Laser : MonoBehaviour
     public Transform laserL;
     public Transform laserR;
     public Transform player;
-    
+
     public int speed = 10;
     public float delay = 1f;
-    
+
     private bool isAttackingL = false;
     private bool isAttackingR = false;
-    public void Start()
-    {
-        StartCoroutine(Laser());
-    }
-
+    
     void Update()
     {
         Transform handL = handAnimL.transform;
@@ -46,32 +42,30 @@ public class Boss_Laser : MonoBehaviour
         {
             myHand.position = myHand.position;
         }
-        
-        else if (playerDist > 3 && playerDist < playerOtherDist) 
+
+        else if (playerDist > 3 && playerDist < playerOtherDist)
         {
             myHand.position = Vector2.MoveTowards(myHand.position,
                 new Vector2(myHand.position.x, player.position.y), speed * Time.deltaTime);
         }
-        
+
         else if (playerDist > 3 && playerDist > playerOtherDist)
         {
-            myHand.position = Vector2.MoveTowards(myHand.position, 
-                new Vector2(myHand.position.x, otherHand.position.y + 3) , speed * Time.deltaTime);
+            myHand.position = Vector2.MoveTowards(myHand.position,
+                new Vector2(myHand.position.x, otherHand.position.y + 3), speed * Time.deltaTime);
         }
-        
+
         else if (playerDist < 3 && playerDist < playerOtherDist)
         {
-            myHand.position = Vector2.MoveTowards(myHand.position, 
+            myHand.position = Vector2.MoveTowards(myHand.position,
                 new Vector2(myHand.position.x, player.position.y), speed * Time.deltaTime);
         }
     }
 
-    private IEnumerator Laser()
+    public IEnumerator Laser()
     {
-        while (true)
+        for (int i = 0; i < 3; i++)
         {
-            yield return new WaitForSeconds(2f);
-
             isAttackingL = true;
             handAnimL.SetTrigger("Attack");
 
@@ -90,6 +84,7 @@ public class Boss_Laser : MonoBehaviour
             sr.flipX = true;
             isAttackingR = false;
         }
+
     }
 }
 

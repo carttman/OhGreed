@@ -1,16 +1,44 @@
+using System.Collections;
 using UnityEngine;
 
 public class Boss_Attack : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Boss_Laser laser;
+    public Boss_Circle circle;
+
+    private bool isAlive = true;
+    private int pattern;
+    
     void Start()
     {
-        
+        StartCoroutine(AttackLoop());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator AttackLoop()
     {
-        
+        while (isAlive)
+        {
+            yield return new WaitForSeconds(5f); 
+            
+            switch (pattern)
+            {
+                case 0:
+                    yield return StartCoroutine(laser.Laser());
+                    break;
+                case 1:
+                    yield return StartCoroutine(circle.Circle());
+                    break;
+            }
+
+            pattern++;
+            if (pattern > 1)
+                pattern = 0; 
+        }
+    }
+    
+    public void Die()
+    {
+        isAlive = false;
+        StopAllCoroutines();
     }
 }
