@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/AudioClip.meta
-guid: 9673db203e22eb742ab7aad683ac414d
-folderAsset: yes
-========
-guid: 7ff3151d87263ca4aa2a66a1b02bbc36
->>>>>>>> main:Assets/Enemy/Scene/LYS_Cebero.unity.meta
+guid: f139f2a026c17744b9e6b2ba2771ba77
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -1695,6 +1695,10 @@ PrefabInstance:
       value: Cerbero (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1967813120}
@@ -1762,6 +1766,10 @@ PrefabInstance:
     - target: {fileID: 2368111459386130687, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: m_Name
       value: Cerbero (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: player
@@ -1847,6 +1855,10 @@ PrefabInstance:
     - target: {fileID: 2835703038565167569, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: offset.y
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: player

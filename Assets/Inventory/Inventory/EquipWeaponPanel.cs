@@ -41,9 +41,9 @@ public class EquipWeaponPanel : MonoBehaviour
         // 드래그 중인 아이템 슬롯의 인덱스 저장
         var draggingIndex = ItemManager.Instance.TempIconIndex;
         
-        // 드래그 중인 아이템 -> 커서 위치에 있는 슬롯을 부모, 위치 
-         _InventoryItemPanel.InventoryItems[draggingIndex].transform.SetParent(WeaponBlankSlots[targetIndex].transform);
-         _InventoryItemPanel.InventoryItems[draggingIndex].transform.localPosition = Vector3.zero;
+        // 드래그 중인 아이템 -> 커서 위치에 있는 슬롯을 부모, 위치
+        _InventoryItemPanel.InventoryItems[draggingIndex].transform.SetParent(WeaponBlankSlots[targetIndex].transform);
+        _InventoryItemPanel.InventoryItems[draggingIndex].transform.localPosition = Vector3.zero;
         
         // 현재 슬롯 위치에 드래그 중인 아이템 삽입
         EquipItems[targetIndex] = _InventoryItemPanel.InventoryItems[draggingIndex];

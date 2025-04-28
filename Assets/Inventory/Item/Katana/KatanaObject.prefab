@@ -52,7 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 5818265a8e731a44da95c8d0066a8e73, type: 2}
   AttackVFX: {fileID: 8860946940082245910, guid: 84b89c5959d55714e874ebd57cdd4271, type: 3}
-  _camera: {fileID: 0}
   SkillVFX: {fileID: 6034301578226389820, guid: c1e9cb5a134f83c47baef3c994a1b4f4, type: 3}
   SkillReadyVFX: {fileID: 2590489832012728737, guid: b8856691ec9165948af55bcf1b89608e, type: 3}
 --- !u!222 &8875282682811392438
@@ -106,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

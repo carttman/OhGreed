@@ -10,28 +10,31 @@ public class Boss_Laser : MonoBehaviour
     public Transform laserL;
     public Transform laserR;
     public Transform player;
-    
+
     public int speed = 10;
     public float delay = 1f;
-    
+
     private bool isAttackingL = false;
     private bool isAttackingR = false;
-    public void Start()
-    {
-        StartCoroutine(Laser());
-    }
-
+    private bool isHandMovingL = true;
+    private bool isHandMovingR = true;
+    
     void Update()
     {
         Transform handL = handAnimL.transform;
         Transform handR = handAnimR.transform;
 
-        if (!isAttackingL)
+        if (!isAttackingL && !isAttackingR)
+        {
+            return;
+        }
+        
+        if (!isAttackingL && isHandMovingL)
         {
             MoveHand(handL, handR);
         }
 
-        else if (!isAttackingR)
+        if (!isAttackingR && isHandMovingR)
         {
             MoveHand(handR, handL);
         }
@@ -46,50 +49,65 @@ public class Boss_Laser : MonoBehaviour
         {
             myHand.position = myHand.position;
         }
-        
-        else if (playerDist > 3 && playerDist < playerOtherDist) 
+
+        else if (playerDist > 3 && playerDist < playerOtherDist)
         {
             myHand.position = Vector2.MoveTowards(myHand.position,
                 new Vector2(myHand.position.x, player.position.y), speed * Time.deltaTime);
         }
-        
+
         else if (playerDist > 3 && playerDist > playerOtherDist)
         {
-            myHand.position = Vector2.MoveTowards(myHand.position, 
-                new Vector2(myHand.position.x, otherHand.position.y + 3) , speed * Time.deltaTime);
+            myHand.position = Vector2.MoveTowards(myHand.position,
+                new Vector2(myHand.position.x, otherHand.position.y + 3), speed * Time.deltaTime);
         }
-        
+
         else if (playerDist < 3 && playerDist < playerOtherDist)
         {
-            myHand.position = Vector2.MoveTowards(myHand.position, 
+            myHand.position = Vector2.MoveTowards(myHand.position,
                 new Vector2(myHand.position.x, player.position.y), speed * Time.deltaTime);
         }
     }
 
-    private IEnumerator Laser()
+    public IEnumerator Laser()
     {
-        while (true)
+        for (int i = 0; i < 3; i++)
         {
-            yield return new WaitForSeconds(2f);
-
             isAttackingL = true;
             handAnimL.SetTrigger("Attack");
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.7f);
             Instantiate(laser, laserL.position, Quaternion.identity);
             isAttackingL = false;
+            yield return StartCoroutine(StopHandL());
 
             yield return new WaitForSeconds(delay);
 
             isAttackingR = true;
             handAnimR.SetTrigger("Attack");
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.7f);
             GameObject rightLaser = Instantiate(laser, laserR.position, Quaternion.identity);
             SpriteRenderer sr = rightLaser.GetComponent<SpriteRenderer>();
             sr.flipX = true;
             isAttackingR = false;
+            yield return StartCoroutine(StopHandR());
         }
+
+    }
+
+    IEnumerator StopHandL()
+    {
+        isHandMovingL = false;
+        yield return new WaitForSeconds(1f);
+        isHandMovingL = true;
+    }
+    
+    IEnumerator StopHandR()
+    {
+        isHandMovingR = false;
+        yield return new WaitForSeconds(1f);
+        isHandMovingR = true;
     }
 }
 
