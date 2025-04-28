@@ -4,7 +4,9 @@ using UnityEngine;
 public class Boss_Attack : MonoBehaviour
 {
     public Boss_Laser laser;
+    public Boss_Sword sword;
     public Boss_Circle circle;
+    
 
     private bool isAlive = true;
     private int pattern;
@@ -26,12 +28,15 @@ public class Boss_Attack : MonoBehaviour
                     yield return StartCoroutine(laser.Laser());
                     break;
                 case 1:
+                    yield return StartCoroutine(sword.Sword());
+                    break;
+                case 2:
                     yield return StartCoroutine(circle.Circle());
                     break;
             }
 
             pattern++;
-            if (pattern > 1)
+            if (pattern > 2)
                 pattern = 0; 
         }
     }

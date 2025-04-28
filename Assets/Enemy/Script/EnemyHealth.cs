@@ -39,20 +39,22 @@ public class EnemyHealth : MonoBehaviour
 
         StartCoroutine(DamageRed());
     }
-    
+
     private void Die()
     {
         Vector3 offset = new Vector3(0, 1.5f, 0);
-        
-        Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
-        Destroy(gameObject);
-        Destroy(healthBarUI);
-        
+
         if (isBoss)
         {
             bossAttack?.Die();
+            Destroy(healthBarUI);
         }
-        
+        else
+        {
+            Instantiate(dieAnim, transform.position + offset, Quaternion.identity);
+            Destroy(gameObject);
+            Destroy(healthBarUI);
+        }
     }
 
     IEnumerator DamageRed()

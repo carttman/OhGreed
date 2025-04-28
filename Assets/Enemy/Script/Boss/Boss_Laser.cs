@@ -16,18 +16,25 @@ public class Boss_Laser : MonoBehaviour
 
     private bool isAttackingL = false;
     private bool isAttackingR = false;
+    private bool isHandMovingL = true;
+    private bool isHandMovingR = true;
     
     void Update()
     {
         Transform handL = handAnimL.transform;
         Transform handR = handAnimR.transform;
 
-        if (!isAttackingL)
+        if (!isAttackingL && !isAttackingR)
+        {
+            return;
+        }
+        
+        if (!isAttackingL && isHandMovingL)
         {
             MoveHand(handL, handR);
         }
 
-        else if (!isAttackingR)
+        if (!isAttackingR && isHandMovingR)
         {
             MoveHand(handR, handL);
         }
@@ -69,22 +76,38 @@ public class Boss_Laser : MonoBehaviour
             isAttackingL = true;
             handAnimL.SetTrigger("Attack");
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.7f);
             Instantiate(laser, laserL.position, Quaternion.identity);
             isAttackingL = false;
+            yield return StartCoroutine(StopHandL());
 
             yield return new WaitForSeconds(delay);
 
             isAttackingR = true;
             handAnimR.SetTrigger("Attack");
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.7f);
             GameObject rightLaser = Instantiate(laser, laserR.position, Quaternion.identity);
             SpriteRenderer sr = rightLaser.GetComponent<SpriteRenderer>();
             sr.flipX = true;
             isAttackingR = false;
+            yield return StartCoroutine(StopHandR());
         }
 
+    }
+
+    IEnumerator StopHandL()
+    {
+        isHandMovingL = false;
+        yield return new WaitForSeconds(1f);
+        isHandMovingL = true;
+    }
+    
+    IEnumerator StopHandR()
+    {
+        isHandMovingR = false;
+        yield return new WaitForSeconds(1f);
+        isHandMovingR = true;
     }
 }
 
