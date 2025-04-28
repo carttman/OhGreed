@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    //BossRoomManager 연결하기
+    [SerializeField] private BossRoomManager bossRoomManager;
+    
     public int currentHealth;
     public int maxHealth = 5;
     
@@ -17,8 +21,17 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // if (bossRoomManager != null)
+        // {
+        //     bossRoomManager.RegisterEnemy(); // 태어날 때 등록
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("BossRoomManager를 찾을 수 없습니다");
+        // }
     }
-    
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -39,6 +52,12 @@ public class EnemyHealth : MonoBehaviour
         Instantiate(dieAnim, transform.position + offset , Quaternion.identity);
         Destroy(gameObject);
         Destroy(healthBarUI);
+        
+        if (bossRoomManager != null)
+        {
+            bossRoomManager.EnemyDefeated(); // ⭐ 죽을 때 BossRoomManager한테 알려줌
+        }
+        
     }
 
     IEnumerator DamageRed()
