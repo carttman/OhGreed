@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Player/Fonts/DungreedFont.unitypackage.meta
+guid: 2f21b5861729eff49ac56e60ec429796
+========
 guid: 801348bbe91e6a148a9b585fddf88f8b
+>>>>>>>> main:Assets/Edit/SpriteRendererToPNG/SpritetoPng.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

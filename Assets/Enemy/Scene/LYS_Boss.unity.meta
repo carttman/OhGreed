@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Player/Scenes/Player_Main.unity.meta
+guid: 2556ecdf41f3b5d47af09e38850a448b
+========
 guid: fc3885bc6172ce446b75c686dc7194e4
+>>>>>>>> main:Assets/Enemy/Scene/LYS_Boss.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
