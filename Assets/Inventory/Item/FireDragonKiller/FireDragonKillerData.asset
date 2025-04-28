@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed7d0b4fe7742754ea1e34cab89e600a, type: 3}
-  m_Name: BowData
+  m_Name: FireDragonKillerData
   m_EditorClassIdentifier: 
-  ItemName: Bow
+  ItemName: FireDragonKiller
   ItemID: 2
-  ItemIcon: {fileID: 21300000, guid: 5afafc37b6ad15441945e12564169e3e, type: 2}
+  ItemIcon: {fileID: 21300000, guid: c5af360f332d8774db9475afa898280a, type: 2}
   ItemType: 0
-  ItemSkillIcon: {fileID: 21300000, guid: cc5649d8eea9bf94190b356d70f7100a, type: 2}
-  ItemDescription: show your proof
-  SkillDescription: spawn the witch
+  ItemSkillIcon: {fileID: 21300000, guid: a73fb89ae9c9b2549afd97a4c32eea20, type: 2}
+  ItemDescription: Hot Chilli pepper sauce
+  SkillDescription: Spawn The Twin FlameSnake

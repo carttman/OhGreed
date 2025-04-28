@@ -63,7 +63,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         if (_draggingIcon)
         {
-            Debug.LogWarning("드래그 끝");
+            //Debug.LogWarning("드래그 끝");
             
             var iconImage = _draggingIcon.GetComponentInChildren<Image>();
             iconImage.raycastTarget = true;
@@ -75,7 +75,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("OnPointerEnter");
+        //Debug.Log("OnPointerEnter");
         
         ItemManager.Instance.ActiveItemDetailPanel(itemData.ItemIcon, itemData.ItemSkillIcon, itemData.ItemName, 
             itemData.ItemDescription, itemData.SkillDescription);
@@ -83,7 +83,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("OnPointerExit");
+        //Debug.Log("OnPointerExit");
         
         ItemManager.Instance.DeactiveItemDetailPanel();
     }

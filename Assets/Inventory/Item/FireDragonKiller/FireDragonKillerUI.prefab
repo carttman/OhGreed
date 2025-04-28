@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 951227893684181278}
   - component: {fileID: -6870884046668495921}
   m_Layer: 0
-  m_Name: BowUI
+  m_Name: FireDragonKillerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,3 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 54c9075722d8d5743aab25b4c1a2b5f6, type: 2}
+  _ItemIndex: 0
+  slotType: 0
+  ItemGameObject: {fileID: 4404779739092964630, guid: 06d47bce1f56ab345b1123318ba9a85a, type: 3}
+  ItemDetailPanel: {fileID: 0}
