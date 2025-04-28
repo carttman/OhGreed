@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Animator animator;
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     
     private bool isFacingRight = true;
     
@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         isFacingRight = true;
         Vector3 scale = transform.localScale;
@@ -197,10 +198,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
-
-        Vector3 scale = transform.localScale;
+        if (playerHealth != null && playerHealth.isDead)
+            return;
         
+        isFacingRight = !isFacingRight;
+        Vector3 scale = transform.localScale;
         //현재 방향 기준으로 확실히 설정하자
         scale.x *= -1;
         transform.localScale = scale;

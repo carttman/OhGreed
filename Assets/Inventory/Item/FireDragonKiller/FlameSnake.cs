@@ -1,0 +1,42 @@
+using System.Collections;
+using UnityEngine;
+
+public class FlameSnake : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject FireBullet;
+    private Animator animator;
+    
+    [SerializeField]
+    private Transform BulletSpawnPoint;
+
+    [SerializeField] 
+    private GameObject AttackBeginVFX;
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        StartCoroutine(StartFire());
+    }
+
+    IEnumerator StartFire()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            yield return new WaitForSeconds(2);
+            animator.SetTrigger("Fire");
+        }
+    }
+
+    public void OnBeginFireBullet()
+    {
+        var bulletBeginVFX = Instantiate(AttackBeginVFX, BulletSpawnPoint.position, transform.rotation);
+        Destroy(bulletBeginVFX, 1f);
+    }
+    
+    public void OnSpawnFireBullet()
+    {
+        var bullet = Instantiate(FireBullet, BulletSpawnPoint.position, transform.rotation);
+        bullet.GetComponent<FireBullet>().currScale = transform.localScale.x;
+    }
+    
+}
