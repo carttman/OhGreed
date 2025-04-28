@@ -39,7 +39,6 @@ public class BlankIcon : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         {
             //이 슬롯의 인덱스와 슬롯타입 넘겨준다
             ItemManager.Instance.MoveItemInventory(MyIndex, slotType);
-            
         }
     }
     

@@ -26,7 +26,12 @@ public class UI_InventoryPanel : MonoBehaviour
         ItemManager.Instance.OnMoveToItemSlot += MoveToItemSlot;
         
         CreateInventory();
-        
+    }
+
+    private void OnDestroy()
+    {
+        ItemManager.Instance.OnItemAdded -= AddItem;
+        ItemManager.Instance.OnMoveToItemSlot -= MoveToItemSlot;
     }
 
     private void CreateInventory()
@@ -45,11 +50,12 @@ public class UI_InventoryPanel : MonoBehaviour
 
     private void AddItem(ItemUIBase Item, int targetIndex)
     {
+        if(InventoryItems[targetIndex] != null) return;
+        
         InventoryItems[targetIndex] = Instantiate(Item, InventoryGridLayout.transform);
         InventoryItems[targetIndex].transform.SetParent(BlankIcons[targetIndex].transform);
         InventoryItems[targetIndex].transform.localPosition = Vector3.zero;
-        Item._ItemIndex = targetIndex;
-        
+        InventoryItems[targetIndex]._ItemIndex = targetIndex;
     }
     
     private void MoveToItemSlot(int targetIndex, SlotType prevSlotType)

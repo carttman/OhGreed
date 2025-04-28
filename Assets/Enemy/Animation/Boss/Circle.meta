@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Enemy/Animation/Boss/Circle.meta
-guid: 44ba9325b01aba245ab879746802ef10
-folderAsset: yes
-========
-guid: 94e4b81c07a0f2d44912afba3c6ef3e4
->>>>>>>> main:Assets/Enemy/Scene/New_Boss.unity.meta
+guid: 5f7b59675eb2fca47841356f16a6eb6c
 DefaultImporter:
   externalObjects: {}
   userData: 

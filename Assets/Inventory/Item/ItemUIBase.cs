@@ -14,7 +14,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public GameObject ItemGameObject;
 
-    public GameObject ItemDetailPanel;
+    //public GameObject ItemDetailPanel;
     void Start()
     {
         //Data에 저장된 이미지
@@ -22,7 +22,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         image.sprite = itemData.ItemIcon;    
         image.preserveAspect = true;
     }
-
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (itemData == null || itemData.ItemIcon == null)
@@ -46,7 +46,7 @@ public class ItemUIBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         
         //아이템 매니저에 있는 임시아이템 타입 넣어주기
         slotType = GetComponentInParent<BlankIcon>().slotType;
-        Debug.Log($"_EquipType : {slotType}");
+        //Debug.Log($"_EquipType : {slotType}");
         ItemManager.Instance.TempSlotType = slotType;
     }
 
