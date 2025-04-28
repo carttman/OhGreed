@@ -33,9 +33,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 ItemManager.Instance.WeaponAttackable.Attack();
             }
-
-            // int randomIndex = Random.Range(1, 4);
-            // playerAnimation.PlayAttack(randomIndex);
+            
         }
     }
 
@@ -45,7 +43,6 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("적을 공격했어!" + enemy.name);
             enemy.GetComponent<EnemyHealth>().TakeDamage(1);
         }
     }

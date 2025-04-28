@@ -22,6 +22,6 @@ public class PlayerHpBarController : MonoBehaviour
 
     private void UpdateText(int current, int max)
     {
-        healthText.text = $"{current} / {max}";
+        healthText.text = $" {current} / {max}";
     }
 }

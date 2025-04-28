@@ -203,11 +203,8 @@ public class PlayerMovement : MonoBehaviour
         
         isFacingRight = !isFacingRight;
         Vector3 scale = transform.localScale;
-        //현재 방향 기준으로 확실히 설정하자
         scale.x *= -1;
         transform.localScale = scale;
-
-        Debug.Log($"🌀 Flip 실행됨! 현재 방향: {(isFacingRight ? "오른쪽" : "왼쪽")}");
     }
 
     private void OnDrawGizmosSelected()
