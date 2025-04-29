@@ -1,5 +1,6 @@
-using System;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerHealth : MonoBehaviour
@@ -7,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 97;
     private int currentHealth;
     public bool isDead = false;
+    
+    public GameObject gameOverUI;
+    public GameObject boss;
     
     private PlayerAnimation playerAnimation;
 
@@ -16,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerAnimation = GetComponent<PlayerAnimation>();
         currentHealth = maxHealth;
+        
+        gameOverUI.SetActive(false);
 
         if (healthBar != null)
         {
@@ -50,12 +56,46 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        Debug.Log("Player 사망!");
         playerAnimation.PlayDie();
         
+        Boss_Attack bossAttack = boss.GetComponent<Boss_Attack>();
+        bossAttack.StopAttack();
+        
         GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+        StartCoroutine(GameOver());
         
     }
     
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        gameOverUI.SetActive(true);
+        
+        CanvasGroup canvasGroup = gameOverUI.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0f; 
+        
+        float duration = 1.5f;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.unscaledDeltaTime; 
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, timer / duration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnClickMainMenu()
+    {
+        Transform player = GameManager.Instance.transform.Find("Player");
+        Destroy(player.gameObject);
+        SceneManager.LoadScene("LYS_Start"); 
+    }
 }
+
 

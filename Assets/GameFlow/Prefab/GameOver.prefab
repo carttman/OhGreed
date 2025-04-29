@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 4035934105290915768}
   - component: {fileID: 5907197202844711927}
   - component: {fileID: 4735179948710664418}
+  - component: {fileID: 2166314886461555257}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8609636377162534600
 RectTransform:
   m_ObjectHideFlags: 0
@@ -104,6 +105,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &2166314886461555257
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255927838163690452}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1130860765490575765
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,9 +463,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BossDeath, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: OnClickMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

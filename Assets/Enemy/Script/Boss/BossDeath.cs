@@ -41,9 +41,9 @@ public class BossDeath : MonoBehaviour
 
 
         // 파티클
-        int num = 60;
+        int num = 50;
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < num; j++)
             {
@@ -69,8 +69,6 @@ public class BossDeath : MonoBehaviour
         yield return new WaitForSeconds(2f);
         
         //종료 화면
-        Time.timeScale = 0f;
-        
         CanvasGroup canvasGroup = clearUI.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0f;
         
