@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (isWallJumping || dashCount > 0) return; // 벽 점프중이거나 대쉬중이면 이동 막기
+        if (isWallJumping || dashCount > 0) return;
         
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         
@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashTimer += Time.deltaTime;
         ghostTimer += Time.deltaTime;
-
+        
         if (ghostTimer >= ghostSpawnInterval)
         {
             SpawnGhost();
@@ -281,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ghostPrefab != null)
         {
-            Instantiate(ghostPrefab, transform.position, Quaternion.identity);
+            var ghost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
         }
     }
 
