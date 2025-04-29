@@ -12,22 +12,9 @@ public class GwendolynObject : ItemObjectBase, IWeaponAttackable
     private float SearchRadius = 10f;
     private Transform Target;
     
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void Attack()
     {
-        Debug.Log("완드 공격");
-
         FindClosestEnemy();
-        
         
         if (Target)
         {
@@ -36,16 +23,14 @@ public class GwendolynObject : ItemObjectBase, IWeaponAttackable
         }
         else
         {
-            var VFX = Instantiate(AttackVFX, transform.position + new Vector3(2, 0, 0) * ItemManager.Instance.Player.transform.localScale.x, Quaternion.identity);
-            
+            var VFX = Instantiate(AttackVFX, transform.position + new Vector3(2 * ItemManager.Instance.Player.transform.localScale.x, -0.5f, 0) , Quaternion.identity);
             Destroy(VFX, .7f);
         }
     }
 
     public void ItemSkill()
     {
-        Debug.Log("완드 스킬");
-        var arshaVFX = Instantiate(SkillVFX, transform.position, Quaternion.identity);
+        var arshaVFX = Instantiate(SkillVFX, transform.position + new Vector3(-2 * ItemManager.Instance.Player.transform.localScale.x, 2.5f, 0), Quaternion.identity);
     }
     
     private void FindClosestEnemy()

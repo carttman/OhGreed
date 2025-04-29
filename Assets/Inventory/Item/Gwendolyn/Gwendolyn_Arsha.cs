@@ -6,9 +6,11 @@ public class Gwendolyn_Arsha : MonoBehaviour
 {
     [SerializeField]
     private GameObject SpinMagic_CastingVFX;
+    private GameObject TempSpinMagic_CastingVFX;
     [SerializeField]
     private GameObject SpinBulletVFX;
-    
+
+    private Animator _animator;
     
     [SerializeField]
     private Transform CastingPoint;
@@ -17,7 +19,7 @@ public class Gwendolyn_Arsha : MonoBehaviour
     
     [SerializeField] 
     private float SearchRadius = 10f;
-    private Transform Target;
+    private Transform TargetTranform;
 
     [Header("미사일 기능 관련")]
     public float m_speed = 0.5f; // 미사일 속도.
@@ -34,13 +36,15 @@ public class Gwendolyn_Arsha : MonoBehaviour
         FindClosestEnemy();
         
         StartCoroutine(SpawnSpellMagic());
+
+        StartCoroutine(DestroyCoroutine());
+        
     }
     
-
     private IEnumerator SpawnSpellMagic()
     {
         yield return new WaitForSeconds(4);
-        Instantiate(SpinMagic_CastingVFX, CastingPoint.position, transform.rotation);
+        TempSpinMagic_CastingVFX = Instantiate(SpinMagic_CastingVFX, CastingPoint.position, transform.rotation);
         
         yield return new WaitForSeconds(1);
         StartCoroutine(CreateSpinBullet());
@@ -48,6 +52,11 @@ public class Gwendolyn_Arsha : MonoBehaviour
     
     IEnumerator CreateSpinBullet()
     {
+        if (TargetTranform == null)
+        {
+            TargetTranform = this.transform;
+        }
+        
         int _shotCount = m_shotCount;
         while (_shotCount > 0)
         {
@@ -55,8 +64,8 @@ public class Gwendolyn_Arsha : MonoBehaviour
             {
                 if(_shotCount > 0)
                 {
-                    GameObject missile = Instantiate(SpinBulletVFX);
-                    missile.GetComponent<SpinBullet>().Init(gameObject.transform, Target.transform, m_speed, m_distanceFromStart, m_distanceFromEnd);
+                    GameObject bullet = Instantiate(SpinBulletVFX, BulletSpawnPoint.position, BulletSpawnPoint.rotation);
+                    bullet.GetComponent<SpinBullet>().Init(BulletSpawnPoint.transform, TargetTranform, m_speed, m_distanceFromStart, m_distanceFromEnd);
 
                     _shotCount--;
                 }
@@ -80,11 +89,21 @@ public class Gwendolyn_Arsha : MonoBehaviour
         // 가장 가까운 Enemy의 Transform을 Target으로 설정
         if (closestCollider != null)
         {
-            Target = closestCollider.transform;
+            TargetTranform = closestCollider.transform;
         }
         else
         {
-            Target = null;
+            TargetTranform = null;
         }
+    }
+    
+    IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(8f);
+        TempSpinMagic_CastingVFX.GetComponent<Animator>().SetTrigger("CastingEnd");
+        
+        yield return new WaitForSeconds(2f);
+        Destroy(TempSpinMagic_CastingVFX);
+        Destroy(gameObject);
     }
 }

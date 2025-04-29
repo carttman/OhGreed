@@ -132,7 +132,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7246ee0d859a6e04a9c09dadbaddf99d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_distanceFromStart: 12
   m_distanceFromEnd: 3
   m_shotCount: 12
-  m_interval: 0.15
+  m_interval: 1
   m_shotCountEveryInterval: 3
 --- !u!1 &8968691497172914723
 GameObject:
