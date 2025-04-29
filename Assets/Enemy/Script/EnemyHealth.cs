@@ -18,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
     private Boss_Attack bossAttack;
     public GameObject dieAnim;
     
+    private bool bossDead = false;
     void Awake()
     {
         currentHealth = maxHealth;
@@ -35,14 +36,18 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         healthSlider.value = currentHealth;
         
-        DamageTextManager.Instance.SpawnDamageText(transform.position, damage);
         
         if (currentHealth <= 0)
         {
             Die();
         }
 
-        StartCoroutine(DamageRed());
+        if (currentHealth > 0)
+        {
+            DamageTextManager.Instance.SpawnDamageText(transform.position, damage);
+            StartCoroutine(DamageRed());
+        }
+      
     }
 
     private void Die()
@@ -51,9 +56,13 @@ public class EnemyHealth : MonoBehaviour
 
         if (isBoss)
         {
-            bossAttack?.Die();
-            Destroy(healthBarUI);
-            Instantiate(dieAnim, transform.position + offset, Quaternion.identity);
+            if (!bossDead)
+            {
+                bossDead = true;
+                bossAttack?.Die();
+                Destroy(healthBarUI);
+                Instantiate(dieAnim, transform.position + offset, Quaternion.identity);
+            }
         }
         else
         {
@@ -72,6 +81,7 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator DamageRed()
     {
+       
         spriteRenderer.color = new Color(1f, 0f, 0f, 1f); 
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = Color.white;

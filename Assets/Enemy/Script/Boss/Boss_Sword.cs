@@ -30,7 +30,7 @@ public class Boss_Sword : MonoBehaviour
 
     void Update()
     {
-        for(int i = 0; i < swordCount; i++)
+        for(int i = 0; i < isPreparing.Count; i++)
         {
             if(isPreparing[i])
             {
@@ -41,6 +41,7 @@ public class Boss_Sword : MonoBehaviour
 
     public IEnumerator Sword()
     {
+        
         swords.Clear();
         isPreparing.Clear();
         

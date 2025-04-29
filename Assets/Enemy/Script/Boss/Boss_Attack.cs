@@ -7,7 +7,8 @@ public class Boss_Attack : MonoBehaviour
     public Boss_Sword sword;
     public Boss_Circle circle;
     public BossDeath death;
-    
+
+    public GameObject bossprefab;
 
     private bool isAlive = true;
     private int pattern;
@@ -47,5 +48,11 @@ public class Boss_Attack : MonoBehaviour
         isAlive = false;
         StopAllCoroutines();
         StartCoroutine(death.Death());
+    }
+    
+    public void StopAttack()
+    {
+        isAlive = false;
+        StopAllCoroutines();
     }
 }
