@@ -2,6 +2,7 @@ using System.Numerics;
 using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -49,18 +50,21 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 wallJumpPower = new Vector2(8f, 12f);
 
     [Header("Dash")]
-    public TrailRenderer trailRenderer;
+    public GameObject ghostPrefab;
     
-    public float dashForce = 10f;
+    public float dashForce = 15f;
     public float dashTime = 0.2f;
     public float dashCooldownTime = 1f;
+    public float ghostSpawnInterval = 0.05f;
     
     private bool isFacingRight = true;
     private bool isDashingCooldown = false;
     private int dashCount = 0;
-
     private float originalGravityScale;
-    
+
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private float ghostTimer = 0f;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -83,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
         WallJump();
         
         ApplyMovement();
+        
+        HandleGhostTrail();
     }
 
     private void ApplyMovement()
@@ -119,7 +125,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        //그냥 점프
         if (jumpsRemaining > 0)
         {
             if (context.performed)
@@ -236,37 +241,54 @@ public class PlayerMovement : MonoBehaviour
         {
             dashCount++;
             isDashingCooldown = true;
+            isDashing = true;
 
-            if (trailRenderer != null)
-            {
-                trailRenderer.emitting = true;
-            }
-            
-            //마우스 방향으로 대시 방향 계산
-            Vector2 dashDriection = GetMouseDirection();
-            
-            //대시할 때 중력 끄기
+            dashTimer = 0f;
+            ghostTimer = 0f;
+
             originalGravityScale = rb.gravityScale;
             rb.gravityScale = 0f;
-            
-            //대시 시작
-            rb.linearVelocity = dashDriection * dashForce;
-            
+
+            rb.linearVelocity = Vector2.zero;
+            Vector2 dir = GetMouseDirection();
+            rb.AddForce(dir.normalized * dashForce, ForceMode2D.Impulse);
+
             Invoke(nameof(EndDash), dashTime);
             Invoke(nameof(ResetDashCooldown), dashCooldownTime);
         }
     }
 
+    private void HandleGhostTrail()
+    {
+        if (!isDashing) return;
+
+        dashTimer += Time.deltaTime;
+        ghostTimer += Time.deltaTime;
+
+        if (ghostTimer >= ghostSpawnInterval)
+        {
+            SpawnGhost();
+            ghostTimer = 0f;
+        }
+
+        if (dashTimer >= dashTime)
+        {
+            EndDash();
+        }
+    }
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab != null)
+        {
+            Instantiate(ghostPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
     private void EndDash()
     {
-        if (trailRenderer != null)
-        {
-            trailRenderer.emitting = false;
-        }
-        //대시 끝나면 중력 복구
+        isDashing = false;
         rb.gravityScale = originalGravityScale;
-        // 대시 끝나도 순간적으로 멈추지 않고 기존 이동 적용되도록 velocity 유지할 수 있음
-        // 필요에 따라 rb.linearVelocity = Vector2.zero; 로 대시 끝나자마자 멈출 수도 있음.
         dashCount = 0;
     }
 
@@ -274,15 +296,13 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashingCooldown = false;
     }
+
     private Vector2 GetMouseDirection()
     {
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
-        Vector2 direction = (mouseWorldPos - transform.position).normalized;
-        return direction;
+        return (mouseWorldPos - transform.position);
     }
-
-    
 }
