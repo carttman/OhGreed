@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     public string targetSceneName;
-    public bool startActive = true; // 
+    public bool startActive = true;  
     private bool isActive;
 
     private void Start()

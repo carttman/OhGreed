@@ -28,5 +28,10 @@ public class PlayerInput : MonoBehaviour
     {
         playerCombat.Attack(context);
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        playerMovement.Dash(context);
+    }
 }
 

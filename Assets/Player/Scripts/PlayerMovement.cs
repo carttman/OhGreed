@@ -1,5 +1,10 @@
+using System.Numerics;
+using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -7,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
     private PlayerHealth playerHealth;
-    
-    private bool isFacingRight = true;
     
     [Header("Gravity")]
     public float baseGravity = 2f;
@@ -46,10 +49,27 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpTimer;
     public Vector2 wallJumpPower = new Vector2(8f, 12f);
 
+    [Header("Dash")]
+    public GameObject ghostPrefab;
+    
+    public float dashForce = 15f;
+    public float dashTime = 0.2f;
+    public float dashCooldownTime = 1f;
+    public float ghostSpawnInterval = 0.05f;
+    
+    private bool isFacingRight = true;
+    private bool isDashingCooldown = false;
+    private int dashCount = 0;
+    private float originalGravityScale;
+
+    private bool isDashing = false;
+    private float dashTimer = 0f;
+    private float ghostTimer = 0f;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
+        originalGravityScale = rb.gravityScale;
 
         isFacingRight = true;
         Vector3 scale = transform.localScale;
@@ -67,11 +87,13 @@ public class PlayerMovement : MonoBehaviour
         WallJump();
         
         ApplyMovement();
+        
+        HandleGhostTrail();
     }
 
     private void ApplyMovement()
     {
-        if (isWallJumping) return; // 벽 점프중이면 이동 막기
+        if (isWallJumping || dashCount > 0) return; // 벽 점프중이거나 대쉬중이면 이동 막기
         
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         
@@ -103,7 +125,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        //그냥 점프
         if (jumpsRemaining > 0)
         {
             if (context.performed)
@@ -182,8 +203,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void FlipByMouse()
     {
-        //if (Camera.main == null) return;
-
         Vector3 mouseScreenPos = Input.mousePosition;
         mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
@@ -215,6 +234,75 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
-    
 
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.started && dashCount ==0 && !isDashingCooldown)
+        {
+            dashCount++;
+            isDashingCooldown = true;
+            isDashing = true;
+
+            dashTimer = 0f;
+            ghostTimer = 0f;
+
+            originalGravityScale = rb.gravityScale;
+            rb.gravityScale = 0f;
+
+            rb.linearVelocity = Vector2.zero;
+            Vector2 dir = GetMouseDirection();
+            rb.AddForce(dir.normalized * dashForce, ForceMode2D.Impulse);
+
+            Invoke(nameof(EndDash), dashTime);
+            Invoke(nameof(ResetDashCooldown), dashCooldownTime);
+        }
+    }
+
+    private void HandleGhostTrail()
+    {
+        if (!isDashing) return;
+
+        dashTimer += Time.deltaTime;
+        ghostTimer += Time.deltaTime;
+
+        if (ghostTimer >= ghostSpawnInterval)
+        {
+            SpawnGhost();
+            ghostTimer = 0f;
+        }
+
+        if (dashTimer >= dashTime)
+        {
+            EndDash();
+        }
+    }
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab != null)
+        {
+            Instantiate(ghostPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+        rb.gravityScale = originalGravityScale;
+        dashCount = 0;
+    }
+
+    private void ResetDashCooldown()
+    {
+        isDashingCooldown = false;
+    }
+
+    private Vector2 GetMouseDirection()
+    {
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+
+        return (mouseWorldPos - transform.position);
+    }
 }
