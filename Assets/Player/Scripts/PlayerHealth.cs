@@ -37,7 +37,6 @@ public class PlayerHealth : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.SetCurrentHealth(currentHealth);
-            Debug.Log("hp바 업데이트됨");
         }
 
         if (currentHealth <= 0)
@@ -55,9 +54,6 @@ public class PlayerHealth : MonoBehaviour
         playerAnimation.PlayDie();
         
         GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
-        //Invoke(nameof(ReturnToVillage), 2f);
-        
-        //2초 후 씬 이동
         
     }
     

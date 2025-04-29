@@ -28,16 +28,6 @@ public class EnemyHealth : MonoBehaviour
             bossAttack = GetComponentInParent<Boss_Attack>();
         }
         
-
-
-        // if (bossRoomManager != null)
-        // {
-        //     bossRoomManager.RegisterEnemy(); // 태어날 때 등록
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("BossRoomManager를 찾을 수 없습니다");
-        // }
     }
 
     public void TakeDamage(float damage)

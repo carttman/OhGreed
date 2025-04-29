@@ -20,7 +20,17 @@ public class Portal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("포탈에 들어감! 다음 씬으로 이동할께!");
-            SceneManager.LoadScene(targetSceneName);
+            StartCoroutine(LoadSceneAsync());
+        }
+    }
+
+    private System.Collections.IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
         }
     }
 
