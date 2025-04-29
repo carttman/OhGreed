@@ -12,6 +12,10 @@ public class GwendolynObject : ItemObjectBase, IWeaponAttackable
     private float SearchRadius = 10f;
     private Transform Target;
     
+    [SerializeField]
+    private Transform CastingPoint;
+    [SerializeField]
+    private GameObject CastingVFX;
     public void Attack()
     {
         FindClosestEnemy();
@@ -19,12 +23,18 @@ public class GwendolynObject : ItemObjectBase, IWeaponAttackable
         if (Target)
         {
             var VFX = Instantiate(AttackVFX, Target.position, Quaternion.identity);
+            var castVFX = Instantiate(CastingVFX, CastingPoint.position, Quaternion.identity);
+            castVFX.transform.SetParent(CastingPoint);
             Destroy(VFX, .7f);
+            Destroy(castVFX, .7f);
         }
         else
         {
             var VFX = Instantiate(AttackVFX, transform.position + new Vector3(2 * ItemManager.Instance.Player.transform.localScale.x, -0.5f, 0) , Quaternion.identity);
+            var castVFX = Instantiate(CastingVFX, CastingPoint.position, Quaternion.identity);
+            castVFX.transform.SetParent(CastingPoint);
             Destroy(VFX, .7f);
+            Destroy(castVFX, .7f);
         }
     }
 
