@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     //BossRoomManager 연결하기
     [SerializeField] private BossRoomManager bossRoomManager;
-    public float currentHealth;
+    private float currentHealth;
     public float maxHealth = 5;
     
     public Slider healthSlider;
@@ -45,6 +45,8 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         healthSlider.value = currentHealth;
         
+        DamageTextManager.Instance.SpawnDamageText(transform.position, damage);
+        
         if (currentHealth <= 0)
         {
             Die();
@@ -61,6 +63,7 @@ public class EnemyHealth : MonoBehaviour
         {
             bossAttack?.Die();
             Destroy(healthBarUI);
+            Instantiate(dieAnim, transform.position + offset, Quaternion.identity);
         }
         else
         {

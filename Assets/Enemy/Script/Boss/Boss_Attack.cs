@@ -6,6 +6,7 @@ public class Boss_Attack : MonoBehaviour
     public Boss_Laser laser;
     public Boss_Sword sword;
     public Boss_Circle circle;
+    public BossDeath death;
     
 
     private bool isAlive = true;
@@ -45,5 +46,6 @@ public class Boss_Attack : MonoBehaviour
     {
         isAlive = false;
         StopAllCoroutines();
+        StartCoroutine(death.Death());
     }
 }
