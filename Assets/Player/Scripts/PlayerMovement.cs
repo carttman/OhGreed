@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Numerics;
 using UnityEditor.Searcher;
 using UnityEngine;
@@ -10,6 +12,8 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private CapsuleCollider2D playerCollider;
+    
     public Animator animator;
     private PlayerHealth playerHealth;
     
@@ -65,10 +69,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float ghostTimer = 0f;
+
+    private bool isOnPlatformed;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
+        
         originalGravityScale = rb.gravityScale;
 
         isFacingRight = true;
@@ -257,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetDashCooldown), dashCooldownTime);
         }
     }
+    
 
     private void HandleGhostTrail()
     {
@@ -304,5 +313,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
         return (mouseWorldPos - transform.position);
+    }
+    
+    public void Drop(InputAction.CallbackContext context)
+    {
+        if (context.performed && IsGrounded)
+        {
+            StartCoroutine(DisablePlatformCollision(0.25f));
+        }
+    }
+    
+    private IEnumerator DisablePlatformCollision(float disableTime)
+    {
+        playerCollider.enabled = false;
+
+        yield return new WaitForSeconds(disableTime);
+
+        playerCollider.enabled = true;
     }
 }
