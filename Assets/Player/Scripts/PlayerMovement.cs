@@ -319,11 +319,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && IsGrounded)
         {
-            StartCoroutine(DisablePlatformCollision(0.25f));
+            StartCoroutine(DisablePlayerCollider(0.25f));
         }
     }
     
-    private IEnumerator DisablePlatformCollision(float disableTime)
+    private IEnumerator DisablePlayerCollider(float disableTime)
     {
         playerCollider.enabled = false;
 
