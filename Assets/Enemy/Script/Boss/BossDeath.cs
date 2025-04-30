@@ -28,6 +28,7 @@ public class BossDeath : MonoBehaviour
     
     void Awake()
     {
+        _camera = GameManager.Instance.FollowCamera.GetComponent<CinemachineCamera>();
         noise = _camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
     }
     
