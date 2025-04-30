@@ -8,13 +8,11 @@ public class BossRoomManager : MonoBehaviour
     public void RegisterEnemy()
     {
         enemiesRemaining++;
-        Debug.Log($"적 등록됨! 남은 적 수 : {enemiesRemaining}");
     }
 
     public void EnemyDefeated()
     {
         enemiesRemaining--;
-        Debug.Log($"적 처치! 남은 적 수 : {enemiesRemaining}");
 
         if (enemiesRemaining <= 0)
         {

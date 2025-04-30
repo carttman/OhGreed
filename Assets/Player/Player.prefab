@@ -528,6 +528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466ada8d10e1a9c438c6438323256cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkDustPrefab: {fileID: 7055095086799538241, guid: 8e34c812625178247a01a0e8fdafcda9, type: 3}
+  footPosition: {fileID: 3471977894584316320}
+  dustSpawnInterval: 0.2
   animator: {fileID: 3989101754404518634}
   baseGravity: 2
   maxFallSpeed: 18
@@ -541,7 +544,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  IsGrounded: 0
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundAndFloorLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
+  isFloor: 0
   wallCheckPos: {fileID: 1623197622676884258}
   wallCheckSize: {x: 0.17, y: 1.19}
   wallLayer:
@@ -590,7 +600,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 97
   isDead: 0
+  gameOverUI: {fileID: 0}
+  boss: {fileID: 0}
   healthBar: {fileID: 7651293054320041542}
+  bgmSource: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &5573375524847562092
 MonoBehaviour:
   m_ObjectHideFlags: 0

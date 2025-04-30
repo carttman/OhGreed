@@ -11,6 +11,12 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Effect")]
+    [SerializeField] private GameObject walkDustPrefab;
+    [SerializeField] private Transform footPosition;
+    [SerializeField] private float dustSpawnInterval = 0.2f;
+    private float dustTimer = 0f;
+    
     private Rigidbody2D rb;
     private CapsuleCollider2D playerCollider;
     
@@ -100,6 +106,20 @@ public class PlayerMovement : MonoBehaviour
         ApplyMovement();
         
         HandleGhostTrail();
+        
+        if (Mathf.Abs(horizontalMovement) > 0.1f && isGrounded)
+        {
+            dustTimer += Time.deltaTime;
+            if (dustTimer >= dustSpawnInterval)
+            {
+                SpawnWalkDust(); // 👈 여기서 생성
+                dustTimer = 0f;
+            }
+        }
+        else
+        {
+            dustTimer = dustSpawnInterval;
+        }
     }
 
     private void ApplyMovement()
@@ -334,5 +354,13 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(disableTime);
 
         playerCollider.enabled = true;
+    }
+    
+    private void SpawnWalkDust()
+    {
+        if (walkDustPrefab != null && footPosition != null)
+        {
+            Instantiate(walkDustPrefab, footPosition.position, Quaternion.identity);
+        }
     }
 }
