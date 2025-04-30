@@ -140,10 +140,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+  m_text: "\uC124\uBA85\uC124\uBA85\uC124\uBA85\uC124\uBA85\uC5B4\uC15C\uBA38\uC5B4\uC5C4\uC5C4\uB2DD\u3141\u3134\uC5B4\u314F\u3163\uB9CC\uC5B4\u3163\uB9CC\uC5B4\uB9C8\u3153\u3147\uBBFC\uC544\u3153\u3134\uBBF8\uC5B4\uBBF8\u314F\u3134\u3141\u3147\u3141\u3134\uC774\u314F\u3153\u3141\uB204\uC774\u314F\uBB88"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
-  m_sharedMaterial: {fileID: 96848307024724828, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
+  m_sharedMaterial: {fileID: 6646917200407783589, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5305058105663842835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -529,8 +529,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
-  m_sharedMaterial: {fileID: 96848307024724828, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
+  m_sharedMaterial: {fileID: 6646917200407783589, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -663,10 +663,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ddddddddddddddddddddddddd
+  m_text: "\uBC1C\uB3C4 \uACF5\uACA9!!!!!!! \uC774\uC544\uC544\uC544\uC544\uC544!!!\n\uB728\uAC70\uC6B4
+    \uC6A9\uC554\uB3C4\uB9C8\uBC40 2\uB9C8\uB9AC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
-  m_sharedMaterial: {fileID: 96848307024724828, guid: fdc04adedaaeb004396145e81e7c9884, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
+  m_sharedMaterial: {fileID: 6646917200407783589, guid: 3f0f3d2cede98054b98541df1b50d223, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

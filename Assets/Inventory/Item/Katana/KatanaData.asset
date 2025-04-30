@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7d0b4fe7742754ea1e34cab89e600a, type: 3}
   m_Name: KatanaData
   m_EditorClassIdentifier: 
-  ItemName: Katana
+  ItemName: "\uCE74\uD0C0\uB098"
   ItemID: 1
   ItemIcon: {fileID: 21300000, guid: 32461a8969fd52d43a6e333240d0c111, type: 2}
   ItemType: 0
   ItemSkillIcon: {fileID: 21300000, guid: b7f8b5915f3a0e547ad8b1f8a9f046bb, type: 2}
-  ItemDescription: very very string damage
-  SkillDescription: Slash All Enemies
+  ItemDescription: "\uCC0C\uB9BF\uD55C \uBC1C\uB3C4\uACF5\uACA9\uC774 \uB098\uAC04\uB2E4."
+  SkillDescription: "\uBC1C\uB3C4 \uACF5\uACA9!!!!!!!!!!!!!!!"

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b02cff949743d9d429883d0fb214f439
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - VFXObject: {instanceID: 0}
+  - SpawnSFX: {fileID: 8300000, guid: 3a6579235b5ceef419add37a317a8e5a, type: 3}
+  - SpawnSFX2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
