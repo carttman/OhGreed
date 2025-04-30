@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
 public class BossDeath : MonoBehaviour
@@ -17,7 +18,7 @@ public class BossDeath : MonoBehaviour
     public GameObject backParticle;
     public GameObject clearUI;
     
-    public CinemachineCamera camera;
+    public CinemachineCamera _camera;
     private CinemachineBasicMultiChannelPerlin noise;
     
     public AudioSource bgmSource;
@@ -27,7 +28,7 @@ public class BossDeath : MonoBehaviour
     
     void Awake()
     {
-        noise = camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+        noise = _camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
     }
     
     public IEnumerator Death()

@@ -21066,6 +21066,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 287361807}
     - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 551478316}
+    - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
       propertyPath: bgmSource
       value: 
       objectReference: {fileID: 18722323}
