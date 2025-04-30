@@ -28,6 +28,9 @@ public class BossDeath : MonoBehaviour
     
     void Awake()
     {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+        
         noise = _camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
     }
     
