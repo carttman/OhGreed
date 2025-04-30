@@ -1,9 +1,14 @@
-using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
+using UnityEngine;
 using System.IO;
 
 public class SpriteRendererBatchExporter : MonoBehaviour
 {
+#if UNITY_EDITOR
+
     [MenuItem("Tools/Export All Selected SpriteRenderers to PNG")]
     static void ExportSelectedSpriteRenderers()
     {
@@ -62,4 +67,6 @@ public class SpriteRendererBatchExporter : MonoBehaviour
         AssetDatabase.Refresh();
         Debug.Log($"{count}개의 SpriteRenderer 오브젝트를 PNG로 저장했습니다.");
     }
+#endif
+
 }
