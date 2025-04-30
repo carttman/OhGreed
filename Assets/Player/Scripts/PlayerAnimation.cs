@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Walk", Mathf.Abs(playerMovement.horizontalMovement));
-        animator.SetBool("IsJumping", !playerMovement.IsGrounded);
+        animator.SetBool("IsJumping", !playerMovement.isGrounded || !playerMovement.isFloor);
     }
     
 

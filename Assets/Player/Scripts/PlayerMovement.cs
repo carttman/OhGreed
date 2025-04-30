@@ -35,7 +35,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
-    public bool IsGrounded;
+    public LayerMask floorLayer;
+    public bool isGrounded;
+    public bool isFloor;
 
     [Header("WallCheck")]
     public Transform wallCheckPos;
@@ -104,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         if (isWallJumping || dashCount > 0) return;
         
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
-        
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -150,8 +151,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        IsGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
-        if (IsGrounded)
+        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
+
+        isFloor = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, floorLayer);
+
+        if (isGrounded || isFloor)
         {
             jumpsRemaining = maxJumps;
         }
@@ -177,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-        if (!IsGrounded && WallCheck() && horizontalMovement != 0)
+        if (!isGrounded && !isFloor && WallCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -317,7 +321,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void Drop(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded)
+        if (context.performed && isGrounded)
         {
             StartCoroutine(DisablePlayerCollider(0.25f));
         }
