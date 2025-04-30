@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
     public LayerMask floorLayer;
+    
+    public LayerMask groundAndFloorLayer;
+    
     public bool isGrounded;
     public bool isFloor;
 
@@ -71,8 +74,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float ghostTimer = 0f;
-
-    private bool isOnPlatformed;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -151,11 +152,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
-
+        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundAndFloorLayer);
         isFloor = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, floorLayer);
-
-        if (isGrounded || isFloor)
+        
+        if (isGrounded)
         {
             jumpsRemaining = maxJumps;
         }
@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-        if (!isGrounded && !isFloor && WallCheck() && horizontalMovement != 0)
+        if (!isGrounded && WallCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -321,7 +321,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void Drop(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (context.performed && isGrounded && !isFloor)
         {
             StartCoroutine(DisablePlayerCollider(0.25f));
         }
