@@ -13,4 +13,10 @@ public class KatanaBaseAttackCollision : MonoBehaviour
             
         }
     }
+    
+    public void PlaySound(AudioClip clip)
+    {
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(clip);
+    }
 }

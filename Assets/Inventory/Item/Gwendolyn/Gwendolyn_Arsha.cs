@@ -31,6 +31,10 @@ public class Gwendolyn_Arsha : MonoBehaviour
     [Range(0, 1)] public float m_interval = 0.15f;
     public int m_shotCountEveryInterval = 2; // 한번에 몇 개씩 발사할건지.
 
+    [SerializeField] 
+    private AudioClip SpawnBulletSFX;
+    [SerializeField]
+    private AudioClip BulletStartSFX;
     void Start()
     {
         FindClosestEnemy();
@@ -57,15 +61,18 @@ public class Gwendolyn_Arsha : MonoBehaviour
             TargetTranform = this.transform;
         }
         
+        var audioSource = GetComponent<AudioSource>();
+        
         int _shotCount = m_shotCount;
         while (_shotCount > 0)
         {
+            audioSource.PlayOneShot(SpawnBulletSFX);
             for(int i = 0; i < m_shotCountEveryInterval; i++)
             {
                 if(_shotCount > 0)
                 {
-                    GameObject bullet = Instantiate(SpinBulletVFX, BulletSpawnPoint.position, BulletSpawnPoint.rotation);
-                    bullet.GetComponent<SpinBullet>().Init(BulletSpawnPoint.transform, TargetTranform, m_speed, m_distanceFromStart, m_distanceFromEnd);
+                    GameObject bullet = Instantiate(SpinBulletVFX, CastingPoint.position, BulletSpawnPoint.rotation * Quaternion.Euler(0, 0, 45));
+                    bullet.GetComponent<SpinBullet>().Init(CastingPoint.transform, TargetTranform, m_speed, m_distanceFromStart, m_distanceFromEnd);
 
                     _shotCount--;
                 }
@@ -105,5 +112,11 @@ public class Gwendolyn_Arsha : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(TempSpinMagic_CastingVFX);
         Destroy(gameObject);
+    }
+    
+    public void PlaySound(AudioClip clip)
+    {
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(clip);
     }
 }

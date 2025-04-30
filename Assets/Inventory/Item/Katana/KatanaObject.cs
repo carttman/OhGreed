@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,8 +14,13 @@ public class KatanaObject : ItemObjectBase, IWeaponAttackable
     
     [SerializeField]
     private GameObject SkillReadyVFX;
+    [SerializeField]
+    private GameObject SkillBeginVFX;
     
     private GameObject SkillEffect;
+
+    [SerializeField] 
+    private AudioClip SkillReadySFX;
     
     protected override void Start()
     {
@@ -32,8 +38,6 @@ public class KatanaObject : ItemObjectBase, IWeaponAttackable
     
     public void Attack()
     {
-        Debug.Log("카타나 어택");
-
         var v = Instantiate(AttackVFX, transform.position, transform.rotation * Quaternion.Euler(0, 0, 180));
         Destroy(v, .5f);
     }
@@ -46,25 +50,30 @@ public class KatanaObject : ItemObjectBase, IWeaponAttackable
     
         Vector3 direction = mousePosition - transform.position;
     
-        // Z축 회전 유지 (2D 게임) 또는 Y축 회전 설정 (3D 게임)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
     }
 
     public void ItemSkill()
     {
-        Debug.Log("카타나 스킬");
-
         StartCoroutine(SkillState());
     }
     
     IEnumerator SkillState()
     {
-       
         SkillEffect = Instantiate(SkillReadyVFX, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
-        Destroy(SkillEffect);
+        Destroy(SkillEffect, 0.4f);
         
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(SkillReadySFX);
+        
+        var SkillBegin = Instantiate(SkillBeginVFX, transform.position, Quaternion.identity);
+        SkillBegin.transform.SetParent(_camera.transform);
+        
+        yield return new WaitForSeconds(1.2f);
+        
+        Destroy(SkillBegin, 0.8f);
+        //Destroy(SkillBegin);
         SkillEffect = Instantiate(SkillVFX, transform.position, Quaternion.identity);
         Destroy(SkillEffect, 1f);
     }

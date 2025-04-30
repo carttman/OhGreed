@@ -128,10 +128,24 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 5902224d1dc7a4943be3b7c1ec802487, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.35
     functionName: OnSpawnFireBullet
     data: 
     objectReferenceParameter: {fileID: 8997371089776034406, guid: 5fb97b929c5b3cc41bd495ae51fdb575, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.35
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: f0e623edd4fbb4147b17421c240047ac, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

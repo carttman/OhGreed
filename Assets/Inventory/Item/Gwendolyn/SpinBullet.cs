@@ -22,6 +22,14 @@ public class SpinBullet : MonoBehaviour
 
     private float castingTime = 0;
     private float castingTimeMax = 1.0f;
+
+    [SerializeField] 
+    private AudioClip HitSFX;
+    [SerializeField] 
+    private AudioClip MoveStartSFX;
+    private AudioSource _audioSource;
+
+    private bool firstStart = true;
     public void Init(Transform _startTr, Transform _endTr, float _speed, float _newPointDistanceFromStartTr, float _newPointDistanceFromEndTr)
     {
         tempSpeed = _speed;
@@ -58,7 +66,7 @@ public class SpinBullet : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-
+        _audioSource = GetComponent<AudioSource>();
         StartCoroutine(DestroyCoroutine());
     }
     private void Update()
@@ -66,7 +74,12 @@ public class SpinBullet : MonoBehaviour
         castingTime += Time.deltaTime;
         if (castingTime >= castingTimeMax)
         {
-            
+            Debug.Log("castingTimeMax");
+            if (firstStart)
+            {
+                _audioSource.PlayOneShot(MoveStartSFX);
+                firstStart = false;
+            }
             // 경과 시간 계산
             m_timerCurrent += Time.deltaTime * m_speed;
 
@@ -132,6 +145,8 @@ public class SpinBullet : MonoBehaviour
         {
             var enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(.1f);
+            
+            //_audioSource.PlayOneShot(HitSFX);
         }
     }
     
@@ -196,5 +211,11 @@ public class SpinBullet : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
         
+    }
+    
+    public void PlaySound(AudioClip clip)
+    {
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(clip);
     }
 }

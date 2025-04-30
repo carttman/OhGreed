@@ -39,4 +39,9 @@ public class FlameSnake : MonoBehaviour
         bullet.GetComponent<FireBullet>().currScale = transform.localScale.x;
     }
     
+    public void PlaySound(AudioClip clip)
+    {
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(clip);
+    }
 }
