@@ -25,6 +25,10 @@ public class Boss_Sword : MonoBehaviour
     private List<bool> isPreparing = new List<bool>();
     private List<GameObject> swords = new List<GameObject>();
 
+    private void Awake()
+    {
+        player = ItemManager.Instance.Player.transform;
+    }
     void Start()
     {
         SpriteRenderer spriteRenderer = swordPrefab.GetComponent<SpriteRenderer>();
