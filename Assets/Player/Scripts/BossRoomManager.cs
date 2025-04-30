@@ -4,7 +4,7 @@ public class BossRoomManager : MonoBehaviour
 {
     public Portal portal;
     private int enemiesRemaining = 0;
-
+    
     public void RegisterEnemy()
     {
         enemiesRemaining++;

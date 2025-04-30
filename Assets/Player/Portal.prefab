@@ -288,7 +288,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.7
+      scalar: 0.53
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4949,3 +4949,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Scene_PlayerTest
   startActive: 0
+  _SpawnPoint: {x: 0, y: 0, z: 0}
