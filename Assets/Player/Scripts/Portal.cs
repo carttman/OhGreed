@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    public static Portal instance;
+    [SerializeField] private Animator transitionAnim;
+    
     public string targetSceneName;
     public bool startActive = true;  
     private bool isActive;
@@ -27,7 +30,11 @@ public class Portal : MonoBehaviour
 
     private System.Collections.IEnumerator LoadSceneAsync(Vector3 SpawnPoint)
     {
+     
+        // transitionAnim.SetTrigger("End");
+        // yield return new WaitForSeconds(3f);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName);
+        
         ItemManager.Instance.Player.transform.position = SpawnPoint;
         
         while (!asyncLoad.isDone)
@@ -41,4 +48,5 @@ public class Portal : MonoBehaviour
         isActive = true;
         Debug.Log("포탈이 열렸습니다");
     }
+    
 }
