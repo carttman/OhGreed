@@ -18,6 +18,9 @@ public class Boss_Sword : MonoBehaviour
     public float prepareTime = 2f;
     public int speed = 50;
     
+    public AudioSource sfxSource;
+    public AudioClip swordClip;
+    
     private Sprite originalSprite;
     private List<bool> isPreparing = new List<bool>();
     private List<GameObject> swords = new List<GameObject>();
@@ -52,6 +55,7 @@ public class Boss_Sword : MonoBehaviour
             Vector3 spawnPos = startPos + new Vector3(i * spawnSpacing, 0f, 0f);
             GameObject sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
             
+            sfxSource.PlayOneShot(swordClip);
             GameObject Start = Instantiate(startAnim, spawnPos + new Vector3(0,-0.7f,0), Quaternion.identity);
             Destroy(Start,0.5f);
             

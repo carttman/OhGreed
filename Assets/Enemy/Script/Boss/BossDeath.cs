@@ -15,8 +15,12 @@ public class BossDeath : MonoBehaviour
     public GameObject backParticle;
     public GameObject clearUI;
     
+    public AudioSource bgmSource;
+    
     public IEnumerator Death()
     {
+        bgmSource.Stop();
+        
         // 화면 하얗게, 슬로우
         whiteScreen.alpha = 1f;
         Time.timeScale = 0.3f;

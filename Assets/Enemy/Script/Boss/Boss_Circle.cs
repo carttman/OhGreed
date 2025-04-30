@@ -12,6 +12,9 @@ public class Boss_Circle : MonoBehaviour
     public int num = 10;
     public float delay = 0.5f;
 
+    public AudioSource sfxSource;
+    public AudioClip circleClip;
+    
     private float rotateAngle = 0f;
 
     public IEnumerator Circle()
@@ -20,8 +23,11 @@ public class Boss_Circle : MonoBehaviour
         
         yield return new WaitForSeconds(0.7f);
         
+        
         for (int i = 0; i < num; i++)
         {
+            sfxSource.PlayOneShot(circleClip);
+            
             for (int j = 0; j < 4; j++)
             {
                 // 라디안 단위 만들기 

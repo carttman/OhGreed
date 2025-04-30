@@ -3,18 +3,23 @@ using UnityEngine;
 
 public class Boss_Attack : MonoBehaviour
 {
+    public BossIntro intro;
     public Boss_Laser laser;
     public Boss_Sword sword;
     public Boss_Circle circle;
     public BossDeath death;
 
-    public GameObject bossprefab;
-
     private bool isAlive = true;
     private int pattern;
-    
+
     void Start()
     {
+        StartCoroutine(StartAfterIntro());
+    }
+    
+    private IEnumerator StartAfterIntro()
+    {
+        yield return StartCoroutine(intro.Intro());
         StartCoroutine(AttackLoop());
     }
 
@@ -22,7 +27,7 @@ public class Boss_Attack : MonoBehaviour
     {
         while (isAlive)
         {
-            yield return new WaitForSeconds(5f); 
+            yield return new WaitForSeconds(3f); 
             
             switch (pattern)
             {
