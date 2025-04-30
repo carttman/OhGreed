@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2726787964234763329}
   - component: {fileID: 4759436148467015382}
   - component: {fileID: 9130893407100669118}
+  - component: {fileID: 4405786728861270678}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -48,7 +49,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -116,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1.46
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -287,7 +288,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.32
+      scalar: 3.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -664,7 +665,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 5
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -672,7 +673,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 8, y: 20, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1370,11 +1371,11 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     mode: 1
-    timeMode: 0
-    fps: 30
+    timeMode: 1
+    fps: 0.0001
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 0.9999
       minScalar: 0.9999
       maxCurve:
@@ -1427,8 +1428,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startFrame:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 0.75
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1478,7 +1479,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    speedRange: {x: 0, y: 1}
+    speedRange: {x: 0, y: 0}
     tilesX: 1
     tilesY: 1
     animationType: 0
@@ -1487,15 +1488,18 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 163fef23b4ca33c438ab6d4383dbbbd0, type: 2}
+    - sprite: {fileID: 21300000, guid: 1fc47782632e4d146b4510b0b357f286, type: 2}
+    - sprite: {fileID: 21300000, guid: 41ecdc96f0da613438446f48ca6474da, type: 2}
+    - sprite: {fileID: 21300000, guid: 09a273db01a094743b982c506e010650, type: 2}
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -2.89
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1548,7 +1552,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.56
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4833,6 +4837,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4405786728861270678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248380852556064420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb5b93bd82c28446a4ced2e4298df2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 4759436148467015382}
+  particleMaterials:
+  - {fileID: 2100000, guid: 50299890062918746bfd317cc1429f43, type: 2}
+  - {fileID: 2100000, guid: 329b9d9d83180c249a0c155aa1bdee2d, type: 2}
+  - {fileID: 2100000, guid: a7abfc2e67a0435428fd71b7b129f7b5, type: 2}
+  - {fileID: 2100000, guid: d0e78f4c7f850074daef6ea9ba0ce0b2, type: 2}
 --- !u!1 &1532446860426713800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,7 +4866,6 @@ GameObject:
   - component: {fileID: 1130851902169801709}
   - component: {fileID: 8491068523876561533}
   - component: {fileID: 4225992317156215213}
-  - component: {fileID: 2193013968352330309}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -4928,21 +4949,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Scene_PlayerTest
   startActive: 0
---- !u!114 &2193013968352330309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532446860426713800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb5b93bd82c28446a4ced2e4298df2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 4759436148467015382}
-  particleMaterials:
-  - {fileID: 2100000, guid: 50299890062918746bfd317cc1429f43, type: 2}
-  - {fileID: 2100000, guid: 329b9d9d83180c249a0c155aa1bdee2d, type: 2}
-  - {fileID: 2100000, guid: a7abfc2e67a0435428fd71b7b129f7b5, type: 2}
-  - {fileID: 2100000, guid: d0e78f4c7f850074daef6ea9ba0ce0b2, type: 2}
