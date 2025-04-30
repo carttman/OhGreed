@@ -15,6 +15,9 @@ public class PlayerHealth : MonoBehaviour
     private PlayerAnimation playerAnimation;
 
     public PlayerHpBarController healthBar;
+    
+    public AudioSource bgmSource;
+    public AudioClip deathClip;
 
     private void Awake()
     {
@@ -53,7 +56,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        if (isDead) return;
+        if (isDead || EnemyHealth.gameEnd) return;
+        
+        EnemyHealth.gameEnd = true;
 
         isDead = true;
         playerAnimation.PlayDie();
@@ -64,11 +69,15 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
         StartCoroutine(GameOver());
         
+        bgmSource.Stop();
     }
     
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(2f);
+        
+        AudioSource audioSource = boss.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(deathClip);
         
         gameOverUI.SetActive(true);
         

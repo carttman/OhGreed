@@ -339,6 +339,9 @@ MonoBehaviour:
   backParticle: {fileID: 7642169322708462222}
   clearUI: {fileID: 2381781975651840018}
   bgmSource: {fileID: 0}
+  sfxSource: {fileID: 5844995041275113813}
+  deathClip: {fileID: 8300000, guid: 4792d6c9f8aa9bb4c90916a24851dfc8, type: 3}
+  clearClip: {fileID: 8300000, guid: b902fe5be1efcce488062a549bb3773d, type: 3}
 --- !u!114 &3921127601826311381
 MonoBehaviour:
   m_ObjectHideFlags: 0

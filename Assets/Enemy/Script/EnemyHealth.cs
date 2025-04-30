@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public static bool gameEnd = false;
+    
     //BossRoomManager 연결하기
     [SerializeField] private BossRoomManager bossRoomManager;
     private float currentHealth;
@@ -58,6 +60,9 @@ public class EnemyHealth : MonoBehaviour
         {
             if (!bossDead)
             {
+                if (gameEnd) return;
+                gameEnd = true;
+                
                 bossDead = true;
                 bossAttack?.Die();
                 Destroy(healthBarUI);

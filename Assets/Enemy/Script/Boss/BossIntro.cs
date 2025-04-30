@@ -18,7 +18,7 @@ public class BossIntro : MonoBehaviour
     {
         sfxSource.PlayOneShot(laughClip);
         yield return StartCoroutine(FadeInObject(head, 0.3f));
-        yield return StartCoroutine(FadeInObject(particle, 0.3f));
+        particle.SetActive(true);
         
         bgmSource.Play();
         

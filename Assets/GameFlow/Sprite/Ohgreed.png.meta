@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a1ae0fad4dc6c6645a1f35ebc1b87ec5
+guid: 4960540d08a6b8c40be78d06310976d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6981827254641702772
-    second: cloud_0
-  - first:
-      213: -2459163954622720782
-    second: cloud_1
-  - first:
-      213: -7977753516566349660
-    second: cloud_2
+      213: -8913077559505875025
+    second: Ohgreed_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -57,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cloud_0
+      name: Ohgreed_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 571
-        height: 182
+        width: 512
+        height: 108
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c88c0fb6a119b1f90800000000000000
-      internalID: -6981827254641702772
+      spriteID: faf8522ee236e4480800000000000000
+      internalID: -8913077559505875025
       vertices: []
       indices: 
       edges: []
@@ -157,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c536a4e6a3efb9040bb2612775a2c978
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -167,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cloud_0: -6981827254641702772
+      Ohgreed_0: -8913077559505875025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

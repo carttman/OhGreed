@@ -120,10 +120,13 @@ public class Boss_Sword : MonoBehaviour
                     effect = true;
                     
                    yield return new WaitForSeconds(3f);
+                   Vector3 diePos = rb.transform.position;
                    Destroy(rb.gameObject);
                    
-                   GameObject Die = Instantiate(DieAnim, rb.transform.position, Quaternion.identity);
+                   GameObject Die = Instantiate(DieAnim, diePos, Quaternion.identity);
                    Destroy(Die, 0.3f);
+
+                   yield break;
                 }
             }
             yield return null;

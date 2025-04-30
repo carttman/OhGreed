@@ -2125,32 +2125,15 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2271857092049232508, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2271857092049232508, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 2271857092049232508, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2368111459386130687, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: m_Name
       value: Cerbero
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835703038565167569, guid: 10d666662fd4219489422279a34e11c9, type: 3}
-      propertyPath: offset.y
-      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5654353176665071251, guid: 10d666662fd4219489422279a34e11c9, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1967813120}
-    m_RemovedComponents:
-    - {fileID: 4352270408280120328, guid: 10d666662fd4219489422279a34e11c9, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

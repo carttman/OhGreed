@@ -32,6 +32,11 @@ public class Enemy_Cerbero : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Cer_Attack"))
             return;
         

@@ -767,6 +767,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 196a9d034597df041b8a52a8a54a4f0e, type: 3}
+    - target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: maxHealth
       value: 97
       objectReference: {fileID: 0}
