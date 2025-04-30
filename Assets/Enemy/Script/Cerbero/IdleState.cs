@@ -22,9 +22,9 @@ public class IdleState : StateMachineBehaviour
         }
         
         float xDist = Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x);
-        float yDist = Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y);
+        float yDiff = cerbero.player.transform.position.y - cerberoTransform.position.y;
         
-        if (xDist <= 20f && !(xDist < 0.5f && yDist > 2f))
+        if (xDist > 1f && xDist <= 20f && yDiff<= 6f)
         {
             animator.SetBool("IsMove", true); 
             animator.SetBool("IsIdle", false);

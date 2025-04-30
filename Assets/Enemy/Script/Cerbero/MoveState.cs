@@ -19,24 +19,34 @@ public class MoveState : StateMachineBehaviour
     {
         if (!cerbero.canMove) return;
 
-        float xDist = Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x);
-        float yDist = Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y);
+        Vector2 current = cerberoTransform.position;
+        Vector2 target = new Vector2(cerbero.player.transform.position.x, current.y);
 
+        float xDist = Mathf.Abs(current.x - target.x);
+        float yDist = Mathf.Abs(cerberoTransform.position.y - cerbero.player.transform.position.y);
+        
         if (xDist > 20f || (xDist < 1f && yDist > 2f))
         {
             animator.SetBool("IsMove", false);
+            animator.SetBool("IsIdle", true);
             return;
         }
+
+        Vector2 newPos = Vector2.MoveTowards(current, target, Time.deltaTime * cerbero.speed);
+        cerberoTransform.position = newPos;
         
-        cerberoTransform.position = Vector2.MoveTowards(
-            cerberoTransform.position,
-            new Vector2(cerbero.player.transform.position.x, cerberoTransform.position.y),
-            Time.deltaTime * cerbero.speed
-        );
-        
-        animator.SetBool("IsMove", true);
-        
-        
+        bool didMove = Mathf.Abs(newPos.x - current.x) > 0.001f;
+
+        if (didMove)
+        {
+            animator.SetBool("IsMove", true);
+            animator.SetBool("IsIdle", false);
+        }
+        else
+        {
+            animator.SetBool("IsMove", false);
+            animator.SetBool("IsIdle", true);
+        }
     }
 
 

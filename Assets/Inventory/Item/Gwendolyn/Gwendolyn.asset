@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7d0b4fe7742754ea1e34cab89e600a, type: 3}
   m_Name: Gwendolyn
   m_EditorClassIdentifier: 
-  ItemName: Gwendolyn
+  ItemName: "\uADF8\uC6EC\uB3CC\uB9B0"
   ItemID: 3
   ItemIcon: {fileID: 21300000, guid: a12041e0816e8bb4a93d5118205087e4, type: 2}
   ItemType: 0
-  ItemSkillIcon: {fileID: 21300000, guid: 354748849db5b244da2a067db5d4643d, type: 2}
-  ItemDescription: throw homing Stars
-  SkillDescription: Spawn 10 Homing Stars
+  ItemSkillIcon: {fileID: 21300000, guid: 040a6af38d455004fbbb82fca784e089, type: 2}
+  ItemDescription: "\uAC00\uAE4C\uC6B4 \uC801\uC5D0\uAC8C \uB9E4\uC6B0 \uC9DC\uB9BF\uD55C
+    \uBC88\uAC1C\uB97C \uB0B4\uB9AC\uCE69\uB2C8\uB2E4. "
+  SkillDescription: "\uC694\uC815 \uC544\uB974\uC0E4\uB97C \uC18C\uD658\uD558\uC5EC
+    \uC801\uC744 \uC9C0\uC18D \uCD94\uC801\uD558\uB294 \uC218\uB9AC\uAC80\uC744 \uB0A0\uB9BD\uB2C8\uB2E4."

@@ -1,6 +1,9 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+
 
 public class BossDeath : MonoBehaviour
 {
@@ -15,8 +18,24 @@ public class BossDeath : MonoBehaviour
     public GameObject backParticle;
     public GameObject clearUI;
     
+    public CinemachineCamera _camera;
+    private CinemachineBasicMultiChannelPerlin noise;
+    
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
+    public AudioClip deathClip;
+    public AudioClip clearClip;
+    
+    void Awake()
+    {
+        noise = _camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
+    }
+    
     public IEnumerator Death()
     {
+        bgmSource.Stop();
+        sfxSource.PlayOneShot(deathClip);
+        
         // 화면 하얗게, 슬로우
         whiteScreen.alpha = 1f;
         Time.timeScale = 0.3f;
@@ -40,19 +59,29 @@ public class BossDeath : MonoBehaviour
         whiteScreen.alpha = 0f;
 
 
-        // 파티클
-        int num = 60;
+        // 파티클, 카메라 흔들림 
+        
+        noise.AmplitudeGain = 0.3f;
+        noise.FrequencyGain = 5f;
+        
+        int num = 45;
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < num; j++)
             {
                 Vector2 randomPos = new Vector2(Random.Range(-7, 7), Random.Range(-1, 10));
                 Instantiate(deathEffect, randomPos, Quaternion.identity);
                 
+                if (j % 4 == 0)
+                    sfxSource.PlayOneShot(deathClip);
+                
                 yield return new WaitForSeconds(Random.Range(0.02f, 0.08f));
             }
         }
+        noise.AmplitudeGain = 0f;
+        noise.FrequencyGain = 0f;
+        
         yield return new WaitForSeconds(0.1f);
         
         
@@ -69,12 +98,12 @@ public class BossDeath : MonoBehaviour
         yield return new WaitForSeconds(2f);
         
         //종료 화면
-        Time.timeScale = 0f;
-        
         CanvasGroup canvasGroup = clearUI.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0f;
         
         clearUI.SetActive(true);
+        
+        sfxSource.PlayOneShot(clearClip);
         
         float duration = 1.5f;
         float timer2 = 0f;

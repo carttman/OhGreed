@@ -13,6 +13,9 @@ public class Boss_Laser : MonoBehaviour
 
     public int speed = 10;
     public float delay = 1f;
+    
+    public AudioSource sfxSource;
+    public AudioClip laserClip;
 
     private bool isAttackingL = false;
     private bool isAttackingR = false;
@@ -79,19 +82,22 @@ public class Boss_Laser : MonoBehaviour
             yield return new WaitForSeconds(0.7f);
             Instantiate(laser, laserL.position, Quaternion.identity);
             isAttackingL = false;
-            yield return StartCoroutine(StopHandL());
-
+            sfxSource.PlayOneShot(laserClip);
+            yield return StartCoroutine(StopHandL()); 
+            
             yield return new WaitForSeconds(delay);
 
             isAttackingR = true;
             handAnimR.SetTrigger("Attack");
-
+            
             yield return new WaitForSeconds(0.7f);
             GameObject rightLaser = Instantiate(laser, laserR.position, Quaternion.identity);
             SpriteRenderer sr = rightLaser.GetComponent<SpriteRenderer>();
             sr.flipX = true;
             isAttackingR = false;
+            sfxSource.PlayOneShot(laserClip);
             yield return StartCoroutine(StopHandR());
+            
         }
 
     }

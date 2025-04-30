@@ -18,6 +18,9 @@ public class Boss_Sword : MonoBehaviour
     public float prepareTime = 2f;
     public int speed = 50;
     
+    public AudioSource sfxSource;
+    public AudioClip swordClip;
+    
     private Sprite originalSprite;
     private List<bool> isPreparing = new List<bool>();
     private List<GameObject> swords = new List<GameObject>();
@@ -30,7 +33,7 @@ public class Boss_Sword : MonoBehaviour
 
     void Update()
     {
-        for(int i = 0; i < swordCount; i++)
+        for(int i = 0; i < isPreparing.Count; i++)
         {
             if(isPreparing[i])
             {
@@ -41,6 +44,7 @@ public class Boss_Sword : MonoBehaviour
 
     public IEnumerator Sword()
     {
+        
         swords.Clear();
         isPreparing.Clear();
         
@@ -51,6 +55,7 @@ public class Boss_Sword : MonoBehaviour
             Vector3 spawnPos = startPos + new Vector3(i * spawnSpacing, 0f, 0f);
             GameObject sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
             
+            sfxSource.PlayOneShot(swordClip);
             GameObject Start = Instantiate(startAnim, spawnPos + new Vector3(0,-0.7f,0), Quaternion.identity);
             Destroy(Start,0.5f);
             
@@ -115,10 +120,13 @@ public class Boss_Sword : MonoBehaviour
                     effect = true;
                     
                    yield return new WaitForSeconds(3f);
+                   Vector3 diePos = rb.transform.position;
                    Destroy(rb.gameObject);
                    
-                   GameObject Die = Instantiate(DieAnim, rb.transform.position, Quaternion.identity);
+                   GameObject Die = Instantiate(DieAnim, diePos, Quaternion.identity);
                    Destroy(Die, 0.3f);
+
+                   yield break;
                 }
             }
             yield return null;
