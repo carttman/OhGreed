@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 238027412886851545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -10}
+  m_LocalPosition: {x: 21.6, y: 14.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70,7 +70,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 6078993274442445165}
   - component: {fileID: 5600285144461151588}
   - component: {fileID: 7426337193342605761}
-  - component: {fileID: 7371409517163254405}
+  - component: {fileID: 212584280833070249}
   m_Layer: 0
   m_Name: FollowCamera
   m_TagString: Untagged
@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 8416181463601103224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -10}
+  m_LocalPosition: {x: 21.6, y: 14.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -274,7 +274,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 8
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -312,18 +312,18 @@ MonoBehaviour:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
     HardLimits:
-      Enabled: 1
+      Enabled: 0
       Size: {x: 3, y: 3}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 2.5, z: 0}
+  TargetOffset: {x: 0, y: 1.7, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!114 &7371409517163254405
+--- !u!114 &212584280833070249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -774,6 +774,14 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 97
       objectReference: {fileID: 0}
+    - target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 255927838163690452, guid: 495baa08decd7d34d945f0dcc2585794, type: 3}
+    - target: {fileID: 1612861235696270980, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: maxJumps
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2013091100998831667, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 28.300293
@@ -784,11 +792,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.6
       objectReference: {fileID: 0}
     - target: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 12.7
       objectReference: {fileID: 0}
     - target: {fileID: 2163834646832195342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -866,9 +874,23 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5823716221359640465, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: m_text
+      value: 97 /  97
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762478291540626870, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: m_text
+      value: '1
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7481857368064754373, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481857368064754373, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8097555025396050013, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_Name

@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Enemy/Audio.meta
-guid: 64e0f256e82c70b4abb249979e79a7ba
-folderAsset: yes
-DefaultImporter:
-========
 guid: 73b4b649e0bdbcf44b9eebe82e1f3e5f
 PrefabImporter:
->>>>>>>> main:Assets/Inventory/Item/Katana/KatanaBeginVFX.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
