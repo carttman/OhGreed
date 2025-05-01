@@ -9,6 +9,7 @@ public class Boss_Attack : MonoBehaviour
     public Boss_Sword sword;
     public Boss_Circle circle;
     public BossDeath death;
+    public AudioSource beforeIntroBGM;
 
     private bool isAlive = true;
     private int pattern;
@@ -32,6 +33,11 @@ public class Boss_Attack : MonoBehaviour
     
     private IEnumerator StartAfterIntro()
     {
+        if (beforeIntroBGM.isPlaying)
+        {
+            beforeIntroBGM.Stop();
+        }
+        
         yield return StartCoroutine(intro.Intro());
         StartCoroutine(AttackLoop());
     }

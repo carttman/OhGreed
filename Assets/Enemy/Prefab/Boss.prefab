@@ -298,7 +298,7 @@ MonoBehaviour:
   handL: {fileID: 8523415074552876955}
   handR: {fileID: 6740794762118440760}
   canvasGroup: {fileID: 0}
-  bgmSource: {fileID: 0}
+  bgmSource: {fileID: 5844995041275113813}
   sfxSource: {fileID: 5844995041275113813}
   laughClip: {fileID: 8300000, guid: 65004f3fc6235994689222e46df85d5f, type: 3}
 --- !u!114 &1664045248488164741
@@ -318,6 +318,7 @@ MonoBehaviour:
   sword: {fileID: 5474783840263547224}
   circle: {fileID: 95505857932891363}
   death: {fileID: 5856574888933637667}
+  beforeIntroBGM: {fileID: 0}
 --- !u!114 &5856574888933637667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,12 +377,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
+  m_Resource: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

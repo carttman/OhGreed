@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class BossBGMStop : MonoBehaviour
 {
-    public AudioSource _AudioSource;
-    public AudioClip BossBGM;
-    
+    public AudioSource bgmAudioSource;
+    public AudioSource bossAudioSource;
+
+    public static BossBGMStop Instance;
+
     private void Awake()
     {
-        _AudioSource = GetComponent<AudioSource>();
-        ItemManager.Instance.Player.GetComponent<PlayerHealth>().bgmSource = _AudioSource;
+        Instance = this;
+    }
+
+    public void Stop()
+    {
+        bgmAudioSource?.Stop();
+        bossAudioSource?.Stop();
     }
 }

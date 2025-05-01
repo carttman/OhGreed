@@ -769,6 +769,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 8e545d4e2ce0ae6469f5c0b14b87e7d8, type: 3}
     - target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
+      propertyPath: bgmSource
+      value: 
+      objectReference: {fileID: 5844995041275113813, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
+    - target: {fileID: 1310967736854318342, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: deathClip
       value: 
       objectReference: {fileID: 8300000, guid: 196a9d034597df041b8a52a8a54a4f0e, type: 3}

@@ -35,7 +35,8 @@ public class BossDeath : MonoBehaviour
     
     public IEnumerator Death()
     {
-        bgmSource.Stop();
+        BossBGMStop.Instance.Stop();
+
         sfxSource.PlayOneShot(deathClip);
         
         // 화면 하얗게, 슬로우

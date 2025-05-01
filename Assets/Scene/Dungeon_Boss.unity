@@ -147,9 +147,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
-  m_Resource: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 1b11e0072dde3254b954c44bb06bef2a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 1b11e0072dde3254b954c44bb06bef2a, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e0efcd191dd94ea11a2a0e7d169c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _AudioSource: {fileID: 0}
-  BossBGM: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
+  bgmAudioSource: {fileID: 18722323}
+  bossAudioSource: {fileID: 463358892944325059}
 --- !u!1001 &25899657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20782,15 +20782,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1664045248488164741, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
+      propertyPath: beforeIntroBGM
+      value: 
+      objectReference: {fileID: 18722323}
     - target: {fileID: 2369527334986722733, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: bgmSource
-      value: 
-      objectReference: {fileID: 18722323}
-    - target: {fileID: 6768191486256287128, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
       propertyPath: bgmSource
       value: 
       objectReference: {fileID: 18722323}
@@ -20851,6 +20851,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
+--- !u!82 &463358892944325059 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5844995041275113813, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
+  m_PrefabInstance: {fileID: 463358892944325058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7570899571947493784
 PrefabInstance:
   m_ObjectHideFlags: 0

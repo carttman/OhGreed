@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
 
     public PlayerHpBarController healthBar;
     
-    public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioClip deathClip;
     public AudioClip hitClip;
@@ -86,10 +85,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
         StartCoroutine(GameOver());
 
-        if (bgmSource)
-        {
-            bgmSource.Stop();
-        }
+        BossBGMStop.Instance.Stop();
     }
     
     private IEnumerator GameOver()
