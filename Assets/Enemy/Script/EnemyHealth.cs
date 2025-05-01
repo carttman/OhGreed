@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     public bool gameEnd = false;
+    public bool isInvincible = false;
     
     //BossRoomManager 연결하기
     [SerializeField] private BossRoomManager bossRoomManager;
@@ -39,6 +40,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(isInvincible) return;
+        
         currentHealth -= damage;
         healthSlider.value = currentHealth;
         

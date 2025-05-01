@@ -8,14 +8,19 @@ public class BossIntro : MonoBehaviour
     public GameObject particle;
     public GameObject handL;
     public GameObject handR;
+    public GameObject hpUI;
     
     public CanvasGroup canvasGroup;
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioClip laughClip;
+    
+    public EnemyHealth bossHealth;
 
     public IEnumerator Intro()
     {
+        bossHealth.isInvincible = true;
+        
         sfxSource.PlayOneShot(laughClip);
         yield return StartCoroutine(FadeInObject(head, 0.3f));
         particle.SetActive(true);
@@ -42,6 +47,8 @@ public class BossIntro : MonoBehaviour
         timer = 0f;
         yield return new WaitForSeconds(2.5f);
         
+        hpUI.SetActive(true);
+        
         while (timer < totalTime)
         {
             timer += Time.unscaledDeltaTime;
@@ -51,6 +58,10 @@ public class BossIntro : MonoBehaviour
         
         canvasGroup.alpha = 0f;
         canvasGroup.gameObject.SetActive(false);
+        
+        
+        
+        bossHealth.isInvincible = false;
     }
     
     private IEnumerator FadeInObject(GameObject obj, float totalTime)
