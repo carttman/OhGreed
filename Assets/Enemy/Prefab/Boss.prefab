@@ -730,7 +730,9 @@ MonoBehaviour:
   prepareTime: 1
   speed: 50
   sfxSource: {fileID: 5844995041275113813}
-  swordClip: {fileID: 8300000, guid: e5372e4fcbb7a8441b62f66548acc4da, type: 3}
+  swordStartClip: {fileID: 8300000, guid: e5372e4fcbb7a8441b62f66548acc4da, type: 3}
+  swordHitClip: {fileID: 8300000, guid: ed5a449fa0b40ce4ea6e9173831c06b3, type: 3}
+  swordDeathClip: {fileID: 8300000, guid: 2c928fe3783e3d346a8f5513382e488b, type: 3}
 --- !u!1 &3536004945832258896
 GameObject:
   m_ObjectHideFlags: 0

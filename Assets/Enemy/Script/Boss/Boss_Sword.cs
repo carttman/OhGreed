@@ -19,7 +19,9 @@ public class Boss_Sword : MonoBehaviour
     public int speed = 50;
     
     public AudioSource sfxSource;
-    public AudioClip swordClip;
+    public AudioClip swordStartClip;
+    public AudioClip swordHitClip;
+    public AudioClip swordDeathClip;
     
     private Sprite originalSprite;
     private List<bool> isPreparing = new List<bool>();
@@ -59,7 +61,7 @@ public class Boss_Sword : MonoBehaviour
             Vector3 spawnPos = startPos + new Vector3(i * spawnSpacing, 0f, 0f);
             GameObject sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
             
-            sfxSource.PlayOneShot(swordClip);
+            sfxSource.PlayOneShot(swordStartClip);
             GameObject Start = Instantiate(startAnim, spawnPos + new Vector3(0,-0.7f,0), Quaternion.identity);
             Destroy(Start,0.5f);
             
@@ -87,6 +89,8 @@ public class Boss_Sword : MonoBehaviour
             
             Vector2 dir = (player.position - sword.transform.position).normalized;
             rb.linearVelocity = dir * speed;
+            
+            sfxSource.PlayOneShot(swordHitClip);
             
             isPreparing[i] = false;
             
@@ -127,7 +131,9 @@ public class Boss_Sword : MonoBehaviour
                    Vector3 diePos = rb.transform.position;
                    Destroy(rb.gameObject);
                    
-                   GameObject Die = Instantiate(DieAnim, diePos, Quaternion.identity);
+                   sfxSource.PlayOneShot(swordDeathClip);
+                   
+                   GameObject Die = Instantiate(DieAnim, diePos,rb.transform.rotation);
                    Destroy(Die, 0.3f);
 
                    yield break;

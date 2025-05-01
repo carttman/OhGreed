@@ -17,7 +17,9 @@ public class PlayerHealth : MonoBehaviour
     public PlayerHpBarController healthBar;
     
     public AudioSource bgmSource;
+    public AudioSource sfxSource;
     public AudioClip deathClip;
+    public AudioClip hitClip;
 
     public Boss_Attack bossAttack;
 
@@ -45,7 +47,8 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
+        sfxSource.PlayOneShot(hitClip);
+        
         if (healthBar != null)
         {
             healthBar.SetCurrentHealth(currentHealth);
