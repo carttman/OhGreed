@@ -297,10 +297,12 @@ MonoBehaviour:
   particle: {fileID: 7642169322708462222}
   handL: {fileID: 8523415074552876955}
   handR: {fileID: 6740794762118440760}
+  hpUI: {fileID: 6777170404606756828}
   canvasGroup: {fileID: 0}
   bgmSource: {fileID: 5844995041275113813}
   sfxSource: {fileID: 5844995041275113813}
   laughClip: {fileID: 8300000, guid: 65004f3fc6235994689222e46df85d5f, type: 3}
+  bossHealth: {fileID: 5994139448170317506}
 --- !u!114 &1664045248488164741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +905,7 @@ RectTransform:
   m_Father: {fileID: 6250615234421521002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -77, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -1306,7 +1308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &389307048731437941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6654,6 +6656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEnd: 0
+  isInvincible: 0
   bossRoomManager: {fileID: 0}
   maxHealth: 100
   healthSlider: {fileID: 634010981875588546}
