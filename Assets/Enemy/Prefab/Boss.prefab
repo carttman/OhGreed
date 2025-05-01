@@ -209,12 +209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 5856574888933637667}
   - component: {fileID: 3921127601826311381}
   - component: {fileID: 5844995041275113813}
+  - component: {fileID: 8004387189657985039}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -338,6 +339,7 @@ MonoBehaviour:
   rightHandAnim: {fileID: 2320202516616355818}
   backParticle: {fileID: 7642169322708462222}
   clearUI: {fileID: 2381781975651840018}
+  _camera: {fileID: 0}
   bgmSource: {fileID: 0}
   sfxSource: {fileID: 5844995041275113813}
   deathClip: {fileID: 8300000, guid: 4792d6c9f8aa9bb4c90916a24851dfc8, type: 3}
@@ -461,6 +463,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &8004387189657985039
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369527334986722733}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.2, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2381781975651840018
 GameObject:
   m_ObjectHideFlags: 0
@@ -6602,6 +6650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0daf431dbcb38d148b87bd2ceec572ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEnd: 0
   bossRoomManager: {fileID: 0}
   maxHealth: 100
   healthSlider: {fileID: 634010981875588546}

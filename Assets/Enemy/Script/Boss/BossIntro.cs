@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class BossIntro : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class BossIntro : MonoBehaviour
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioClip laughClip;
-    
 
     public IEnumerator Intro()
     {
