@@ -12,15 +12,22 @@ public class Boss_Attack : MonoBehaviour
 
     private bool isAlive = true;
     private int pattern;
+    private bool isTrigger = false;
 
     private void Awake()
     {
         ItemManager.Instance.Player.GetComponent<PlayerHealth>().bossAttack = this;
     }
 
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        StartCoroutine(StartAfterIntro());
+        if(isTrigger) return;
+
+        if (other.CompareTag("Player"))
+        {
+            isTrigger = true;
+            StartCoroutine(StartAfterIntro());
+        }
     }
     
     private IEnumerator StartAfterIntro()

@@ -20786,26 +20786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 3921127601826311381, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5474783840263547224, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5856574888933637667, guid: 9f77a486a8691e543a50e39b4ed8f82c, type: 3}
       propertyPath: bgmSource
       value: 
