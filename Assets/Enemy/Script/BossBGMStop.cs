@@ -11,9 +11,4 @@ public class BossBGMStop : MonoBehaviour
         _AudioSource = GetComponent<AudioSource>();
         ItemManager.Instance.Player.GetComponent<PlayerHealth>().bgmSource = _AudioSource;
     }
-
-    private void Start()
-    {
-        _AudioSource.PlayOneShot(BossBGM);
-    }
 }
