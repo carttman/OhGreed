@@ -22,6 +22,12 @@ public class Boss_Laser : MonoBehaviour
     private bool isHandMovingL = true;
     private bool isHandMovingR = true;
     
+
+    private void Awake()
+    {
+        player = ItemManager.Instance.Player.transform;
+    }
+    
     void Update()
     {
         Transform handL = handAnimL.transform;

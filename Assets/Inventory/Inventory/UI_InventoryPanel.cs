@@ -18,16 +18,14 @@ public class UI_InventoryPanel : MonoBehaviour
 
     public EquipWeaponPanel equipWeaponPanel;
 
-   
-
-    void Start()
+   void Awake()
     {
         ItemManager.Instance.OnItemAdded += AddItem;
         ItemManager.Instance.OnMoveToItemSlot += MoveToItemSlot;
         
         CreateInventory();
     }
-
+   
     private void OnDestroy()
     {
         ItemManager.Instance.OnItemAdded -= AddItem;
@@ -50,8 +48,10 @@ public class UI_InventoryPanel : MonoBehaviour
 
     private void AddItem(ItemUIBase Item, int targetIndex)
     {
-        if(InventoryItems[targetIndex] != null) return;
-        
+        if (InventoryItems[targetIndex] != null)
+        {
+            return;
+        }
         InventoryItems[targetIndex] = Instantiate(Item, InventoryGridLayout.transform);
         InventoryItems[targetIndex].transform.SetParent(BlankIcons[targetIndex].transform);
         InventoryItems[targetIndex].transform.localPosition = Vector3.zero;

@@ -15,16 +15,20 @@ public class FlameSnake : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        StartCoroutine(StartFire());
+        StartCoroutine(StartFireAndDestroy());
     }
 
-    IEnumerator StartFire()
+    IEnumerator StartFireAndDestroy()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(2);
             animator.SetTrigger("Fire");
         }
+        
+        yield return new WaitForSeconds(3);
+        
+        Destroy(gameObject);
     }
 
     public void OnBeginFireBullet()

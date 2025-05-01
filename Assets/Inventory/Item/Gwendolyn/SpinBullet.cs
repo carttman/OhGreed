@@ -74,7 +74,7 @@ public class SpinBullet : MonoBehaviour
         castingTime += Time.deltaTime;
         if (castingTime >= castingTimeMax)
         {
-            Debug.Log("castingTimeMax");
+            //Debug.Log("castingTimeMax");
             if (firstStart)
             {
                 _audioSource.PlayOneShot(MoveStartSFX);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,6 +18,16 @@ public class FireDragonKillerObject : ItemObjectBase, IWeaponAttackable
     
     private GameObject SkillEffect;
     
+    [SerializeField]
+    private AudioClip BaseAttackSFX;
+    
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -33,8 +44,7 @@ public class FireDragonKillerObject : ItemObjectBase, IWeaponAttackable
     
     public void Attack()
     {
-        Debug.Log("불검 어택");
-
+        _audioSource.PlayOneShot(BaseAttackSFX);
         var v = Instantiate(AttackVFX, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
         Destroy(v, .3f);
     }
