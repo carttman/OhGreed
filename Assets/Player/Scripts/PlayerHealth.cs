@@ -19,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource bgmSource;
     public AudioClip deathClip;
 
+    public Boss_Attack bossAttack;
+
+    public EnemyHealth EnemyHealth;
     private void Awake()
     {
         playerAnimation = GetComponent<PlayerAnimation>();
@@ -50,38 +53,55 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Debug.Log("111111111111111111111111111111111");
             Die();
         }
     }
 
     private void Die()
     {
-        if (isDead || EnemyHealth.gameEnd) return;
+        if (isDead) return;
+        Debug.Log("22222222222222222222222222222222222222222222222");
+
+        
+        if(EnemyHealth.gameEnd) return;
+        
+        Debug.Log("333333333333333333333333333333333333333333333333");
         
         EnemyHealth.gameEnd = true;
 
         isDead = true;
         playerAnimation.PlayDie();
         
-        Boss_Attack bossAttack = boss.GetComponent<Boss_Attack>();
-        bossAttack.StopAttack();
+        
+        //Boss_Attack bossAttack = boss.GetComponent<Boss_Attack>();
+        if (bossAttack)
+        {
+            bossAttack.StopAttack();
+        }
         
         GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
         StartCoroutine(GameOver());
-        
-        bgmSource.Stop();
+
+        if (bgmSource)
+        {
+            bgmSource.Stop();
+        }
     }
     
     private IEnumerator GameOver()
     {
+        var overUI = Instantiate(gameOverUI, Camera.main.transform.position + new Vector3(0, 0, 0.01f), Quaternion.identity);
+        overUI.transform.SetParent(Camera.main.transform);
+        
         yield return new WaitForSeconds(2f);
+        overUI.SetActive(true);
         
-        AudioSource audioSource = boss.GetComponent<AudioSource>();
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.PlayOneShot(deathClip);
+
         
-        gameOverUI.SetActive(true);
-        
-        CanvasGroup canvasGroup = gameOverUI.GetComponent<CanvasGroup>();
+        CanvasGroup canvasGroup = overUI.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0f; 
         
         float duration = 1.5f;
@@ -102,8 +122,8 @@ public class PlayerHealth : MonoBehaviour
     public void OnClickMainMenu()
     {
         Transform player = GameManager.Instance.transform.Find("Player");
-        Destroy(player.gameObject);
-        SceneManager.LoadScene("LYS_Start"); 
+        Destroy(GameManager.Instance.gameObject);
+        SceneManager.LoadScene("Town"); 
     }
 }
 

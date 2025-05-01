@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public static bool gameEnd = false;
+    public bool gameEnd = false;
     
     //BossRoomManager 연결하기
     [SerializeField] private BossRoomManager bossRoomManager;
@@ -30,7 +30,11 @@ public class EnemyHealth : MonoBehaviour
         {
             bossAttack = GetComponentInParent<Boss_Attack>();
         }
-        
+
+        if (ItemManager.Instance.Player.GetComponent<PlayerHealth>().EnemyHealth == null)
+        {
+            ItemManager.Instance.Player.GetComponent<PlayerHealth>().EnemyHealth = this;
+        }
     }
 
     public void TakeDamage(float damage)

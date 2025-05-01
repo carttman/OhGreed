@@ -17,8 +17,11 @@ public class Follow : MonoBehaviour
             Destroy(gameObject); 
             return;
         }
-        
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
-        rect.position = screenPos;
+
+        if (Camera.main)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);
+            rect.position = screenPos;
+        }
     }
 }

@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18722324}
   - component: {fileID: 18722323}
+  - component: {fileID: 18722325}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -248,6 +249,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18722325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18722322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78e0efcd191dd94ea11a2a0e7d169c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AudioSource: {fileID: 0}
+  BossBGM: {fileID: 8300000, guid: 218a505d3cd1b26428f1c09564f1b467, type: 3}
 --- !u!1001 &25899657
 PrefabInstance:
   m_ObjectHideFlags: 0

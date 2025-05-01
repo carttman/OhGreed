@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ public class Boss_Attack : MonoBehaviour
 
     private bool isAlive = true;
     private int pattern;
+
+    private void Awake()
+    {
+        ItemManager.Instance.Player.GetComponent<PlayerHealth>().bossAttack = this;
+    }
 
     void Start()
     {

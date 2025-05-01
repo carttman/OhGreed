@@ -20,7 +20,10 @@ public class IdleState : StateMachineBehaviour
             animator.SetBool("IsIdle", true);
             return;
         }
-        
+
+        if (cerbero.player != null)
+        {
+            
         float xDist = Mathf.Abs(cerberoTransform.position.x - cerbero.player.transform.position.x);
         float yDiff = cerbero.player.transform.position.y - cerberoTransform.position.y;
         
@@ -28,6 +31,7 @@ public class IdleState : StateMachineBehaviour
         {
             animator.SetBool("IsMove", true); 
             animator.SetBool("IsIdle", false);
+        }
         }
     }
 
