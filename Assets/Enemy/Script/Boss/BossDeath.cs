@@ -28,9 +28,8 @@ public class BossDeath : MonoBehaviour
     
     void Awake()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
-        
+
+        _camera = GameManager.Instance.FollowCamera.GetComponent<CinemachineCamera>();
         noise = _camera.GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
     }
     
@@ -126,6 +125,7 @@ public class BossDeath : MonoBehaviour
     public void OnClickMainMenu()
     {
         Destroy(player);
-        SceneManager.LoadScene("LYS_Start");
+        SceneManager.LoadScene("MainMenu");
+        Destroy(GameManager.Instance.gameObject);
     }
 }

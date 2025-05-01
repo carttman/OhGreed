@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - DungeonEntrance
+  - Object
+  - OnewayPlatform
+  - Builder
+  - Tile
+  - Platform
   layers:
   - Default
   - TransparentFX

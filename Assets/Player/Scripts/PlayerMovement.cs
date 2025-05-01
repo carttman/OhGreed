@@ -1,5 +1,6 @@
+using System;
+using System.Collections;
 using System.Numerics;
-using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Quaternion = UnityEngine.Quaternion;
@@ -10,6 +11,8 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private CapsuleCollider2D playerCollider;
+    
     public Animator animator;
     private PlayerHealth playerHealth;
     
@@ -65,10 +68,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private float dashTimer = 0f;
     private float ghostTimer = 0f;
+
+    private bool isOnPlatformed;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
+        
         originalGravityScale = rb.gravityScale;
 
         isFacingRight = true;
@@ -93,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (isWallJumping || dashCount > 0) return; // 벽 점프중이거나 대쉬중이면 이동 막기
+        if (isWallJumping || dashCount > 0) return;
         
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         
@@ -257,6 +264,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetDashCooldown), dashCooldownTime);
         }
     }
+    
 
     private void HandleGhostTrail()
     {
@@ -264,7 +272,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashTimer += Time.deltaTime;
         ghostTimer += Time.deltaTime;
-
+        
         if (ghostTimer >= ghostSpawnInterval)
         {
             SpawnGhost();
@@ -281,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ghostPrefab != null)
         {
-            Instantiate(ghostPrefab, transform.position, Quaternion.identity);
+            var ghost = Instantiate(ghostPrefab, transform.position, Quaternion.identity);
         }
     }
 
@@ -304,5 +312,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
         return (mouseWorldPos - transform.position);
+    }
+    
+    public void Drop(InputAction.CallbackContext context)
+    {
+        if (context.performed && IsGrounded)
+        {
+            StartCoroutine(DisablePlayerCollider(0.25f));
+        }
+    }
+    
+    private IEnumerator DisablePlayerCollider(float disableTime)
+    {
+        playerCollider.enabled = false;
+
+        yield return new WaitForSeconds(disableTime);
+
+        playerCollider.enabled = true;
     }
 }

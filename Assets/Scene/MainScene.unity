@@ -1623,6 +1623,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4694487868622109741, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5524350098323566791, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
       propertyPath: TempItemDetailPanel
       value: 
@@ -1663,6 +1667,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7807609467798419337, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
+      propertyPath: ghostPrefab
+      value: 
+      objectReference: {fileID: 8999444341500026896, guid: b592c68a3e44c51419306a25f32bf648, type: 3}
     - target: {fileID: 7824345953409877085, guid: 9d57249afc8e5ac4fbc43721267e8f9c, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +33,11 @@ public class PlayerInput : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context)
     {
         playerMovement.Dash(context);
+    }
+
+    public void OnDrop(InputAction.CallbackContext context)
+    {
+        playerMovement.Drop(context);
     }
 }
 

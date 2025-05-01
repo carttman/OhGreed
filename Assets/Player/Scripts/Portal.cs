@@ -8,6 +8,7 @@ public class Portal : MonoBehaviour
     public bool startActive = true;  
     private bool isActive;
 
+    public Vector3 _SpawnPoint;
     private void Start()
     {
         isActive = startActive; // 맵마다 설정해주기!!필수!!
@@ -20,14 +21,15 @@ public class Portal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("포탈에 들어감! 다음 씬으로 이동할께!");
-            StartCoroutine(LoadSceneAsync());
+            StartCoroutine(LoadSceneAsync(_SpawnPoint));
         }
     }
 
-    private System.Collections.IEnumerator LoadSceneAsync()
+    private System.Collections.IEnumerator LoadSceneAsync(Vector3 SpawnPoint)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetSceneName);
-
+        ItemManager.Instance.Player.transform.position = SpawnPoint;
+        
         while (!asyncLoad.isDone)
         {
             yield return null;

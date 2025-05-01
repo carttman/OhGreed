@@ -44,25 +44,31 @@ public class ItemManager : MonoBehaviour
     
     void Start()
     {
+        OnItemAdded?.Invoke(ItemUIBaseSword, 0);
+        OnItemAdded?.Invoke(ItemUIBaseBow, 1);
+        OnItemAdded?.Invoke(ItemUIBaseWand, 2);
+        OnItemAdded?.Invoke(ItemUIBaseSword, 3);
+        OnItemAdded?.Invoke(ItemUIBaseBow, 4);
+        OnItemAdded?.Invoke(ItemUIBaseWand, 5);
+        OnItemAdded?.Invoke(ItemUIBaseSword, 6);
+       
         InventoryPanel.SetActive(false);
         TempIcon.SetActive(false);
         TempItemDetailPanel.SetActive(false);
         
-        OnItemAdded?.Invoke(ItemUIBaseSword, 0);
-        OnItemAdded?.Invoke(ItemUIBaseBow, 1);
-        OnItemAdded?.Invoke(ItemUIBaseWand, 2);
+        Debug.Log("ItemManager Start");
     }
 
     private void Singleton()
     {
         if (Instance != null && Instance != this)
         {
+            Debug.Log("ItemManager Singleton");
             Destroy(gameObject);
             return;
         }
         
         Instance = this;
-        //DontDestroyOnLoad(gameObject);
     }
     
     public void MoveItemInventory(int targetIndex, SlotType slotType)
@@ -149,13 +155,10 @@ public class ItemManager : MonoBehaviour
         TempItemDetailPanel.transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
         TempItemDetailPanel.transform.GetChild(4).GetComponent<Image>().sprite = skillIcon;
         TempItemDetailPanel.transform.GetChild(5).GetComponent<TMP_Text>().text = skillDescription;
-        
-        
     }
 
     public void DeactiveItemDetailPanel()
     {
         TempItemDetailPanel.SetActive(false);
-        
     }
 }

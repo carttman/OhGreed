@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
         Animator animator = logo.GetComponent<Animator>();
         animator.SetTrigger("Start");
         
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Town");
     }
 
     public void OnClickExitGame()
