@@ -812,10 +812,6 @@ PrefabInstance:
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 255927838163690452, guid: 495baa08decd7d34d945f0dcc2585794, type: 3}
-    - target: {fileID: 1612861235696270980, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
-      propertyPath: maxJumps
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2013091100998831667, guid: 3b7e41b27f4c1a6498a134b547c2370f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 25

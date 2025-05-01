@@ -532,13 +532,13 @@ MonoBehaviour:
   footPosition: {fileID: 3471977894584316320}
   dustSpawnInterval: 0.2
   animator: {fileID: 3989101754404518634}
-  baseGravity: 2
+  baseGravity: 3
   maxFallSpeed: 18
   fallSpeedMultiplier: 2
   moveSpeed: 7
   horizontalMovement: 0
   jumpPower: 12
-  maxJumps: 3
+  maxJumps: 4
   groundCheckPos: {fileID: 3471977894584316320}
   groundCheckSize: {x: 0.82, y: 0.05}
   groundLayer:
@@ -560,7 +560,7 @@ MonoBehaviour:
   wallSlideSpeed: 2
   wallJumpPower: {x: 7, y: 12}
   ghostPrefab: {fileID: 8999444341500026896, guid: b592c68a3e44c51419306a25f32bf648, type: 3}
-  dashForce: 15
+  dashForce: 30
   dashTime: 0.2
   dashCooldownTime: 1
   ghostSpawnInterval: 0.05
@@ -603,8 +603,11 @@ MonoBehaviour:
   gameOverUI: {fileID: 0}
   boss: {fileID: 0}
   healthBar: {fileID: 7651293054320041542}
-  bgmSource: {fileID: 0}
+  sfxSource: {fileID: 0}
   deathClip: {fileID: 0}
+  hitClip: {fileID: 0}
+  bossAttack: {fileID: 0}
+  EnemyHealth: {fileID: 0}
 --- !u!114 &5573375524847562092
 MonoBehaviour:
   m_ObjectHideFlags: 0
