@@ -67,9 +67,10 @@ public class KatanaObject : ItemObjectBase, IWeaponAttackable
         var audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(SkillReadySFX);
         
-        var SkillBegin = Instantiate(SkillBeginVFX, transform.position, Quaternion.identity);
+        var SkillBegin = Instantiate(SkillBeginVFX, transform.position + new Vector3(0, 4, 0), Quaternion.identity);
         SkillBegin.transform.SetParent(_camera.transform);
-        
+        //SkillBegin.transform.SetParent(_camera.transform);
+        //GameManager.Instance.FollowCamera.transform
         yield return new WaitForSeconds(1.2f);
         
         Destroy(SkillBegin, 0.8f);
